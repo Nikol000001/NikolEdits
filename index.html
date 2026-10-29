@@ -1366,12 +1366,16 @@
         });
 
                 /* ============ CONTACT ============ */
+        const W3F_KEY = '7a11d596-e7a3-4f39-a8c4-a833460774dd';
+        const W3F_URL = 'https://api.web3forms.com/submit';
+
         function toast(msg) {
             const el = $('#toast');
             el.textContent = msg;
             gsap.killTweensOf(el);
             gsap.timeline().fromTo(el, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .35 }).to(el, { opacity: 0, y: 10, duration: .35, delay: 1.8 });
         }
+
         $('#copyEmail').addEventListener('click', async () => {
             try { await navigator.clipboard.writeText(EMAIL); }
             catch (e) {
@@ -1386,23 +1390,35 @@
             e.preventDefault();
             if (form.elements._honey.value) return;
             if (!form.checkValidity()) { form.reportValidity(); return; }
+
             const btn = form.querySelector('button[type="submit"]'), sendText = $('#sendText');
             const sel = form.elements.project;
+            const name = form.elements.name.value.trim();
+            const email = form.elements.email.value.trim();
+            const message = form.elements.message.value.trim();
+            const project = sel.options[sel.selectedIndex].text;
+
             const data = {
-                name: form.elements.name.value.trim(),
-                email: form.elements.email.value.trim(),
-                project: sel.options[sel.selectedIndex].text,
-                message: form.elements.message.value.trim(),
-                language: lang.toUpperCase(),
-                _subject: `Nuevo proyecto desde el portafolio — ${form.elements.name.value.trim()}`,
-                _template: 'table',
-                _captcha: 'false'
+                access_key: W3F_KEY,
+                subject: `Nuevo proyecto desde el portafolio — ${name}`,
+                from_name: 'Portafolio Nikol Jaramillo',
+                name,
+                email,
+                'Tipo de proyecto': project,
+                message,
+                'Idioma de la página': lang.toUpperCase()
             };
+
             btn.disabled = true; sendText.textContent = t('form.sending'); status.textContent = '';
             try {
-                const r = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) });
+                const r = await fetch(W3F_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(data)
+                });
                 const j = await r.json();
                 if (!r.ok || String(j.success) !== 'true') throw new Error(j.message || 'error');
+
                 status.className = 'text-sm min-h-[1.25rem] text-brand-green';
                 status.textContent = t('form.ok');
                 form.reset();
@@ -1411,17 +1427,15 @@
                     confetti({ particleCount: 140, spread: 80, startVelocity: 40, origin: { x: (b.left + b.width / 2) / innerWidth, y: b.top / innerHeight }, colors: ['#8ee0a1', '#f2f2f5', '#74d68a', '#4fd1c5'] });
                 }
             } catch (err) {
-                console.warn('FormSubmit:', err.message);
-                const needsActivation = /activat/i.test(err.message || '');
-                const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}&su=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(data.message + '\n\n— ' + data.name + ' (' + data.email + ')')}`;
-                status.className = 'text-sm min-h-[1.25rem] ' + (needsActivation ? 'text-yellow-300' : 'text-red-400');
-                status.innerHTML = needsActivation
-                    ? 'Formulario pendiente de activación: revisa tu correo (y la carpeta de spam) y haz clic en “Activate Form”.'
-                    : `${t('form.err')} <a href="${gmail}" target="_blank" rel="noopener" class="underline text-brand-green">Enviar por Gmail ↗</a>`;
+                console.warn('Web3Forms:', err.message);
+                const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}&su=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(message + '\n\n— ' + name + ' (' + email + ')')}`;
+                status.className = 'text-sm min-h-[1.25rem] text-red-400';
+                status.innerHTML = `${t('form.err')} <a href="${gmail}" target="_blank" rel="noopener" class="underline text-brand-green">Enviar por Gmail ↗</a>`;
             } finally {
                 btn.disabled = false; sendText.textContent = t('form.send');
             }
         });
+        
         /* ============ COUNTERS ============ */
         function runCounter(el) {
             const end = +el.dataset.count, suf = el.dataset.suffix || '';
