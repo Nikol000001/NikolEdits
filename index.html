@@ -1365,7 +1365,7 @@
             toggleFaq(item, open);
         });
 
-        /* ============ CONTACT ============ */
+                /* ============ CONTACT ============ */
         function toast(msg) {
             const el = $('#toast');
             el.textContent = msg;
@@ -1411,13 +1411,17 @@
                     confetti({ particleCount: 140, spread: 80, startVelocity: 40, origin: { x: (b.left + b.width / 2) / innerWidth, y: b.top / innerHeight }, colors: ['#8ee0a1', '#f2f2f5', '#74d68a', '#4fd1c5'] });
                 }
             } catch (err) {
-                status.className = 'text-sm min-h-[1.25rem] text-red-400';
-                status.textContent = t('form.err');
+                console.warn('FormSubmit:', err.message);
+                const needsActivation = /activat/i.test(err.message || '');
+                const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${EMAIL}&su=${encodeURIComponent(data._subject)}&body=${encodeURIComponent(data.message + '\n\n— ' + data.name + ' (' + data.email + ')')}`;
+                status.className = 'text-sm min-h-[1.25rem] ' + (needsActivation ? 'text-yellow-300' : 'text-red-400');
+                status.innerHTML = needsActivation
+                    ? 'Formulario pendiente de activación: revisa tu correo (y la carpeta de spam) y haz clic en “Activate Form”.'
+                    : `${t('form.err')} <a href="${gmail}" target="_blank" rel="noopener" class="underline text-brand-green">Enviar por Gmail ↗</a>`;
             } finally {
                 btn.disabled = false; sendText.textContent = t('form.send');
             }
         });
-
         /* ============ COUNTERS ============ */
         function runCounter(el) {
             const end = +el.dataset.count, suf = el.dataset.suffix || '';
