@@ -1,20 +1,28 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="es" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikol Jaramillo | Video Editor & Multimedia Designer</title>
-    <meta name="description" content="Nikol Jaramillo — Video editor & multimedia designer from Cali, Colombia. Commercials, podcasts, motion graphics and high-retention short-form content.">
-    <meta property="og:title" content="Nikol Jaramillo | Video Editor & Multimedia Designer">
-    <meta property="og:description" content="High-retention editing, motion graphics and visual storytelling for brands and creators.">
+    <title>Nikol Jaramillo | Editora de Video y Diseñadora Multimedia</title>
+    <meta name="description" content="Nikol Jaramillo — editora de video y diseñadora multimedia en Cali, Colombia. Comerciales, podcasts, motion graphics y contenido de alta retención.">
     <meta name="theme-color" content="#0f0f11">
 
-    <!-- Google Fonts -->
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="Recursos/favicon-nikol-32.png">
+    <link rel="apple-touch-icon" href="Recursos/favicon-nikol-32.png">
+
+    <!-- Social share -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Nikol Jaramillo | Video Editor & Multimedia Designer">
+    <meta property="og:description" content="Edición de alta retención, motion graphics y storytelling visual para marcas y creadores.">
+    <meta property="og:image" content="https://nikol000001.github.io/NikolEdits/Fotos/Nikol.jpg">
+
+    <!-- Fonts (Noto Sans JP for Japanese) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;600;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS -->
+    <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -23,47 +31,31 @@
                 extend: {
                     colors: {
                         brand: {
-                            bg: '#0f0f11',
-                            card: '#16161a',
-                            border: '#24242a',
-                            text: '#f2f2f5',
-                            muted: '#9e9ea7',
-                            green: '#8ee0a1',
-                            greenHover: '#74d68a',
+                            bg: '#0f0f11', card: '#16161a', border: '#24242a', text: '#f2f2f5',
+                            muted: '#9e9ea7', green: '#8ee0a1', greenHover: '#74d68a',
                             greenMuted: 'rgba(142, 224, 161, 0.12)'
                         }
                     },
                     fontFamily: {
-                        sans: ['Outfit', 'sans-serif'],
-                        display: ['Space Grotesk', 'sans-serif']
+                        sans: ['Outfit', 'Noto Sans JP', 'sans-serif'],
+                        display: ['Space Grotesk', 'Noto Sans JP', 'sans-serif']
                     }
                 }
             }
         }
     </script>
 
-    <!-- Lenis (smooth scroll) + Plyr (video player) styles -->
     <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
     <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
 
     <style>
-        :root { --plyr-color-main: #8ee0a1; }
+        :root { --plyr-color-main: #8ee0a1; --navH: 68px; }
+        html { -webkit-tap-highlight-color: transparent; }
+        body { background-color: #0f0f11; color: #f2f2f5; font-family: 'Outfit', 'Noto Sans JP', sans-serif; overflow-x: hidden; }
 
-        body {
-            background-color: #0f0f11;
-            color: #f2f2f5;
-            font-family: 'Outfit', sans-serif;
-            overflow-x: hidden;
-        }
-
-        /* Film grain overlay */
+        /* Film grain */
         body::after {
-            content: '';
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 85;
-            opacity: .035;
+            content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 85; opacity: .035;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
@@ -71,89 +63,88 @@
         ::-webkit-scrollbar-track { background: #0f0f11; }
         ::-webkit-scrollbar-thumb { background: #24242a; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #8ee0a1; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { scrollbar-width: none; }
 
-        .text-stroke {
-            -webkit-text-stroke: 1.5px #f2f2f5;
-            color: transparent;
-            transition: color .4s ease, -webkit-text-stroke-color .4s ease;
-        }
+        .text-stroke { -webkit-text-stroke: 1.5px #f2f2f5; color: transparent; transition: color .4s ease, -webkit-text-stroke-color .4s ease; }
         .text-stroke:hover { color: #8ee0a1; -webkit-text-stroke-color: #8ee0a1; }
-
         .glow-green { box-shadow: 0 0 35px -5px rgba(142, 224, 161, 0.25); }
-        .glow-text { text-shadow: 0 0 20px rgba(142, 224, 161, 0.4); }
+        .glow-text { text-shadow: 0 0 24px rgba(142, 224, 161, 0.45); }
+        .bg-grid-pattern { background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px); background-size: 32px 32px; }
 
-        .bg-grid-pattern {
-            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-            background-size: 32px 32px;
-        }
+        /* Aurora background */
+        .aurora span { position: absolute; border-radius: 50%; filter: blur(90px); }
+        .aurora .a1 { width: 560px; height: 560px; background: #8ee0a1; opacity: .16; top: -12%; left: -12%; animation: auroraA 18s ease-in-out infinite alternate; }
+        .aurora .a2 { width: 480px; height: 480px; background: #4fd1c5; opacity: .10; bottom: -18%; right: 2%; animation: auroraB 22s ease-in-out infinite alternate; }
+        .aurora .a3 { width: 380px; height: 380px; background: #a78bfa; opacity: .07; top: 28%; left: 42%; animation: auroraC 26s ease-in-out infinite alternate; }
+        @keyframes auroraA { to { transform: translate(140px, 90px) scale(1.2); } }
+        @keyframes auroraB { to { transform: translate(-160px, -60px) scale(1.15); } }
+        @keyframes auroraC { to { transform: translate(-80px, 120px) scale(.9); } }
 
-        /* Text reveal masks */
         .line-mask { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
         .reveal-title .word { perspective: 700px; }
 
-        /* 3D cards */
+        /* 3D */
         .tilt-card { transform-style: preserve-3d; will-change: transform; }
         .depth { transform: translateZ(40px); }
         .depth-lg { transform: translateZ(70px); }
 
         .play-badge {
-            position: absolute;
-            left: 50%;
-            top: 40%;
-            width: 68px;
-            height: 68px;
-            margin: -34px 0 0 -34px;
-            border-radius: 9999px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(15, 15, 17, .55);
-            border: 1px solid rgba(142, 224, 161, .5);
-            backdrop-filter: blur(8px);
-            color: #8ee0a1;
-            transform: translateZ(70px);
+            position: absolute; left: 50%; top: 40%; width: 68px; height: 68px; margin: -34px 0 0 -34px;
+            border-radius: 9999px; display: flex; align-items: center; justify-content: center;
+            background: rgba(15, 15, 17, .55); border: 1px solid rgba(142, 224, 161, .5); backdrop-filter: blur(8px);
+            color: #8ee0a1; transform: translateZ(70px); pointer-events: none;
             transition: background .35s ease, color .35s ease, box-shadow .35s ease;
-            pointer-events: none;
         }
-        .video-tile:hover .play-badge {
-            background: #8ee0a1;
-            color: #0f0f11;
-            box-shadow: 0 0 40px rgba(142, 224, 161, .55);
-        }
-        .tile-badge { width: 52px; height: 52px; margin: -26px 0 0 -26px; }
+        .video-tile:hover .play-badge { background: #8ee0a1; color: #0f0f11; box-shadow: 0 0 40px rgba(142, 224, 161, .55); }
+        .tile-badge { width: 50px; height: 50px; margin: -25px 0 0 -25px; }
 
-        /* Mouse spotlight on category cards */
+        /* Hero video stack */
+        .stack-card {
+            position: absolute; left: 50%; top: 50%; width: 210px; height: 373px; margin: -186px 0 0 -105px;
+            border-radius: 1.25rem; overflow: hidden; background: #000; cursor: pointer;
+            border: 1px solid rgba(142, 224, 161, .3);
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .85), 0 0 45px -12px rgba(142, 224, 161, .35);
+        }
+        .stack-card video { width: 100%; height: 100%; object-fit: cover; }
+        .stack-shine { position: absolute; inset: 0; background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, .14) 50%, transparent 70%); transform: translateX(-100%); animation: shine 6s ease-in-out infinite; pointer-events: none; }
+        @keyframes shine { 0%, 65% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        @media (min-width: 1280px) { .stack-card { width: 236px; height: 420px; margin: -210px 0 0 -118px; } }
+
+        /* Spotlight */
         .spotlight { position: relative; }
         .spotlight::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
+            content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity .3s ease;
             background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgba(142, 224, 161, .10), transparent 45%);
-            opacity: 0;
-            transition: opacity .3s ease;
-            pointer-events: none;
         }
         .spotlight:hover::before { opacity: 1; }
 
-        /* Scroll progress + nav */
+        /* Nav */
         #scrollProgress { transform-origin: left; transform: scaleX(0); }
-        #mainNav { transition: transform .45s cubic-bezier(.2, .8, .2, 1), background-color .3s ease; }
+        #mainNav { transition: transform .45s cubic-bezier(.2, .8, .2, 1); }
         #mainNav.nav-hidden { transform: translateY(-100%); }
+        .nav-link { position: relative; transition: color .3s; }
+        .nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; background: #8ee0a1; transform: scaleX(0); transition: transform .4s cubic-bezier(.2, .8, .2, 1); }
+        .nav-link:hover, .nav-link.active { color: #8ee0a1; }
+        .nav-link.active::after { transform: scaleX(1); }
+
+        /* Language switch */
+        .lang-switch button { position: relative; z-index: 1; transition: color .3s; color: #9e9ea7; }
+        .lang-switch button.active { color: #0f0f11; font-weight: 700; }
+        .lang-pill { position: absolute; top: 4px; bottom: 4px; left: 0; width: 0; border-radius: 9999px; background: #8ee0a1; }
+        #langWipe { position: fixed; inset: 0; z-index: 99; background: #8ee0a1; display: none; align-items: center; justify-content: center; transform: scaleX(0); transform-origin: left center; pointer-events: none; }
+        #langWipeText { font-family: 'Space Grotesk', 'Noto Sans JP', sans-serif; font-weight: 900; font-size: clamp(3rem, 10vw, 9rem); color: #0f0f11; letter-spacing: -.02em; }
+
+        /* Dot nav */
+        .dot-pip { width: 8px; height: 8px; border-radius: 9999px; background: #3a3a42; transition: all .35s cubic-bezier(.2, .8, .2, 1); }
+        .dot.active .dot-pip { height: 26px; background: #8ee0a1; box-shadow: 0 0 14px rgba(142, 224, 161, .6); }
+        .dot-label { margin-right: 12px; font: 600 10px 'Space Grotesk', 'Noto Sans JP', sans-serif; letter-spacing: .15em; text-transform: uppercase; color: #f2f2f5; opacity: 0; transform: translateX(8px); transition: all .3s; white-space: nowrap; }
+        .dot:hover .dot-label { opacity: 1; transform: translateX(0); }
 
         /* Custom cursor */
-        .cursor { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 95; }
+        .cursor { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 96; }
         .cursor-dot { width: 6px; height: 6px; border-radius: 50%; background: #8ee0a1; }
-        .ring-inner {
-            width: 38px;
-            height: 38px;
-            border: 1px solid rgba(142, 224, 161, .6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: transform .35s cubic-bezier(.2, .8, .2, 1), background .3s, border-color .3s;
-        }
+        .ring-inner { width: 38px; height: 38px; border: 1px solid rgba(142, 224, 161, .6); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform .35s cubic-bezier(.2, .8, .2, 1), background .3s, border-color .3s; }
         #cursorRing.is-hover .ring-inner { transform: scale(1.6); background: rgba(142, 224, 161, .08); }
         #cursorRing.is-play .ring-inner { transform: scale(2.2); background: #8ee0a1; border-color: #8ee0a1; }
         .ring-label { font: 700 6px 'Space Grotesk', sans-serif; letter-spacing: .15em; color: #0f0f11; opacity: 0; transition: opacity .2s; }
@@ -166,36 +157,55 @@
         .band-2 { transform: rotate(2deg); margin-top: -1.5rem; }
 
         /* M5 chip */
-        .chip-ring {
-            position: absolute;
-            inset: -30%;
-            background: conic-gradient(from 0deg, transparent 0deg, rgba(142, 224, 161, .55) 60deg, transparent 120deg, transparent 360deg);
-            filter: blur(28px);
-            border-radius: 50%;
-        }
-        .chip-pins {
-            position: absolute;
-            inset: -14px;
-            border: 3px dashed rgba(142, 224, 161, .35);
-            border-radius: 2.4rem;
-        }
-        .chip-text {
-            background: linear-gradient(135deg, #f2f2f5 0%, #8ee0a1 60%, #4fa766 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
+        .chip-ring { position: absolute; inset: -30%; background: conic-gradient(from 0deg, transparent 0deg, rgba(142, 224, 161, .55) 60deg, transparent 120deg, transparent 360deg); filter: blur(28px); border-radius: 50%; }
+        .chip-pins { position: absolute; inset: -14px; border: 3px dashed rgba(142, 224, 161, .35); border-radius: 2.4rem; }
+        .chip-text { background: linear-gradient(135deg, #f2f2f5 0%, #8ee0a1 60%, #4fa766 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 
-        /* Scroll hint */
+        /* Category tabs */
+        #catTabsWrap { top: var(--navH); transition: top .45s cubic-bezier(.2, .8, .2, 1); }
+        body.nav-up #catTabsWrap { top: 0; }
+        .cat-tab { position: relative; z-index: 1; color: #9e9ea7; transition: color .3s; }
+        .cat-tab:hover { color: #f2f2f5; }
+        .cat-tab.active { color: #0f0f11; font-weight: 600; }
+        .cat-tab .tab-count { font-family: ui-monospace, monospace; font-size: 10px; opacity: .6; margin-left: 6px; }
+
+        /* FAQ */
+        .faq-item { transition: border-color .3s; }
+        .faq-item.open { border-color: rgba(142, 224, 161, .5); }
+        .faq-icon { transition: background .3s, color .3s, border-color .3s; }
+        .faq-item.open .faq-icon { background: #8ee0a1; color: #0f0f11; border-color: #8ee0a1; }
+
+        /* Animated glowing border */
+        @property --angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+        .glow-border { position: relative; border-radius: 1.5rem; padding: 1px; background: conic-gradient(from var(--angle), transparent 0 55%, #8ee0a1 72%, transparent 88%), #24242a; animation: spinAngle 6s linear infinite; }
+        .glow-border > .inner { border-radius: calc(1.5rem - 1px); background: #16161a; }
+        @keyframes spinAngle { to { --angle: 360deg; } }
+
+        /* Form */
+        .field { width: 100%; background: #0f0f11; border: 1px solid #24242a; border-radius: .9rem; padding: .85rem 1rem; color: #f2f2f5; font-size: .95rem; outline: none; transition: border-color .25s, box-shadow .25s; }
+        .field:focus { border-color: #8ee0a1; box-shadow: 0 0 0 4px rgba(142, 224, 161, .12); }
+        .field::placeholder { color: #5c5c66; }
+        select.field { appearance: none; padding-right: 2.5rem; background-repeat: no-repeat; background-position: right 1rem center; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%238ee0a1' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); }
+        select.field option { background: #16161a; }
+
+        .cv-row { transition: border-color .3s, background .3s; }
+        .cv-row.cv-active { border-color: rgba(142, 224, 161, .5); background: rgba(142, 224, 161, .06); }
+
         @keyframes scrollLine { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
         .scroll-line { animation: scrollLine 2s cubic-bezier(.6, 0, .2, 1) infinite; }
 
-        /* Plyr */
+        /* Modal */
+        #modalBox { width: min(86vw, calc(70vh * 9 / 16)); }
+        @media (min-width: 768px) { #modalBox { width: min(80vw, calc(80vh * 9 / 16)); } }
         .plyr { border-radius: 1rem; }
-        #modalStage .plyr { max-height: 86vh; }
+
+        /* Japanese typography */
+        html[lang="ja"] #hero h1 { font-size: clamp(2.6rem, 6.5vw, 5.8rem); line-height: 1.15; letter-spacing: 0; }
+        html[lang="ja"] .reveal-title, html[lang="ja"] #contactTitle { letter-spacing: 0; line-height: 1.25; }
+        html[lang="ja"] body { font-feature-settings: "palt"; }
 
         @media (prefers-reduced-motion: reduce) {
-            .scroll-line { animation: none; }
+            .scroll-line, .aurora span, .stack-shine, .glow-border { animation: none; }
         }
     </style>
 </head>
@@ -203,44 +213,46 @@
 
     <!-- PRELOADER -->
     <div id="preloader" class="fixed inset-0 z-[100] bg-brand-bg flex flex-col items-center justify-center">
-        <div class="font-display text-7xl md:text-9xl font-black tracking-tight">
-            <span id="loaderCount">0</span><span class="text-brand-green">%</span>
-        </div>
-        <div class="w-48 h-px bg-brand-border mt-6 overflow-hidden">
-            <div id="loaderBar" class="h-full bg-brand-green origin-left" style="transform: scaleX(0)"></div>
-        </div>
-        <p class="mt-4 font-mono text-xs tracking-[0.3em] text-brand-muted">RENDERING TIMELINE</p>
+        <div class="font-display text-7xl md:text-9xl font-black tracking-tight"><span id="loaderCount">0</span><span class="text-brand-green">%</span></div>
+        <div class="w-48 h-px bg-brand-border mt-6 overflow-hidden"><div id="loaderBar" class="h-full bg-brand-green origin-left" style="transform:scaleX(0)"></div></div>
+        <p class="mt-4 font-mono text-xs tracking-[0.3em] text-brand-muted" data-i18n="loader.text">RENDERIZANDO TIMELINE</p>
     </div>
 
-    <!-- SCROLL PROGRESS -->
+    <div id="langWipe"><span id="langWipeText"></span></div>
     <div id="scrollProgress" class="fixed top-0 left-0 h-[2px] w-full bg-brand-green z-[70]"></div>
-
-    <!-- CUSTOM CURSOR -->
     <div id="cursorDot" class="cursor cursor-dot" style="display:none"></div>
     <div id="cursorRing" class="cursor" style="display:none"><div class="ring-inner"><span class="ring-label">PLAY</span></div></div>
+    <div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 z-[90] px-5 py-3 rounded-full bg-brand-green text-brand-bg font-semibold text-sm shadow-lg shadow-brand-green/30 opacity-0 pointer-events-none"></div>
 
-    <!-- NAV BAR -->
+    <!-- NAV -->
     <nav id="mainNav" class="fixed top-0 left-0 w-full z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-border/50">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="font-display text-xl font-bold tracking-wider text-brand-text hover:text-brand-green transition-colors flex items-center gap-2">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center gap-4">
+            <a href="#" class="font-display text-lg sm:text-xl font-bold tracking-wider text-brand-text hover:text-brand-green transition-colors flex items-center gap-2 shrink-0">
                 <span class="w-2.5 h-2.5 rounded-full bg-brand-green inline-block animate-pulse"></span>
                 NIKOL<span class="text-brand-green">JARAMILLO</span>
             </a>
 
-            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-                <a href="#destacados" class="hover:text-brand-green transition-colors">FEATURED</a>
-                <a href="#sobre-mi" class="hover:text-brand-green transition-colors">ABOUT ME</a>
-                <a href="#setup" class="hover:text-brand-green transition-colors">SETUP & TOOLS</a>
-                <a href="#workflow" class="hover:text-brand-green transition-colors">PROCESS</a>
-                <a href="#portafolio" class="hover:text-brand-green transition-colors">CATEGORIES</a>
+            <div class="hidden xl:flex items-center gap-7 text-sm font-medium uppercase tracking-wide">
+                <a href="#destacados" class="nav-link" data-i18n="nav.featured">Destacados</a>
+                <a href="#sobre-mi" class="nav-link" data-i18n="nav.about">Sobre mí</a>
+                <a href="#setup" class="nav-link" data-i18n="nav.setup">Herramientas</a>
+                <a href="#proceso" class="nav-link" data-i18n="nav.process">Proceso</a>
+                <a href="#portafolio" class="nav-link" data-i18n="nav.work">Portafolio</a>
+                <a href="#faq" class="nav-link" data-i18n="nav.faq">FAQ</a>
             </div>
 
             <div class="flex items-center gap-3">
-                <a href="#portafolio" class="magnetic hidden sm:flex px-5 py-2.5 rounded-full bg-brand-green text-brand-bg font-semibold text-sm hover:bg-brand-greenHover transition-colors shadow-lg shadow-brand-green/20 items-center gap-2">
-                    <span>Explore Work</span>
+                <div class="lang-switch hidden sm:flex relative items-center p-1 rounded-full bg-brand-card border border-brand-border text-xs font-mono">
+                    <span class="lang-pill"></span>
+                    <button type="button" data-lang="es" class="px-2.5 py-1">ES</button>
+                    <button type="button" data-lang="en" class="px-2.5 py-1">EN</button>
+                    <button type="button" data-lang="ja" class="px-2.5 py-1">JP</button>
+                </div>
+                <a href="#contacto" class="magnetic hidden sm:flex px-5 py-2.5 rounded-full bg-brand-green text-brand-bg font-semibold text-sm hover:bg-brand-greenHover transition-colors shadow-lg shadow-brand-green/20 items-center gap-2">
+                    <span data-i18n="nav.cta">Hablemos</span>
                     <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
                 </a>
-                <button id="menuBtn" class="md:hidden w-10 h-10 rounded-full border border-brand-border flex items-center justify-center" aria-label="Open menu">
+                <button id="menuBtn" class="xl:hidden w-10 h-10 rounded-full border border-brand-border flex items-center justify-center" aria-label="Menu">
                     <i data-lucide="menu" class="w-5 h-5"></i>
                 </button>
             </div>
@@ -248,68 +260,100 @@
     </nav>
 
     <!-- MOBILE MENU -->
-    <div id="mobileMenu" class="fixed inset-0 z-[60] bg-brand-bg/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-8 font-display text-3xl font-bold uppercase">
-        <button id="menuClose" class="absolute top-5 right-6 w-10 h-10 rounded-full border border-brand-border flex items-center justify-center" aria-label="Close menu">
+    <div id="mobileMenu" class="fixed inset-0 z-[60] bg-brand-bg/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-6 font-display text-3xl font-bold uppercase">
+        <button id="menuClose" class="absolute top-5 right-6 w-10 h-10 rounded-full border border-brand-border flex items-center justify-center" aria-label="Close">
             <i data-lucide="x" class="w-5 h-5"></i>
         </button>
-        <a href="#destacados" class="menu-link hover:text-brand-green">Featured</a>
-        <a href="#sobre-mi" class="menu-link hover:text-brand-green">About Me</a>
-        <a href="#setup" class="menu-link hover:text-brand-green">Setup & Tools</a>
-        <a href="#workflow" class="menu-link hover:text-brand-green">Process</a>
-        <a href="#portafolio" class="menu-link hover:text-brand-green">Categories</a>
-        <a href="mailto:nikjarqui@gmail.com" class="menu-link text-brand-green">Contact</a>
+        <a href="#destacados" class="menu-link hover:text-brand-green" data-i18n="nav.featured">Destacados</a>
+        <a href="#sobre-mi" class="menu-link hover:text-brand-green" data-i18n="nav.about">Sobre mí</a>
+        <a href="#setup" class="menu-link hover:text-brand-green" data-i18n="nav.setup">Herramientas</a>
+        <a href="#proceso" class="menu-link hover:text-brand-green" data-i18n="nav.process">Proceso</a>
+        <a href="#portafolio" class="menu-link hover:text-brand-green" data-i18n="nav.work">Portafolio</a>
+        <a href="#faq" class="menu-link hover:text-brand-green" data-i18n="nav.faq">FAQ</a>
+        <a href="#contacto" class="menu-link text-brand-green" data-i18n="nav.contact">Contacto</a>
+        <div class="menu-link lang-switch relative flex items-center p-1 mt-4 rounded-full bg-brand-card border border-brand-border text-sm font-mono normal-case">
+            <span class="lang-pill"></span>
+            <button type="button" data-lang="es" class="px-4 py-1.5">ES</button>
+            <button type="button" data-lang="en" class="px-4 py-1.5">EN</button>
+            <button type="button" data-lang="ja" class="px-4 py-1.5">JP</button>
+        </div>
     </div>
+
+    <!-- SIDE DOTS -->
+    <nav id="dotNav" class="fixed right-5 top-1/2 -translate-y-1/2 z-40 hidden min-[1400px]:flex flex-col items-end gap-4"></nav>
+
+    <!-- BACK TO TOP -->
+    <a href="#" id="toTop" class="fixed bottom-6 right-6 z-40 w-12 h-12 rounded-full bg-brand-card/90 backdrop-blur border border-brand-border flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300 hover:text-brand-green" aria-label="Top">
+        <svg class="absolute inset-0 -rotate-90" viewBox="0 0 48 48"><circle cx="24" cy="24" r="22" fill="none" stroke="#24242a" stroke-width="2"/><circle id="toTopRing" cx="24" cy="24" r="22" fill="none" stroke="#8ee0a1" stroke-width="2" stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="138.2"/></svg>
+        <i data-lucide="arrow-up" class="w-5 h-5 relative"></i>
+    </a>
 
     <main>
 
-    <!-- HERO SECTION -->
-    <section id="hero" class="min-h-screen pt-32 pb-20 px-6 flex flex-col justify-center relative overflow-hidden">
-        <div class="blob blob-1 absolute top-1/4 -left-20 w-96 h-96 bg-brand-green/10 rounded-full blur-3xl pointer-events-none" data-speed="-60"></div>
-        <div class="blob blob-2 absolute bottom-10 -right-20 w-96 h-96 bg-brand-green/5 rounded-full blur-3xl pointer-events-none" data-speed="40"></div>
+    <!-- HERO -->
+    <section id="hero" class="min-h-screen pt-28 pb-24 px-6 flex flex-col justify-center relative overflow-hidden">
+        <div class="aurora absolute inset-0 pointer-events-none"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
 
-        <div class="hero-inner max-w-7xl mx-auto w-full">
-            <div class="hero-fade inline-flex items-center gap-3 px-4 py-2 rounded-full bg-brand-card border border-brand-border mb-8">
-                <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
-                <span class="text-xs font-mono tracking-widest text-brand-muted uppercase">Multimedia Engineering & Master Editing</span>
+        <div class="hero-inner max-w-7xl mx-auto w-full relative">
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                <div class="hero-text lg:col-span-7">
+                    <div class="hero-fade inline-flex items-center gap-3 px-4 py-2 rounded-full bg-brand-card border border-brand-border mb-8">
+                        <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+                        <span class="text-xs font-mono tracking-widest text-brand-muted uppercase" data-i18n="hero.badge">Ingeniería Multimedia y Edición Profesional</span>
+                    </div>
+
+                    <h1 class="font-display text-5xl sm:text-6xl md:text-7xl xl:text-8xl font-black uppercase tracking-tight leading-[0.95] mb-10">
+                        <span class="line-mask"><span class="hero-line block" data-i18n="hero.l1">HISTORIAS</span></span>
+                        <span class="line-mask"><span class="hero-line block text-stroke" data-i18n="hero.l2">VISUALES</span></span>
+                        <span class="line-mask"><span class="hero-line block text-brand-green glow-text" data-i18n="hero.l3">SIN LÍMITES</span></span>
+                    </h1>
+
+                    <div class="hero-fade flex flex-wrap gap-4">
+                        <a href="#portafolio" class="magnetic px-7 py-4 rounded-full bg-brand-green text-brand-bg font-bold font-display hover:bg-brand-greenHover transition-colors flex items-center gap-2 shadow-lg shadow-brand-green/25">
+                            <i data-lucide="play" class="w-5 h-5"></i><span data-i18n="hero.cta1">Ver mi trabajo</span>
+                        </a>
+                        <a href="#contacto" class="magnetic px-7 py-4 rounded-full bg-brand-card border border-brand-border font-bold font-display hover:border-brand-green transition-colors flex items-center gap-2">
+                            <i data-lucide="message-circle" class="w-5 h-5 text-brand-green"></i><span data-i18n="hero.cta2">Hablemos</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div id="heroStack" class="hidden lg:block lg:col-span-5 relative h-[540px]" style="perspective:1400px">
+                    <div class="stack-inner absolute inset-0" style="transform-style:preserve-3d"></div>
+                    <p class="hero-fade absolute -bottom-2 left-0 right-0 text-center font-mono text-xs text-brand-muted tracking-widest uppercase" data-i18n="hero.stackHint">Haz clic para reproducir</p>
+                </div>
             </div>
 
-            <h1 class="font-display text-5xl md:text-8xl lg:text-9xl font-black uppercase tracking-tight leading-none mb-6">
-                <span class="line-mask"><span class="hero-line block">VISUAL</span></span>
-                <span class="line-mask"><span class="hero-line block text-stroke">STORYTELLING</span></span>
-                <span class="line-mask"><span class="hero-line block text-brand-green glow-text">WITHOUT LIMITS</span></span>
-            </h1>
-
-            <div class="hero-fade flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mt-12 border-t border-brand-border/60 pt-8">
-                <p class="max-w-xl text-lg md:text-xl text-brand-muted font-light leading-relaxed">
-                    High-energy strategic editing focused on <span class="text-brand-text font-semibold">RETENTION</span>, <span class="text-brand-text font-semibold">IMPACT</span> and <span class="text-brand-green font-semibold">VISUAL AURA</span>. Turning raw footage into memorable visual pieces.
-                </p>
-
-                <div class="flex flex-wrap items-center gap-6">
-                    <div>
-                        <div class="text-3xl font-bold font-display text-brand-text"><span class="hero-count" data-count="3" data-suffix="+">3+</span> YEARS</div>
-                        <div class="text-xs text-brand-muted uppercase tracking-wider">Experience</div>
-                    </div>
-                    <div class="h-10 w-px bg-brand-border"></div>
-                    <div>
-                        <div class="text-3xl font-bold font-display text-brand-green"><span class="hero-count" data-count="100" data-suffix="+">100+</span></div>
-                        <div class="text-xs text-brand-muted uppercase tracking-wider">Pro Projects</div>
-                    </div>
-                    <div class="h-10 w-px bg-brand-border"></div>
-                    <div>
-                        <div class="text-3xl font-bold font-display text-brand-text"><span id="totalVideos" class="hero-count" data-count="57" data-suffix="">57</span></div>
-                        <div class="text-xs text-brand-muted uppercase tracking-wider">Videos in this reel</div>
+            <div class="hero-bottom-wrap">
+                <div class="hero-fade flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mt-14 border-t border-brand-border/60 pt-8">
+                    <p class="max-w-xl text-lg md:text-xl text-brand-muted font-light leading-relaxed" data-i18n="hero.desc">Edición estratégica de alto impacto enfocada en <span class="text-brand-text font-semibold">RETENCIÓN</span>, <span class="text-brand-text font-semibold">IMPACTO</span> y <span class="text-brand-green font-semibold">AURA VISUAL</span>. Convierto material en bruto en piezas que se recuerdan.</p>
+                    <div class="flex flex-wrap items-center gap-6">
+                        <div>
+                            <div class="text-3xl font-bold font-display"><span class="hero-count" data-count="3" data-suffix="+">3+</span> <span data-i18n="hero.years">AÑOS</span></div>
+                            <div class="text-xs text-brand-muted uppercase tracking-wider" data-i18n="hero.exp">Experiencia</div>
+                        </div>
+                        <div class="h-10 w-px bg-brand-border"></div>
+                        <div>
+                            <div class="text-3xl font-bold font-display text-brand-green"><span class="hero-count" data-count="100" data-suffix="+">100+</span></div>
+                            <div class="text-xs text-brand-muted uppercase tracking-wider" data-i18n="hero.projects">Proyectos</div>
+                        </div>
+                        <div class="h-10 w-px bg-brand-border"></div>
+                        <div>
+                            <div class="text-3xl font-bold font-display"><span id="totalVideos" class="hero-count" data-count="57" data-suffix="">57</span></div>
+                            <div class="text-xs text-brand-muted uppercase tracking-wider" data-i18n="hero.videos">Videos en este reel</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="hero-fade absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-            <span class="font-mono text-[10px] tracking-[0.4em] text-brand-muted">SCROLL</span>
-            <span class="w-px h-12 bg-brand-border overflow-hidden"><span class="scroll-line block w-full h-full bg-brand-green"></span></span>
+        <div class="hero-fade absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+            <span class="font-mono text-[10px] tracking-[0.4em] text-brand-muted" data-i18n="hero.scroll">SCROLL</span>
+            <span class="w-px h-10 bg-brand-border overflow-hidden"><span class="scroll-line block w-full h-full bg-brand-green"></span></span>
         </div>
     </section>
 
-    <!-- MARQUEE BANDS -->
+    <!-- MARQUEE -->
     <section class="relative overflow-hidden py-14" aria-hidden="true">
         <div class="band band-1 bg-brand-green text-brand-bg py-4 overflow-hidden">
             <div id="marquee1" class="flex w-max whitespace-nowrap font-display text-3xl md:text-5xl font-black uppercase"></div>
@@ -319,120 +363,89 @@
         </div>
     </section>
 
-    <!-- FEATURED VIDEOS -->
+    <!-- FEATURED -->
     <section id="destacados" class="py-24 px-6 bg-brand-card/40 border-y border-brand-border/50">
-        <div class="max-w-7xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="flex items-center gap-4 mb-6">
-                <i data-lucide="sparkles" class="w-8 h-8 text-brand-green"></i>
-                <h2 class="reveal-title text-3xl md:text-5xl font-black font-display uppercase tracking-tight">
-                    MASTER<span class="text-brand-green">PIECES</span>
-                </h2>
+                <i data-lucide="sparkles" class="w-8 h-8 text-brand-green shrink-0"></i>
+                <h2 class="reveal-title text-3xl md:text-5xl font-black font-display uppercase tracking-tight" data-i18n="feat.title">OBRAS <span class="text-brand-green">MAESTRAS</span></h2>
                 <div class="h-px bg-brand-border flex-1 ml-4 hidden md:block"></div>
             </div>
-            <p data-reveal class="text-brand-muted max-w-2xl mb-16">Three pieces that define my style. They preview automatically as you scroll — click any of them to watch with sound in full quality.</p>
+            <p data-reveal class="text-brand-muted max-w-2xl mb-14" data-i18n="feat.sub">Tres piezas que definen mi estilo. Se reproducen solas mientras bajas — haz clic en cualquiera para verla con sonido y en máxima calidad.</p>
 
-            <div id="featuredGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8" style="perspective:1400px"></div>
+            <div id="featuredGrid" class="flex md:grid md:grid-cols-3 gap-5 lg:gap-8 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar -mx-6 px-6 md:mx-0 md:px-0 pb-6" style="perspective:1400px"></div>
+            <p class="md:hidden mt-2 text-center font-mono text-xs text-brand-muted flex items-center justify-center gap-2"><span data-i18n="feat.swipe">Desliza para ver más</span> <i data-lucide="arrow-right" class="w-4 h-4 text-brand-green"></i></p>
         </div>
     </section>
 
-    <!-- ABOUT ME -->
-    <section id="sobre-mi" class="py-32 px-6 relative">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-
-                <div class="lg:col-span-5 relative group">
-                    <div class="absolute -inset-2 rounded-3xl bg-gradient-to-r from-brand-green/30 to-transparent blur-xl opacity-75 group-hover:opacity-100 transition duration-1000"></div>
-                    <div id="aboutMedia" class="relative rounded-2xl overflow-hidden border border-brand-border bg-brand-card aspect-square">
-                        <img id="aboutImg" src="Fotos/Nikol.jpg"
-                             onerror="this.onerror=null; this.src='https://placehold.co/800x800/16161a/8ee0a1?text=Nikol+Jaramillo';"
-                             alt="Nikol Jaramillo"
-                             class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-[filter] duration-700">
-                        <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-brand-bg via-brand-bg/80 to-transparent">
-                            <span class="text-xs font-mono text-brand-green uppercase tracking-widest">Editor & Creator</span>
-                            <h3 class="text-2xl font-bold font-display">Nikol Jaramillo</h3>
-                            <p class="text-xs text-brand-muted">Cali, Colombia</p>
-                        </div>
+    <!-- ABOUT -->
+    <section id="sobre-mi" class="py-28 px-6 relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5 relative group">
+                <div class="absolute -inset-2 rounded-3xl bg-gradient-to-r from-brand-green/30 to-transparent blur-xl opacity-75 group-hover:opacity-100 transition duration-1000"></div>
+                <div id="aboutMedia" class="relative rounded-2xl overflow-hidden border border-brand-border bg-brand-card aspect-square">
+                    <img id="aboutImg" src="Fotos/Nikol.jpg" onerror="this.onerror=null; this.src='https://placehold.co/800x800/16161a/8ee0a1?text=Nikol+Jaramillo';" alt="Nikol Jaramillo" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-[filter] duration-700">
+                    <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-brand-bg via-brand-bg/80 to-transparent">
+                        <span class="text-xs font-mono text-brand-green uppercase tracking-widest" data-i18n="about.role">Editora y creadora</span>
+                        <h3 class="text-2xl font-bold font-display">Nikol Jaramillo</h3>
+                        <p class="text-xs text-brand-muted">Cali, Colombia</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="lg:col-span-7 flex flex-col justify-center">
-                    <div data-reveal class="inline-flex items-center gap-2 text-brand-green font-mono text-sm uppercase mb-4">
-                        <i data-lucide="user" class="w-4 h-4"></i>
-                        <span>Professional Biography</span>
+            <div class="lg:col-span-7">
+                <div data-reveal class="inline-flex items-center gap-2 text-brand-green font-mono text-sm uppercase mb-4">
+                    <i data-lucide="user" class="w-4 h-4"></i><span data-i18n="about.kicker">Biografía profesional</span>
+                </div>
+                <h2 class="reveal-title text-4xl md:text-6xl font-black font-display tracking-tight leading-none mb-8" data-i18n="about.title">CREATIVIDAD QUE <br><span class="text-brand-green">ENCIENDE PASIÓN</span></h2>
+                <div class="space-y-6 text-brand-muted text-lg font-light leading-relaxed">
+                    <p data-reveal data-i18n="about.p1">Soy <strong class="text-brand-text font-semibold">Nikol Jaramillo</strong>, editora de video y diseñadora multimedia de 20 años con más de <strong class="text-brand-green font-semibold">3 años de experiencia profesional</strong> dando vida a proyectos audiovisuales con una identidad visual inconfundible.</p>
+                    <p data-reveal data-i18n="about.p2">Mi pasión es transformar ideas en bruto en contenido de alto valor que no solo retiene audiencias, sino que también inspira a quienes lo ven. Actualmente estoy terminando <strong class="text-brand-text font-semibold">Ingeniería Multimedia en la Universidad de San Buenaventura Cali</strong>, lo que me da una base técnica sólida combinada con una visión estética moderna y disruptiva.</p>
+                    <p class="scrub-text border-l-2 border-brand-green pl-6 italic text-brand-text/90" data-i18n="about.quote">“Me encanta sumergirme por completo en cada proyecto. Veo cada edición como una oportunidad para reflejar el amor, la disciplina y el propósito que Dios ha puesto en mi vida, asegurándome de que cada corte tenga alma y propósito.”</p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-10">
+                    <div data-reveal class="tilt-static tilt-card p-4 rounded-xl bg-brand-card/60 border border-brand-border">
+                        <div class="depth text-brand-green font-bold text-xl font-display"><span data-count="20" data-suffix="">20</span> <span data-i18n="about.s1">Años</span></div>
+                        <div class="depth text-xs text-brand-muted" data-i18n="about.s1b">Juventud e innovación</div>
                     </div>
-
-                    <h2 class="reveal-title text-4xl md:text-6xl font-black font-display tracking-tight leading-none mb-8">
-                        CREATIVITY THAT <br>
-                        <span class="text-brand-green">SPARKS PASSION</span>
-                    </h2>
-
-                    <div class="space-y-6 text-brand-muted text-lg font-light leading-relaxed">
-                        <p data-reveal>
-                            I'm <strong class="text-brand-text font-semibold">Nikol Jaramillo</strong>, a 20-year-old video editor and multimedia designer with over <strong class="text-brand-green font-semibold">3 years of professional experience</strong> bringing audiovisual projects to life with an unmistakable visual identity.
-                        </p>
-                        <p data-reveal>
-                            My passion lies in transforming raw ideas into high-value content that not only retains audiences but also sparks inspiration in those who watch it. I'm currently finishing my degree in <strong class="text-brand-text font-semibold">Multimedia Engineering at Universidad de San Buenaventura Cali</strong>, which gives me a solid technical foundation combined with a modern, disruptive aesthetic vision.
-                        </p>
-                        <p class="scrub-text border-l-2 border-brand-green pl-6 italic text-brand-text/90">
-                            "I love fully immersing myself in every project. I see each edit as an opportunity to reflect the love, discipline and purpose that God has placed in my life, making sure every cut has soul and purpose."
-                        </p>
+                    <div data-reveal data-delay=".1" class="tilt-static tilt-card p-4 rounded-xl bg-brand-card/60 border border-brand-border">
+                        <div class="depth text-brand-green font-bold text-xl font-display">USB Cali</div>
+                        <div class="depth text-xs text-brand-muted" data-i18n="about.s2b">Ing. Multimedia</div>
                     </div>
-
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-10">
-                        <div data-reveal class="tilt-static tilt-card p-4 rounded-xl bg-brand-card/60 border border-brand-border">
-                            <div class="depth text-brand-green font-bold text-xl font-display"><span data-count="20" data-suffix="">20</span> Years Old</div>
-                            <div class="depth text-xs text-brand-muted">Youth & Innovation</div>
-                        </div>
-                        <div data-reveal data-delay=".1" class="tilt-static tilt-card p-4 rounded-xl bg-brand-card/60 border border-brand-border">
-                            <div class="depth text-brand-green font-bold text-xl font-display">USB Cali</div>
-                            <div class="depth text-xs text-brand-muted">Multimedia Eng.</div>
-                        </div>
-                        <div data-reveal data-delay=".2" class="tilt-static tilt-card p-4 rounded-xl bg-brand-card/60 border border-brand-border">
-                            <div class="depth text-brand-green font-bold text-xl font-display"><span data-count="3" data-suffix="+">3+</span> Years</div>
-                            <div class="depth text-xs text-brand-muted">Real Experience</div>
-                        </div>
+                    <div data-reveal data-delay=".2" class="tilt-static tilt-card p-4 rounded-xl bg-brand-card/60 border border-brand-border">
+                        <div class="depth text-brand-green font-bold text-xl font-display"><span data-count="3" data-suffix="+">3+</span> <span data-i18n="about.s3">Años</span></div>
+                        <div class="depth text-xs text-brand-muted" data-i18n="about.s3b">Experiencia real</div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- SETUP & TOOLS -->
-    <section id="setup" class="py-28 px-6 bg-brand-card/20 border-t border-brand-border">
+    <!-- SETUP -->
+    <section id="setup" class="py-24 px-6 bg-brand-card/20 border-t border-brand-border">
         <div class="max-w-7xl mx-auto">
-
-            <div class="text-center max-w-3xl mx-auto mb-20">
-                <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest">Workstation & Software</span>
-                <h2 class="reveal-title text-4xl md:text-6xl font-black font-display mt-2 uppercase tracking-tight">
-                    HIGH-PERFORMANCE <span class="text-brand-green">TOOLS</span>
-                </h2>
-                <p data-reveal class="text-brand-muted mt-4">
-                    Apple's latest silicon combined with professional software: smooth 4K timelines, hardware-accelerated exports and complex compositions without limits.
-                </p>
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest" data-i18n="setup.kicker">Estación de trabajo y software</span>
+                <h2 class="reveal-title text-4xl md:text-6xl font-black font-display mt-2 uppercase tracking-tight" data-i18n="setup.title">HERRAMIENTAS DE <span class="text-brand-green">ALTO RENDIMIENTO</span></h2>
+                <p data-reveal class="text-brand-muted mt-4" data-i18n="setup.sub">El chip más reciente de Apple combinado con software profesional: líneas de tiempo 4K fluidas, exportaciones aceleradas por hardware y composiciones complejas sin límites.</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-
-                <!-- Hardware card -->
                 <div data-reveal="left" class="lg:col-span-6">
                     <div class="tilt-static tilt-card bg-brand-card border border-brand-border rounded-3xl p-8 hover:border-brand-green/50 transition-colors duration-500">
-                        <div class="depth flex items-center justify-between mb-10">
+                        <div class="depth flex items-center justify-between gap-4 mb-10">
                             <div class="flex items-center gap-3">
-                                <div class="p-3 rounded-xl bg-brand-greenMuted text-brand-green">
-                                    <i data-lucide="laptop" class="w-6 h-6"></i>
-                                </div>
+                                <div class="p-3 rounded-xl bg-brand-greenMuted text-brand-green"><i data-lucide="laptop" class="w-6 h-6"></i></div>
                                 <div>
-                                    <h3 class="text-xl font-bold font-display">Equipment Specs</h3>
-                                    <p class="text-xs text-brand-muted">MacBook Air 13" — M5 Workstation</p>
+                                    <h3 class="text-xl font-bold font-display" data-i18n="setup.cardTitle">Especificaciones del equipo</h3>
+                                    <p class="text-xs text-brand-muted" data-i18n="setup.cardSub">MacBook Air 13" — Estación M5</p>
                                 </div>
                             </div>
-                            <span class="px-3 py-1 rounded-full text-xs font-mono bg-brand-green/10 text-brand-green border border-brand-green/20">Optimized</span>
+                            <span class="px-3 py-1 rounded-full text-xs font-mono bg-brand-green/10 text-brand-green border border-brand-green/20" data-i18n="setup.badge">Optimizado</span>
                         </div>
 
-                        <!-- 3D chip -->
                         <div class="chip-rot tilt-card relative mx-auto w-44 h-44 md:w-52 md:h-52 mb-12">
-                            <div class="chip-stage depth-lg relative w-full h-full">
+                            <div class="depth-lg relative w-full h-full">
                                 <div class="absolute inset-0 overflow-hidden rounded-[2rem]"><div class="chip-ring"></div></div>
                                 <div class="chip-pins"></div>
                                 <div class="relative w-full h-full rounded-[2rem] border border-brand-green/40 bg-gradient-to-br from-[#1d1d22] to-[#0b0b0d] flex flex-col items-center justify-center shadow-2xl shadow-brand-green/20">
@@ -443,157 +456,246 @@
                         </div>
 
                         <ul id="specList" class="depth space-y-3 text-sm text-brand-muted font-mono">
-                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40">
-                                <span>Model:</span><span class="text-brand-text font-semibold text-right">MacBook Air 13" (M5)</span>
-                            </li>
-                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40">
-                                <span>Chip:</span><span class="text-brand-text font-semibold text-right">Apple M5</span>
-                            </li>
-                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40">
-                                <span>Memory:</span><span class="text-brand-text font-semibold text-right">16 GB Unified</span>
-                            </li>
-                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40">
-                                <span>Operating System:</span><span class="text-brand-text font-semibold text-right">macOS Tahoe 26.6.2</span>
-                            </li>
-                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40">
-                                <span>Media Engine:</span><span class="text-brand-text font-semibold text-right">H.264 · HEVC · ProRes</span>
-                            </li>
-                            <li class="spec-row flex justify-between items-center gap-4">
-                                <span>Workflow:</span><span class="text-brand-green font-semibold text-right">4K Editing & Fast Exports</span>
-                            </li>
+                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40"><span data-i18n="spec.model">Modelo:</span><span class="text-brand-text font-semibold text-right">MacBook Air 13" (M5)</span></li>
+                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40"><span data-i18n="spec.chip">Chip:</span><span class="text-brand-text font-semibold text-right">Apple M5</span></li>
+                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40"><span data-i18n="spec.mem">Memoria:</span><span class="text-brand-text font-semibold text-right" data-i18n="spec.memV">16 GB unificada</span></li>
+                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40"><span data-i18n="spec.os">Sistema operativo:</span><span class="text-brand-text font-semibold text-right">macOS Tahoe 26.6.2</span></li>
+                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40"><span data-i18n="spec.media">Motor multimedia:</span><span class="text-brand-text font-semibold text-right">H.264 · HEVC · ProRes</span></li>
+                            <li class="spec-row flex justify-between items-center gap-4"><span data-i18n="spec.flow">Flujo de trabajo:</span><span class="text-brand-green font-semibold text-right" data-i18n="spec.flowV">Edición 4K y exportación rápida</span></li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Software cards -->
                 <div class="lg:col-span-6 space-y-6">
                     <div data-reveal="right" data-delay=".1">
                         <div class="tilt-static tilt-card group bg-brand-card border border-brand-border p-8 rounded-3xl hover:border-brand-green transition-colors duration-500">
                             <div class="flex items-start gap-6">
-                                <div class="depth-lg w-20 h-20 rounded-2xl bg-black border border-brand-border flex items-center justify-center p-3 flex-shrink-0">
-                                    <img src="Fotos/AfterEffects.png" loading="lazy"
-                                         onerror="this.onerror=null; this.src='https://placehold.co/100x100/16161a/8ee0a1?text=Ae';"
-                                         alt="After Effects" class="w-full h-full object-contain">
+                                <div class="depth-lg w-20 h-20 rounded-2xl bg-black border border-brand-border flex items-center justify-center p-3 shrink-0">
+                                    <img src="Fotos/AfterEffects.png" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/100x100/16161a/8ee0a1?text=Ae';" alt="After Effects" class="w-full h-full object-contain">
                                 </div>
                                 <div class="depth">
                                     <div class="flex flex-wrap items-center gap-3">
                                         <h4 class="text-2xl font-bold font-display group-hover:text-brand-green transition-colors">Adobe After Effects</h4>
-                                        <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-brand-border text-brand-muted">Advanced</span>
+                                        <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-brand-border text-brand-muted" data-i18n="ae.level">Avanzado</span>
                                     </div>
-                                    <p class="text-sm text-brand-muted mt-2 leading-relaxed">
-                                        Complex motion graphics, VFX compositing, cinematic typography animation, 3D tracking, rotoscoping and high-end visual effects for commercials and high-impact projects.
-                                    </p>
+                                    <p class="text-sm text-brand-muted mt-2 leading-relaxed" data-i18n="ae.desc">Motion graphics complejos, composición de VFX, animación tipográfica cinematográfica, tracking 3D, rotoscopía y efectos visuales de alto nivel para comerciales y proyectos de alto impacto.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                     <div data-reveal="right" data-delay=".2">
                         <div class="tilt-static tilt-card group bg-brand-card border border-brand-border p-8 rounded-3xl hover:border-brand-green transition-colors duration-500">
                             <div class="flex items-start gap-6">
-                                <div class="depth-lg w-20 h-20 rounded-2xl bg-black border border-brand-border flex items-center justify-center p-3 flex-shrink-0">
-                                    <img src="Fotos/CapCut.png" loading="lazy"
-                                         onerror="this.onerror=null; this.src='https://placehold.co/100x100/16161a/8ee0a1?text=CapCut';"
-                                         alt="CapCut Pro" class="w-full h-full object-contain">
+                                <div class="depth-lg w-20 h-20 rounded-2xl bg-black border border-brand-border flex items-center justify-center p-3 shrink-0">
+                                    <img src="Fotos/CapCut.png" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/100x100/16161a/8ee0a1?text=CapCut';" alt="CapCut Pro" class="w-full h-full object-contain">
                                 </div>
                                 <div class="depth">
                                     <div class="flex flex-wrap items-center gap-3">
                                         <h4 class="text-2xl font-bold font-display group-hover:text-brand-green transition-colors">CapCut Pro</h4>
-                                        <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-brand-border text-brand-muted">Agile Workflow</span>
+                                        <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-brand-border text-brand-muted" data-i18n="cc.level">Flujo ágil</span>
                                     </div>
-                                    <p class="text-sm text-brand-muted mt-2 leading-relaxed">
-                                        Full mastery of high-energy vertical editing (Reels, TikToks, Shorts). Ultra-fast workflow for high-volume content, fast-paced rhythm, automated captions and viral trends.
-                                    </p>
+                                    <p class="text-sm text-brand-muted mt-2 leading-relaxed" data-i18n="cc.desc">Dominio total de la edición vertical de alta energía (Reels, TikTok, Shorts). Flujo ultrarrápido para alto volumen de contenido, ritmo ágil, subtítulos automáticos y tendencias virales.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- WORKFLOW (horizontal scroll on desktop) -->
-    <section id="workflow" class="relative overflow-hidden border-y border-brand-border/50 bg-brand-bg">
-        <div id="workflowTrack" class="flex flex-col lg:flex-row lg:w-max lg:h-screen lg:items-center gap-8 px-6 py-24 lg:py-0 lg:pl-[8vw] lg:pr-[8vw]">
-            <div class="shrink-0 lg:w-[34vw] lg:pr-8">
-                <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest">From raw footage to results</span>
-                <h2 class="reveal-title text-4xl md:text-7xl font-black font-display uppercase tracking-tight mt-2">
-                    HOW I <span class="text-brand-green">EDIT</span>
-                </h2>
-                <p data-reveal class="text-brand-muted mt-4 text-lg max-w-md">Every project goes through the same five-step process, built to make people stop scrolling and keep watching.</p>
-                <div class="hidden lg:flex items-center gap-3 mt-8 font-mono text-xs text-brand-muted">
-                    <i data-lucide="mouse" class="w-4 h-4 text-brand-green"></i> Keep scrolling
-                    <i data-lucide="arrow-right" class="w-4 h-4 text-brand-green"></i>
+    <!-- PROCESS (compact) -->
+    <section id="proceso" class="py-24 px-6 border-y border-brand-border/50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest" data-i18n="process.kicker">Del material en bruto a los resultados</span>
+                <h2 class="reveal-title text-4xl md:text-6xl font-black font-display uppercase tracking-tight mt-2" data-i18n="process.title">CÓMO <span class="text-brand-green">EDITO</span></h2>
+                <p data-reveal class="text-brand-muted mt-4" data-i18n="process.sub">Cinco pasos para que la gente deje de hacer scroll y se quede viendo hasta el final.</p>
+            </div>
+            <div class="relative">
+                <div class="hidden lg:block absolute left-[10%] right-[10%] top-[38px] h-[2px] bg-brand-border"><div id="processLine" class="h-full bg-brand-green origin-left" style="transform:scaleX(0)"></div></div>
+                <div id="processGrid" class="relative grid grid-cols-2 lg:grid-cols-5 gap-x-4 gap-y-14 lg:gap-5" style="perspective:1200px"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portafolio" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest" data-i18n="work.kicker">Catálogo de contenido</span>
+            <h2 class="reveal-title text-4xl md:text-7xl font-black font-display uppercase tracking-tight mt-2" data-i18n="work.title">CATEGORÍAS DE <span class="text-brand-green">EDICIÓN</span></h2>
+            <p data-reveal class="text-brand-muted max-w-2xl mt-4 text-lg" data-i18n="work.sub">Elige una categoría. Pasa el cursor sobre un video para ver la vista previa y haz clic para verlo completo.</p>
+        </div>
+
+        <div id="catTabsWrap" class="sticky z-30 mt-10 border-y border-brand-border/60 bg-brand-bg/85 backdrop-blur-md">
+            <div class="max-w-7xl mx-auto px-6 py-3 flex items-center gap-3">
+                <button id="catPrev" class="shrink-0 w-9 h-9 rounded-full border border-brand-border flex items-center justify-center hover:border-brand-green hover:text-brand-green transition-colors" aria-label="Previous"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                <div id="catTabs" class="relative flex gap-1 overflow-x-auto no-scrollbar flex-1" role="tablist">
+                    <span id="tabIndicator" class="absolute top-0 left-0 h-full rounded-full bg-brand-green" style="width:0"></span>
+                </div>
+                <button id="catNext" class="shrink-0 w-9 h-9 rounded-full border border-brand-border flex items-center justify-center hover:border-brand-green hover:text-brand-green transition-colors" aria-label="Next"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 mt-10">
+            <div id="catInfo" class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+                <div class="flex items-center gap-5 md:gap-8">
+                    <span id="catNum" class="font-display font-black text-6xl md:text-8xl text-stroke leading-none">01</span>
+                    <div>
+                        <h3 id="catTitle" class="text-2xl md:text-4xl font-bold font-display"></h3>
+                        <p id="catDesc" class="text-brand-muted mt-2 max-w-xl"></p>
+                    </div>
+                </div>
+                <span id="catCount" class="self-start md:self-auto font-mono text-sm px-4 py-2 rounded-full border border-brand-green/30 text-brand-green bg-brand-green/10 whitespace-nowrap"></span>
+            </div>
+            <div id="catGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" style="perspective:1200px"></div>
+            <div class="mt-10 flex justify-center">
+                <button id="catMore" class="hidden magnetic px-7 py-3.5 rounded-full bg-brand-card border border-brand-border font-display font-bold hover:border-brand-green transition-colors items-center gap-2">
+                    <i data-lucide="plus" class="w-4 h-4 text-brand-green"></i><span id="catMoreText"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-6 border-t border-brand-border/50 bg-brand-card/20">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-12">
+            <div class="lg:col-span-4">
+                <div class="lg:sticky lg:top-28">
+                    <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest" data-i18n="faq.kicker">Preguntas frecuentes</span>
+                    <h2 class="reveal-title text-4xl md:text-6xl font-black font-display uppercase tracking-tight mt-2" data-i18n="faq.title">¿TIENES <span class="text-brand-green">DUDAS?</span></h2>
+                    <p data-reveal class="text-brand-muted mt-4" data-i18n="faq.sub">Lo que más me preguntan antes de empezar un proyecto.</p>
+                    <a data-reveal href="#contacto" class="mt-8 inline-flex items-center gap-2 text-brand-green font-semibold hover:gap-3 transition-all">
+                        <span data-i18n="faq.cta">¿Otra pregunta? Escríbeme</span><i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
                 </div>
             </div>
-            <!-- steps injected by JS -->
-        </div>
-        <div class="hidden lg:block absolute bottom-10 left-[8vw] right-[8vw] h-px bg-brand-border">
-            <div id="workflowProgress" class="h-full bg-brand-green origin-left" style="transform:scaleX(0)"></div>
+            <div id="faqList" class="lg:col-span-8 space-y-4"></div>
         </div>
     </section>
 
-    <!-- CATEGORIES -->
-    <section id="portafolio" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16">
-                <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest">Content Catalog</span>
-                <h2 class="reveal-title text-4xl md:text-7xl font-black font-display uppercase tracking-tight mt-2">
-                    EDITING <span class="text-brand-green">CATEGORIES</span>
-                </h2>
-                <p data-reveal class="text-brand-muted max-w-2xl mt-4 text-lg">
-                    Explore the different storytelling styles. Each category is designed with a specific purpose in terms of retention, audiovisual tone and target audience. Hover to preview, click to watch.
-                </p>
+    <!-- CONTACT + CV -->
+    <section id="contacto" class="py-28 px-6 relative overflow-hidden">
+        <div class="absolute left-1/2 top-10 -translate-x-1/2 w-[700px] h-[360px] bg-brand-green/10 blur-3xl rounded-full pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto relative">
+            <div class="text-center mb-16">
+                <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest" data-i18n="contact.kicker">¿Creamos algo increíble juntos?</span>
+                <h2 id="contactTitle" class="text-4xl md:text-7xl font-black font-display mt-4 uppercase tracking-tight" data-i18n="contact.title">HAGAMOS TU CONTENIDO <br><span class="text-brand-green glow-text">INOLVIDABLE</span></h2>
+                <p data-reveal class="max-w-xl mx-auto text-brand-muted mt-6" data-i18n="contact.sub">Cuéntame sobre tu proyecto y te responderé lo antes posible.</p>
             </div>
 
-            <div class="space-y-6" id="categoriesContainer" style="perspective:1600px"></div>
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- Form -->
+                <div data-reveal="left" class="lg:col-span-7">
+                    <div class="glow-border">
+                        <form id="contactForm" class="inner p-6 md:p-10 space-y-5" novalidate>
+                            <h3 class="font-display text-2xl font-bold flex items-center gap-3"><i data-lucide="send" class="w-6 h-6 text-brand-green"></i><span data-i18n="form.title">Cuéntame de tu proyecto</span></h3>
+                            <div class="grid sm:grid-cols-2 gap-5">
+                                <label class="block">
+                                    <span class="block text-xs font-mono uppercase tracking-wider text-brand-muted mb-2" data-i18n="form.name">Nombre</span>
+                                    <input class="field" type="text" name="name" required autocomplete="name" placeholder="Tu nombre" data-i18n-ph="form.ph.name">
+                                </label>
+                                <label class="block">
+                                    <span class="block text-xs font-mono uppercase tracking-wider text-brand-muted mb-2" data-i18n="form.email">Correo</span>
+                                    <input class="field" type="email" name="email" required autocomplete="email" placeholder="tu@correo.com" data-i18n-ph="form.ph.email">
+                                </label>
+                            </div>
+                            <label class="block">
+                                <span class="block text-xs font-mono uppercase tracking-wider text-brand-muted mb-2" data-i18n="form.type">Tipo de proyecto</span>
+                                <select id="projectType" class="field" name="project" required></select>
+                            </label>
+                            <label class="block">
+                                <span class="block text-xs font-mono uppercase tracking-wider text-brand-muted mb-2" data-i18n="form.msg">Mensaje</span>
+                                <textarea class="field min-h-[140px] resize-y" name="message" required placeholder="Cuéntame tu idea, la plataforma y la fecha de entrega que tienes en mente..." data-i18n-ph="form.ph.msg"></textarea>
+                            </label>
+                            <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off">
+                            <div class="flex flex-col sm:flex-row sm:items-center gap-4 pt-2">
+                                <button type="submit" class="px-8 py-4 rounded-full bg-brand-green text-brand-bg font-bold font-display hover:bg-brand-greenHover transition-colors flex items-center justify-center gap-2 shadow-lg shadow-brand-green/25 disabled:opacity-60">
+                                    <i data-lucide="send" class="w-5 h-5"></i><span id="sendText" data-i18n="form.send">Enviar mensaje</span>
+                                </button>
+                                <p class="text-xs text-brand-muted" data-i18n="form.note">Tu mensaje llega directo a mi correo.</p>
+                            </div>
+                            <p id="formStatus" class="text-sm min-h-[1.25rem]" aria-live="polite"></p>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- CV + quick contact -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div data-reveal="right">
+                        <div class="tilt-static tilt-card rounded-3xl bg-brand-card border border-brand-border p-7 md:p-8 hover:border-brand-green/50 transition-colors">
+                            <div class="flex items-start gap-6">
+                                <div class="depth-lg relative w-20 h-28 shrink-0">
+                                    <span class="absolute inset-0 rounded-lg bg-brand-border rotate-6"></span>
+                                    <span class="absolute inset-0 rounded-lg bg-[#1f1f25] border border-brand-border -rotate-3"></span>
+                                    <span class="absolute inset-0 rounded-lg bg-brand-text p-2.5 flex flex-col gap-1.5 shadow-xl">
+                                        <span class="w-6 h-6 rounded-full bg-brand-green"></span>
+                                        <span class="h-1.5 w-12 rounded bg-[#c9c9cf]"></span>
+                                        <span class="h-1 w-full rounded bg-[#dcdce0]"></span>
+                                        <span class="h-1 w-full rounded bg-[#dcdce0]"></span>
+                                        <span class="h-1 w-10 rounded bg-[#dcdce0]"></span>
+                                        <span class="mt-auto self-end text-[10px] font-black text-brand-bg font-display">CV</span>
+                                    </span>
+                                </div>
+                                <div class="depth">
+                                    <span class="text-xs font-mono text-brand-green uppercase tracking-widest" data-i18n="cv.kicker">Hoja de vida</span>
+                                    <h3 class="font-display text-3xl font-black mt-1" data-i18n="cv.title">Mi <span class="text-brand-green">CV</span></h3>
+                                    <p class="text-sm text-brand-muted mt-2" data-i18n="cv.desc">Descarga mi hoja de vida con experiencia, formación y habilidades.</p>
+                                </div>
+                            </div>
+                            <div class="depth mt-6 space-y-3">
+                                <div class="cv-row flex items-center justify-between gap-3 p-3 rounded-xl border border-brand-border" data-cvlang="es">
+                                    <span class="flex items-center gap-3 text-sm font-semibold"><span class="w-8 h-8 rounded-lg bg-brand-border flex items-center justify-center font-mono text-[11px]">ES</span><span data-i18n="cv.es">Español</span></span>
+                                    <span class="flex gap-2">
+                                        <a href="CV_NIKOL_ES.pdf" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-full border border-brand-border text-xs hover:border-brand-green hover:text-brand-green transition-colors" data-i18n="cv.view">Ver</a>
+                                        <a href="CV_NIKOL_ES.pdf" download="CV_Nikol_Jaramillo_ES.pdf" class="px-3 py-1.5 rounded-full bg-brand-green text-brand-bg text-xs font-semibold flex items-center gap-1"><i data-lucide="download" class="w-3.5 h-3.5"></i><span data-i18n="cv.download">Descargar</span></a>
+                                    </span>
+                                </div>
+                                <div class="cv-row flex items-center justify-between gap-3 p-3 rounded-xl border border-brand-border" data-cvlang="en">
+                                    <span class="flex items-center gap-3 text-sm font-semibold"><span class="w-8 h-8 rounded-lg bg-brand-border flex items-center justify-center font-mono text-[11px]">EN</span><span data-i18n="cv.en">Inglés</span></span>
+                                    <span class="flex gap-2">
+                                        <a href="CV_NIKOL_EN.pdf" target="_blank" rel="noopener" class="px-3 py-1.5 rounded-full border border-brand-border text-xs hover:border-brand-green hover:text-brand-green transition-colors" data-i18n="cv.view">Ver</a>
+                                        <a href="CV_NIKOL_EN.pdf" download="CV_Nikol_Jaramillo_EN.pdf" class="px-3 py-1.5 rounded-full bg-brand-green text-brand-bg text-xs font-semibold flex items-center gap-1"><i data-lucide="download" class="w-3.5 h-3.5"></i><span data-i18n="cv.download">Descargar</span></a>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div data-reveal="right" data-delay=".1" class="spotlight rounded-3xl bg-brand-card border border-brand-border p-7 md:p-8">
+                        <span class="relative text-xs font-mono text-brand-green uppercase tracking-widest" data-i18n="quick.title">O escríbeme directamente</span>
+                        <div class="relative mt-3 font-display text-xl md:text-2xl font-bold break-all">nikjarqui@gmail.com</div>
+                        <div class="relative flex flex-wrap gap-3 mt-6">
+                            <button id="copyEmail" type="button" class="magnetic px-4 py-2.5 rounded-full bg-brand-green text-brand-bg text-sm font-semibold flex items-center gap-2"><i data-lucide="copy" class="w-4 h-4"></i><span data-i18n="quick.copy">Copiar correo</span></button>
+                            <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=nikjarqui@gmail.com" target="_blank" rel="noopener" class="magnetic px-4 py-2.5 rounded-full border border-brand-border text-sm font-semibold hover:border-brand-green transition-colors flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-brand-green"></i><span data-i18n="quick.gmail">Abrir en Gmail</span></a>
+                            <a href="mailto:nikjarqui@gmail.com" class="magnetic px-4 py-2.5 rounded-full border border-brand-border text-sm font-semibold hover:border-brand-green transition-colors flex items-center gap-2"><i data-lucide="at-sign" class="w-4 h-4 text-brand-green"></i><span data-i18n="quick.app">App de correo</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     </main>
 
-    <!-- FOOTER / CTA -->
-    <footer class="py-24 px-6 border-t border-brand-border bg-brand-card/30 relative overflow-hidden">
-        <div class="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[300px] bg-brand-green/10 blur-3xl rounded-full pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto text-center relative">
-            <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest">Ready to create something amazing?</span>
-            <h2 id="footerTitle" class="text-4xl md:text-7xl font-black font-display mt-4 mb-8 uppercase tracking-tight">
-                LET'S MAKE YOUR CONTENT <br>
-                <span class="text-brand-green glow-text">UNFORGETTABLE</span>
-            </h2>
-            <p data-reveal class="max-w-xl mx-auto text-brand-muted mb-10">
-                Bring energy, retention and top technical quality to your personal or commercial brand.
-            </p>
-
-            <div data-reveal class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="mailto:nikjarqui@gmail.com" class="magnetic w-full sm:w-auto px-8 py-4 rounded-full bg-brand-green text-brand-bg font-bold font-display hover:bg-brand-greenHover transition-colors flex items-center justify-center gap-2 shadow-lg shadow-brand-green/20">
-                    <i data-lucide="mail" class="w-5 h-5"></i>
-                    <span>Start a Project</span>
-                </a>
-                <a href="#portafolio" class="magnetic w-full sm:w-auto px-8 py-4 rounded-full bg-brand-card border border-brand-border text-brand-text font-bold font-display hover:border-brand-green transition-colors flex items-center justify-center gap-2">
-                    <i data-lucide="play-circle" class="w-5 h-5 text-brand-green"></i>
-                    <span>View Categories</span>
-                </a>
-            </div>
-            <p data-reveal class="mt-6 font-mono text-sm text-brand-muted">nikjarqui@gmail.com</p>
-
-            <div class="mt-20 pt-8 border-t border-brand-border/50 flex flex-col sm:flex-row justify-between items-center text-xs text-brand-muted gap-4">
-                <div>© 2026 Nikol Jaramillo — All rights reserved.</div>
-                <div class="font-mono text-brand-green/80">Multimedia Engineering • San Buenaventura Cali</div>
-                <a href="#" class="inline-flex items-center gap-2 hover:text-brand-green transition-colors">Back to top <i data-lucide="arrow-up" class="w-4 h-4"></i></a>
-            </div>
+    <footer class="py-10 px-6 border-t border-brand-border bg-brand-card/30">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-xs text-brand-muted gap-4">
+            <div>© 2026 Nikol Jaramillo — <span data-i18n="footer.rights">Todos los derechos reservados.</span></div>
+            <div class="font-mono text-brand-green/80" data-i18n="footer.school">Ingeniería Multimedia • San Buenaventura Cali</div>
+            <a href="#" class="inline-flex items-center gap-2 hover:text-brand-green transition-colors"><span data-i18n="footer.top">Volver arriba</span><i data-lucide="arrow-up" class="w-4 h-4"></i></a>
         </div>
     </footer>
 
     <!-- VIDEO MODAL -->
     <div id="videoModal" class="fixed inset-0 z-[80] hidden items-center justify-center p-4" style="perspective:1200px" role="dialog" aria-modal="true">
         <div id="modalBg" class="absolute inset-0 bg-black/85 backdrop-blur-xl"></div>
-        <div id="modalBox" class="relative" style="width:min(92vw, calc(86vh * 9 / 16));">
-            <button id="modalClose" class="absolute -top-12 right-0 w-10 h-10 rounded-full bg-brand-card border border-brand-border flex items-center justify-center hover:border-brand-green hover:text-brand-green transition-colors" aria-label="Close video">
-                <i data-lucide="x" class="w-5 h-5"></i>
-            </button>
+        <button id="modalPrev" class="absolute z-10 bottom-5 left-[calc(50%-64px)] md:left-8 md:bottom-auto md:top-1/2 md:-translate-y-1/2 w-12 h-12 rounded-full bg-brand-card/80 border border-brand-border flex items-center justify-center hover:border-brand-green hover:text-brand-green transition-colors" aria-label="Previous"><i data-lucide="chevron-left" class="w-6 h-6"></i></button>
+        <button id="modalNext" class="absolute z-10 bottom-5 right-[calc(50%-64px)] md:right-8 md:bottom-auto md:top-1/2 md:-translate-y-1/2 w-12 h-12 rounded-full bg-brand-card/80 border border-brand-border flex items-center justify-center hover:border-brand-green hover:text-brand-green transition-colors" aria-label="Next"><i data-lucide="chevron-right" class="w-6 h-6"></i></button>
+        <div id="modalBox" class="relative">
+            <div class="flex items-center justify-between mb-3 gap-4">
+                <span id="modalCaption" class="font-mono text-xs text-brand-muted truncate"></span>
+                <button id="modalClose" class="shrink-0 w-10 h-10 rounded-full bg-brand-card border border-brand-border flex items-center justify-center hover:border-brand-green hover:text-brand-green transition-colors" aria-label="Close"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
             <div id="modalStage" class="rounded-2xl overflow-hidden border border-brand-green/30 glow-green bg-black"></div>
         </div>
     </div>
@@ -605,231 +707,465 @@
     <script src="https://unpkg.com/split-type"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
     <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
     (() => {
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+        const tiltOn = finePointer && !reduceMotion;
         gsap.registerPlugin(ScrollTrigger);
 
-        /* =========================================================
-           DATA — edit here to add videos (counts update everywhere)
-           ========================================================= */
-        const FEATURED = [
-            { src: 'Videos/Comerciales/Comercial_1.mp4', tag: '01 / Featured Commercial', title: 'High-Impact Campaign', desc: 'Dynamic cuts, immersive sound design and cinematic color grading.' },
-            { src: 'Videos/MotionGraphics.mp4', tag: '02 / Motion Graphics', title: 'VFX & Visual Storytelling', desc: 'Advanced digital compositing in After Effects with smooth text animations.' },
-            { src: 'Videos/Podcast/Podcast_1.mp4', tag: '03 / Podcast & Retention', title: 'Conversational Storytelling', desc: 'Dynamic captions, strategic b-roll and fast-paced editing rhythm.' }
-        ];
-
-        const CATEGORIES = [
-            { id: 'podcast', title: 'Podcast', short: 'Podcast', count: 4,
-              desc: 'Conversational editing, multicam cuts, visual emphasis and retention hooks.',
-              path: i => `Videos/Podcast/Podcast_${i}.mp4` },
-            { id: 'gaming', title: 'Gaming', short: 'Gaming', count: 2,
-              desc: 'Frantic pacing, immersive sound effects, contextual memes and key moments.',
-              path: i => `Videos/Gaming/Gaming_${i}.mp4` },
-            { id: 'comerciales', title: 'Commercials & Brands', short: 'Commercial', count: 12,
-              desc: 'Advertising spots, premium aesthetics, calls to action and sales conversion.',
-              path: i => `Videos/Comerciales/Comercial_${i}.mp4` },
-            { id: 'enmasa', title: 'Bulk Videos (Cutting & Curation)', short: 'Bulk Edit', count: 22,
-              desc: 'Expert filtering and curation of full-day shoots to extract only the visual gold.',
-              path: i => `Videos/VideosEnMasa/VideosEnMasa-${i}.mp4` },
-            { id: 'vozoff', title: 'Voice-Over + Scriptwriting & B-Roll', short: 'Voice-Over', count: 2,
-              desc: 'Narrative scriptwriting, recorded voice-over and precise clip selection for travel and experiences.',
-              path: i => `Videos/VozEnOFF/VozEnOFF_${i}.mp4` },
-            { id: 'agencia', title: 'Marketing Agency', short: 'Agency', count: 3,
-              desc: 'Organic and paid content strategies focused on metrics, branding and positioning.',
-              path: i => `Videos/AgenciaMarketing/AgenciaMarketing_${i}.mp4` },
-            { id: 'creador', title: 'Content Creator / Personal Brand', short: 'Creator', count: 7,
-              desc: "Custom editing tailored to each creator's style, language and charisma.",
-              path: i => `Videos/CreadorDeContenido/CreadorDeContenido_${i}.mp4` },
-            { id: 'educacion', title: 'Education & Digital Products', short: 'Education', count: 2,
-              desc: 'Clear explanations, supporting graphics and technical retention for courses and educational pieces.',
-              path: i => `Videos/Educacion/Educacion_${i}.mp4` },
-            { id: 'motion', title: 'Motion Graphics & VFX Showcase', badge: '3 Demos (Local + YouTube)',
-              desc: 'Digital animation, 2D/3D visual effects and complex pieces in After Effects.',
-              items: [
-                  { type: 'local', src: 'Videos/MotionGraphics.mp4', label: 'Motion Reel' },
-                  { type: 'youtube', id: 'd55NAOGUis8', label: 'YouTube Project #1' },
-                  { type: 'youtube', id: '1PUcwxhF8sQ', label: 'YouTube Project #2' }
-              ] }
-        ];
-
-        const STEPS = [
-            { icon: 'target', title: 'Brief & Hook Strategy', text: 'I study the brand, the audience and the platform to define the hook that stops the scroll in the first 3 seconds.' },
-            { icon: 'scissors', title: 'Curation & Rough Cut', text: 'From hours of raw footage to the strongest moments: selection, structure and narrative rhythm.' },
-            { icon: 'audio-waveform', title: 'Rhythm & Sound Design', text: 'Cuts on the beat, SFX, music and voice-over that hold attention second by second.' },
-            { icon: 'wand', title: 'Motion, Captions & Color', text: 'Animated typography, After Effects VFX, dynamic captions and color grading that define the visual aura.' },
-            { icon: 'rocket', title: 'Delivery & Optimization', text: 'Exports optimized for Reels, TikTok, Shorts and YouTube — ready to publish and perform.' }
-        ];
-
-        const MARQUEE = ['Motion Graphics', 'Podcast Editing', 'Sound Design', 'Color Grading', 'Commercials', 'Reels & TikTok', 'VFX', 'Retention Hooks', 'Dynamic Captions', 'Storytelling'];
-
-        /* ============ HELPERS ============ */
+        const EMAIL = 'nikjarqui@gmail.com';
+        const FORM_ENDPOINT = 'https://formsubmit.co/ajax/' + EMAIL;
+        const $ = (s, r = document) => r.querySelector(s);
+        const $$ = (s, r = document) => [...r.querySelectorAll(s)];
         const pad = n => String(n).padStart(2, '0');
-        const itemsOf = c => c.items || Array.from({ length: c.count }, (_, k) => ({
-            type: 'local', src: c.path(k + 1), label: `${c.short} · ${pad(k + 1)}`
-        }));
+
+        /* =========================================================
+           DATA — to add videos, just change "count"
+           ========================================================= */
+        const FEATURED = ['Videos/Comerciales/Comercial_1.mp4', 'Videos/MotionGraphics.mp4', 'Videos/Podcast/Podcast_1.mp4'];
+        const CATEGORIES = [
+            { id: 'podcast', count: 4, path: i => `Videos/Podcast/Podcast_${i}.mp4` },
+            { id: 'gaming', count: 2, path: i => `Videos/Gaming/Gaming_${i}.mp4` },
+            { id: 'comerciales', count: 12, path: i => `Videos/Comerciales/Comercial_${i}.mp4` },
+            { id: 'enmasa', count: 22, path: i => `Videos/VideosEnMasa/VideosEnMasa-${i}.mp4` },
+            { id: 'vozoff', count: 2, path: i => `Videos/VozEnOFF/VozEnOFF_${i}.mp4` },
+            { id: 'agencia', count: 3, path: i => `Videos/AgenciaMarketing/AgenciaMarketing_${i}.mp4` },
+            { id: 'creador', count: 7, path: i => `Videos/CreadorDeContenido/CreadorDeContenido_${i}.mp4` },
+            { id: 'educacion', count: 2, path: i => `Videos/Educacion/Educacion_${i}.mp4` },
+            { id: 'motion', items: [
+                { type: 'local', src: 'Videos/MotionGraphics.mp4' },
+                { type: 'youtube', id: 'd55NAOGUis8' },
+                { type: 'youtube', id: '1PUcwxhF8sQ' }
+            ] }
+        ];
+        const STEP_ICONS = ['target', 'scissors', 'audio-waveform', 'wand', 'rocket'];
+        const FAQ_COUNT = 6;
+        const PAGE = 8;
+        const STACK_BASE = [
+            { x: -150, rotationY: 24, rotationZ: -7, z: -80 },
+            { x: 0, rotationY: 0, rotationZ: 0, z: 40 },
+            { x: 150, rotationY: -24, rotationZ: 7, z: -80 }
+        ];
+        const SECTIONS = [['hero', 'nav.home'], ['destacados', 'nav.featured'], ['sobre-mi', 'nav.about'], ['setup', 'nav.setup'], ['proceso', 'nav.process'], ['portafolio', 'nav.work'], ['faq', 'nav.faq'], ['contacto', 'nav.contact']];
+
+        const itemsOf = c => (c.items || Array.from({ length: c.count }, (_, k) => ({ type: 'local', src: c.path(k + 1) })))
+            .map((it, k) => ({ ...it, cat: c.id, n: k + 1 }));
         const TOTAL = CATEGORIES.reduce((s, c) => s + itemsOf(c).length, 0);
-        const totalEl = document.getElementById('totalVideos');
-        totalEl.dataset.count = TOTAL;
-        totalEl.textContent = TOTAL;
 
-        /* ============ RENDER: MARQUEE ============ */
-        const makeRow = (stroke) => MARQUEE.map((t, i) => `
-            <span class="flex items-center gap-10 pr-10">
-                <span class="${stroke && i % 2 ? 'text-stroke' : ''}">${t}</span>
-                <span class="${stroke ? 'text-brand-green' : ''}">✦</span>
-            </span>`).join('');
-        const m1Row = makeRow(false), m2Row = makeRow(true);
-        document.getElementById('marquee1').innerHTML = m1Row + m1Row;
-        document.getElementById('marquee2').innerHTML = m2Row + m2Row;
+        /* =========================================================
+           TRANSLATIONS
+           Spanish text for static sections is read from the HTML.
+           English (en) and Japanese (ja) live here.
+           ========================================================= */
+        const G = s => `<span class="text-brand-green">${s}</span>`;
+        const GG = s => `<span class="text-brand-green glow-text">${s}</span>`;
+        const W = s => `<span class="text-brand-text font-semibold">${s}</span>`;
+        const GS = s => `<span class="text-brand-green font-semibold">${s}</span>`;
+        const B = s => `<strong class="text-brand-text font-semibold">${s}</strong>`;
+        const BG = s => `<strong class="text-brand-green font-semibold">${s}</strong>`;
 
-        /* ============ RENDER: FEATURED ============ */
-        document.getElementById('featuredGrid').innerHTML = FEATURED.map(f => `
-            <div class="feat-wrap">
+        const MARQUEE = {
+            es: ['Motion Graphics', 'Edición de Podcast', 'Diseño Sonoro', 'Colorización', 'Comerciales', 'Reels y TikTok', 'VFX', 'Ganchos de Retención', 'Subtítulos Dinámicos', 'Storytelling'],
+            en: ['Motion Graphics', 'Podcast Editing', 'Sound Design', 'Color Grading', 'Commercials', 'Reels & TikTok', 'VFX', 'Retention Hooks', 'Dynamic Captions', 'Storytelling'],
+            ja: ['モーショングラフィックス', 'ポッドキャスト編集', 'サウンドデザイン', 'カラーグレーディング', 'CM制作', 'リール & TikTok', 'VFX', '視聴維持フック', 'ダイナミック字幕', 'ストーリーテリング']
+        };
+
+        const I18N = {
+            es: {
+                'meta.title': 'Nikol Jaramillo | Editora de Video y Diseñadora Multimedia',
+                'meta.desc': 'Nikol Jaramillo — editora de video y diseñadora multimedia en Cali, Colombia. Comerciales, podcasts, motion graphics y contenido de alta retención.',
+                'lang.name': 'ESPAÑOL', 'nav.home': 'Inicio',
+                'feat.preview': 'Vista previa',
+                'feat.1.tag': '01 / Comercial destacado', 'feat.1.title': 'Campaña de alto impacto', 'feat.1.desc': 'Cortes dinámicos, diseño sonoro inmersivo y colorización cinematográfica.',
+                'feat.2.tag': '02 / Motion Graphics', 'feat.2.title': 'VFX y narrativa visual', 'feat.2.desc': 'Composición digital avanzada en After Effects con animaciones de texto fluidas.',
+                'feat.3.tag': '03 / Podcast y retención', 'feat.3.title': 'Narrativa conversacional', 'feat.3.desc': 'Subtítulos dinámicos, b-roll estratégico y ritmo de edición ágil.',
+                'step.1.t': 'Brief y gancho', 'step.1.d': 'Estudio la marca, la audiencia y la plataforma para crear el gancho de los primeros 3 segundos.',
+                'step.2.t': 'Curaduría y corte', 'step.2.d': 'De horas de material a los mejores momentos, con estructura y ritmo narrativo.',
+                'step.3.t': 'Ritmo y sonido', 'step.3.d': 'Cortes al beat, efectos, música y voz en off que sostienen la atención.',
+                'step.4.t': 'Motion, subtítulos y color', 'step.4.d': 'Tipografía animada, VFX, subtítulos dinámicos y colorización con aura propia.',
+                'step.5.t': 'Entrega optimizada', 'step.5.d': 'Exportes listos para Reels, TikTok, Shorts y YouTube.',
+                'cat.podcast.tab': 'Podcast', 'cat.podcast.title': 'Podcast', 'cat.podcast.desc': 'Edición conversacional, cortes multicámara, énfasis visual y ganchos de retención.',
+                'cat.gaming.tab': 'Gaming', 'cat.gaming.title': 'Gaming', 'cat.gaming.desc': 'Ritmo frenético, efectos de sonido inmersivos, memes contextuales y momentos clave.',
+                'cat.comerciales.tab': 'Comerciales', 'cat.comerciales.title': 'Comerciales y marcas', 'cat.comerciales.desc': 'Spots publicitarios, estética premium, llamados a la acción y conversión en ventas.',
+                'cat.enmasa.tab': 'En masa', 'cat.enmasa.title': 'Videos en masa (corte y curaduría)', 'cat.enmasa.desc': 'Filtrado y curaduría experta de grabaciones de un día completo para extraer solo el oro visual.',
+                'cat.vozoff.tab': 'Voz en off', 'cat.vozoff.title': 'Voz en off + guion y B-roll', 'cat.vozoff.desc': 'Guion narrativo, voz en off grabada y selección precisa de clips para viajes y experiencias.',
+                'cat.agencia.tab': 'Agencia', 'cat.agencia.title': 'Agencia de marketing', 'cat.agencia.desc': 'Estrategias de contenido orgánico y pago enfocadas en métricas, branding y posicionamiento.',
+                'cat.creador.tab': 'Creadores', 'cat.creador.title': 'Creador de contenido / Marca personal', 'cat.creador.desc': 'Edición a la medida del estilo, el lenguaje y el carisma de cada creador.',
+                'cat.educacion.tab': 'Educación', 'cat.educacion.title': 'Educación y productos digitales', 'cat.educacion.desc': 'Explicaciones claras, gráficos de apoyo y retención técnica para cursos y piezas educativas.',
+                'cat.motion.tab': 'Motion & VFX', 'cat.motion.title': 'Motion Graphics y VFX', 'cat.motion.desc': 'Animación digital, efectos visuales 2D/3D y piezas complejas en After Effects.',
+                'ui.videos': 'videos', 'ui.more': 'Ver más',
+                'faq.1.q': '¿Cuánto tarda una edición?', 'faq.1.a': 'Depende de la duración y la complejidad del proyecto. Los videos cortos para redes suelen ser los más rápidos; antes de empezar te doy una fecha de entrega exacta.',
+                'faq.2.q': '¿Cuántas rondas de cambios incluye?', 'faq.2.a': 'Cada proyecto incluye rondas de ajustes que acordamos desde el inicio, para que el resultado final quede exactamente como lo imaginas.',
+                'faq.3.q': '¿Cómo te envío el material?', 'faq.3.a': 'Por Google Drive, WeTransfer, Dropbox o el servicio que prefieras. Mientras más organizado llegue el material, más rápido avanzamos.',
+                'faq.4.q': '¿En qué formatos entregas?', 'faq.4.a': 'Vertical 9:16 para Reels, TikTok y Shorts, horizontal 16:9 para YouTube y cuadrado 1:1. Exporto en MP4 (H.264/HEVC) y en ProRes si lo necesitas.',
+                'faq.5.q': '¿Trabajas con clientes fuera de Colombia?', 'faq.5.a': 'Sí. Trabajo de forma remota con marcas y creadores de cualquier país, en español e inglés.',
+                'faq.6.q': '¿Cómo empezamos?', 'faq.6.a': 'Escríbeme por el formulario de contacto contándome tu idea, la plataforma y la fecha que tienes en mente. Te respondo con una propuesta.',
+                'form.choose': 'Selecciona una opción', 'form.other': 'Otro', 'form.sending': 'Enviando...',
+                'form.ok': '¡Mensaje enviado! Te responderé muy pronto.',
+                'form.err': `No se pudo enviar el mensaje. Escríbeme directamente a ${EMAIL}.`,
+                'quick.copied': '¡Correo copiado!'
+            },
+            en: {
+                'meta.title': 'Nikol Jaramillo | Video Editor & Multimedia Designer',
+                'meta.desc': 'Nikol Jaramillo — video editor & multimedia designer from Cali, Colombia. Commercials, podcasts, motion graphics and high-retention content.',
+                'lang.name': 'ENGLISH', 'nav.home': 'Home',
+                'loader.text': 'RENDERING TIMELINE',
+                'nav.featured': 'Featured', 'nav.about': 'About', 'nav.setup': 'Tools', 'nav.process': 'Process', 'nav.work': 'Portfolio', 'nav.faq': 'FAQ', 'nav.contact': 'Contact', 'nav.cta': "Let's talk",
+                'hero.badge': 'Multimedia Engineering & Pro Editing',
+                'hero.l1': 'VISUAL', 'hero.l2': 'STORYTELLING', 'hero.l3': 'WITHOUT LIMITS',
+                'hero.desc': `High-energy strategic editing focused on ${W('RETENTION')}, ${W('IMPACT')} and ${GS('VISUAL AURA')}. Turning raw footage into memorable visual pieces.`,
+                'hero.cta1': 'See my work', 'hero.cta2': "Let's talk",
+                'hero.years': 'YEARS', 'hero.exp': 'Experience', 'hero.projects': 'Projects', 'hero.videos': 'Videos in this reel', 'hero.scroll': 'SCROLL', 'hero.stackHint': 'Click to play',
+                'feat.title': `MASTER${G('PIECES')}`,
+                'feat.sub': 'Three pieces that define my style. They preview automatically as you scroll — click any of them to watch with sound in full quality.',
+                'feat.swipe': 'Swipe to see more', 'feat.preview': 'Preview',
+                'feat.1.tag': '01 / Featured Commercial', 'feat.1.title': 'High-Impact Campaign', 'feat.1.desc': 'Dynamic cuts, immersive sound design and cinematic color grading.',
+                'feat.2.tag': '02 / Motion Graphics', 'feat.2.title': 'VFX & Visual Storytelling', 'feat.2.desc': 'Advanced digital compositing in After Effects with smooth text animations.',
+                'feat.3.tag': '03 / Podcast & Retention', 'feat.3.title': 'Conversational Storytelling', 'feat.3.desc': 'Dynamic captions, strategic b-roll and fast-paced editing rhythm.',
+                'about.kicker': 'Professional Biography', 'about.title': `CREATIVITY THAT <br>${G('SPARKS PASSION')}`,
+                'about.p1': `I'm ${B('Nikol Jaramillo')}, a 20-year-old video editor and multimedia designer with over ${BG('3 years of professional experience')} bringing audiovisual projects to life with an unmistakable visual identity.`,
+                'about.p2': `My passion is transforming raw ideas into high-value content that not only retains audiences but also inspires those who watch it. I'm currently finishing my degree in ${B('Multimedia Engineering at Universidad de San Buenaventura Cali')}, which gives me a solid technical foundation combined with a modern, disruptive aesthetic vision.`,
+                'about.quote': '“I love fully immersing myself in every project. I see each edit as an opportunity to reflect the love, discipline and purpose that God has placed in my life, making sure every cut has soul and purpose.”',
+                'about.role': 'Editor & Creator', 'about.s1': 'Years Old', 'about.s1b': 'Youth & Innovation', 'about.s2b': 'Multimedia Eng.', 'about.s3': 'Years', 'about.s3b': 'Real Experience',
+                'setup.kicker': 'Workstation & Software', 'setup.title': `HIGH-PERFORMANCE ${G('TOOLS')}`,
+                'setup.sub': "Apple's latest chip combined with professional software: smooth 4K timelines, hardware-accelerated exports and complex compositions without limits.",
+                'setup.cardTitle': 'Equipment Specs', 'setup.cardSub': 'MacBook Air 13" — M5 Workstation', 'setup.badge': 'Optimized',
+                'spec.model': 'Model:', 'spec.chip': 'Chip:', 'spec.mem': 'Memory:', 'spec.memV': '16 GB Unified', 'spec.os': 'Operating System:', 'spec.media': 'Media Engine:', 'spec.flow': 'Workflow:', 'spec.flowV': '4K Editing & Fast Exports',
+                'ae.level': 'Advanced', 'ae.desc': 'Complex motion graphics, VFX compositing, cinematic typography animation, 3D tracking, rotoscoping and high-end visual effects for commercials and high-impact projects.',
+                'cc.level': 'Agile Workflow', 'cc.desc': 'Full mastery of high-energy vertical editing (Reels, TikTok, Shorts). Ultra-fast workflow for high-volume content, fast-paced rhythm, automated captions and viral trends.',
+                'process.kicker': 'From raw footage to results', 'process.title': `HOW I ${G('EDIT')}`, 'process.sub': 'Five steps that make people stop scrolling and keep watching until the end.',
+                'step.1.t': 'Brief & Hook', 'step.1.d': 'I study the brand, audience and platform to craft the hook for the first 3 seconds.',
+                'step.2.t': 'Curation & Cut', 'step.2.d': 'From hours of footage to the best moments, with structure and narrative rhythm.',
+                'step.3.t': 'Rhythm & Sound', 'step.3.d': 'Beat-synced cuts, SFX, music and voice-over that hold attention.',
+                'step.4.t': 'Motion, Captions & Color', 'step.4.d': 'Animated type, VFX, dynamic captions and color grading with its own aura.',
+                'step.5.t': 'Optimized Delivery', 'step.5.d': 'Exports ready for Reels, TikTok, Shorts and YouTube.',
+                'work.kicker': 'Content Catalog', 'work.title': `EDITING ${G('CATEGORIES')}`, 'work.sub': 'Pick a category. Hover over a video to preview it and click to watch it in full.',
+                'cat.podcast.tab': 'Podcast', 'cat.podcast.title': 'Podcast', 'cat.podcast.desc': 'Conversational editing, multicam cuts, visual emphasis and retention hooks.',
+                'cat.gaming.tab': 'Gaming', 'cat.gaming.title': 'Gaming', 'cat.gaming.desc': 'Frantic pacing, immersive sound effects, contextual memes and key moments.',
+                'cat.comerciales.tab': 'Commercials', 'cat.comerciales.title': 'Commercials & Brands', 'cat.comerciales.desc': 'Advertising spots, premium aesthetics, calls to action and sales conversion.',
+                'cat.enmasa.tab': 'Bulk', 'cat.enmasa.title': 'Bulk Videos (Cutting & Curation)', 'cat.enmasa.desc': 'Expert filtering and curation of full-day shoots to extract only the visual gold.',
+                'cat.vozoff.tab': 'Voice-Over', 'cat.vozoff.title': 'Voice-Over + Script & B-Roll', 'cat.vozoff.desc': 'Narrative scriptwriting, recorded voice-over and precise clip selection for travel and experiences.',
+                'cat.agencia.tab': 'Agency', 'cat.agencia.title': 'Marketing Agency', 'cat.agencia.desc': 'Organic and paid content strategies focused on metrics, branding and positioning.',
+                'cat.creador.tab': 'Creators', 'cat.creador.title': 'Content Creator / Personal Brand', 'cat.creador.desc': "Custom editing tailored to each creator's style, language and charisma.",
+                'cat.educacion.tab': 'Education', 'cat.educacion.title': 'Education & Digital Products', 'cat.educacion.desc': 'Clear explanations, supporting graphics and technical retention for courses and educational pieces.',
+                'cat.motion.tab': 'Motion & VFX', 'cat.motion.title': 'Motion Graphics & VFX', 'cat.motion.desc': 'Digital animation, 2D/3D visual effects and complex pieces in After Effects.',
+                'ui.videos': 'videos', 'ui.more': 'Show more',
+                'faq.kicker': 'FAQ', 'faq.title': `GOT ${G('QUESTIONS?')}`, 'faq.sub': 'What people ask me most before starting a project.', 'faq.cta': 'Another question? Message me',
+                'faq.1.q': 'How long does an edit take?', 'faq.1.a': "It depends on the length and complexity of the project. Short social videos are usually the fastest; I'll give you an exact delivery date before we start.",
+                'faq.2.q': 'How many revision rounds are included?', 'faq.2.a': 'Every project includes revision rounds that we agree on from the start, so the final result looks exactly how you imagined it.',
+                'faq.3.q': 'How do I send you the footage?', 'faq.3.a': 'Via Google Drive, WeTransfer, Dropbox or whatever service you prefer. The more organized the footage, the faster we move.',
+                'faq.4.q': 'What formats do you deliver?', 'faq.4.a': 'Vertical 9:16 for Reels, TikTok and Shorts, horizontal 16:9 for YouTube and square 1:1. I export MP4 (H.264/HEVC) and ProRes if you need it.',
+                'faq.5.q': 'Do you work with clients outside Colombia?', 'faq.5.a': 'Yes. I work remotely with brands and creators from any country, in Spanish and English.',
+                'faq.6.q': 'How do we get started?', 'faq.6.a': "Send me a message through the contact form with your idea, the platform and your ideal deadline. I'll reply with a proposal.",
+                'contact.kicker': 'Ready to create something amazing?', 'contact.title': `LET'S MAKE YOUR CONTENT <br>${GG('UNFORGETTABLE')}`,
+                'contact.sub': "Tell me about your project and I'll get back to you as soon as possible.",
+                'form.title': 'Tell me about your project', 'form.name': 'Name', 'form.email': 'Email', 'form.type': 'Project type', 'form.msg': 'Message', 'form.send': 'Send message',
+                'form.ph.name': 'Your name', 'form.ph.email': 'you@email.com', 'form.ph.msg': 'Tell me your idea, the platform and the deadline you have in mind...',
+                'form.note': 'Your message goes straight to my inbox.',
+                'form.choose': 'Choose an option', 'form.other': 'Other', 'form.sending': 'Sending...',
+                'form.ok': "Message sent! I'll get back to you very soon.", 'form.err': `The message couldn't be sent. Please email me directly at ${EMAIL}.`,
+                'quick.title': 'Or reach me directly', 'quick.copy': 'Copy email', 'quick.gmail': 'Open in Gmail', 'quick.app': 'Mail app', 'quick.copied': 'Email copied!',
+                'cv.kicker': 'Résumé', 'cv.title': `My ${G('CV')}`, 'cv.desc': 'Download my résumé with experience, education and skills.', 'cv.es': 'Spanish', 'cv.en': 'English', 'cv.view': 'View', 'cv.download': 'Download',
+                'footer.rights': 'All rights reserved.', 'footer.school': 'Multimedia Engineering • San Buenaventura Cali', 'footer.top': 'Back to top'
+            },
+            ja: {
+                'meta.title': 'Nikol Jaramillo | 映像編集者・マルチメディアデザイナー',
+                'meta.desc': 'コロンビア・カリを拠点とする映像編集者・マルチメディアデザイナー。CM、ポッドキャスト、モーショングラフィックス、視聴維持率の高いショート動画を制作。',
+                'lang.name': '日本語', 'nav.home': 'ホーム',
+                'loader.text': 'タイムラインをレンダリング中',
+                'nav.featured': '代表作品', 'nav.about': 'プロフィール', 'nav.setup': '機材', 'nav.process': 'プロセス', 'nav.work': '作品集', 'nav.faq': 'FAQ', 'nav.contact': 'お問い合わせ', 'nav.cta': '相談する',
+                'hero.badge': 'マルチメディア工学 × プロの映像編集',
+                'hero.l1': '映像で', 'hero.l2': '物語を紡ぐ', 'hero.l3': '限界なく',
+                'hero.desc': `${W('視聴維持')}・${W('インパクト')}・${GS('ビジュアルの世界観')}を重視した、戦略的でエネルギッシュな映像編集。素材を、記憶に残る作品へと変えます。`,
+                'hero.cta1': '作品を見る', 'hero.cta2': '相談する',
+                'hero.years': '年', 'hero.exp': '経験', 'hero.projects': 'プロジェクト', 'hero.videos': '掲載動画', 'hero.scroll': 'スクロール', 'hero.stackHint': 'クリックで再生',
+                'feat.title': `代表${G('作品')}`,
+                'feat.sub': '私のスタイルを象徴する3作品。スクロールすると自動でプレビュー再生され、クリックすると音声付き・高画質で視聴できます。',
+                'feat.swipe': 'スワイプして他の作品を見る', 'feat.preview': 'プレビュー',
+                'feat.1.tag': '01 / 注目のCM', 'feat.1.title': 'インパクト重視のキャンペーン', 'feat.1.desc': 'ダイナミックなカット、没入感のあるサウンドデザイン、映画のようなカラーグレーディング。',
+                'feat.2.tag': '02 / モーショングラフィックス', 'feat.2.title': 'VFX × ビジュアルストーリー', 'feat.2.desc': 'After Effectsによる高度なコンポジットと滑らかなテキストアニメーション。',
+                'feat.3.tag': '03 / ポッドキャスト & 視聴維持', 'feat.3.title': '会話で魅せるストーリー', 'feat.3.desc': 'ダイナミックな字幕、戦略的なBロール、テンポの良い編集。',
+                'about.kicker': 'プロフィール', 'about.title': `情熱に火をつける<br>${G('クリエイティブ')}`,
+                'about.p1': `${B('Nikol Jaramillo')}です。20歳の映像編集者・マルチメディアデザイナーとして、${BG('3年以上のプロ経験')}を活かし、ひと目で伝わるビジュアルアイデンティティで映像プロジェクトを形にしています。`,
+                'about.p2': `荒削りなアイデアを、視聴者を惹きつけ、見る人の心を動かす価値あるコンテンツへ変えることが私の情熱です。現在${B('サン・ブエナベントゥラ大学カリ校でマルチメディア工学')}の学位取得を目前に控え、確かな技術基盤とモダンで斬新な美的感覚を兼ね備えています。`,
+                'about.quote': '「すべてのプロジェクトに全身全霊で向き合うのが大好きです。一つひとつの編集は、神様が私の人生に与えてくださった愛と規律と目的を映し出す機会。すべてのカットに魂と意味を込めています。」',
+                'about.role': 'エディター & クリエイター', 'about.s1': '歳', 'about.s1b': '若さと革新', 'about.s2b': 'マルチメディア工学', 'about.s3': '年以上', 'about.s3b': '実務経験',
+                'setup.kicker': '制作環境とソフトウェア', 'setup.title': `ハイパフォーマンスな${G('制作ツール')}`,
+                'setup.sub': 'Appleの最新チップとプロ仕様のソフトウェア。滑らかな4Kタイムライン、ハードウェアアクセラレーションによる高速書き出し、複雑なコンポジットも自由自在です。',
+                'setup.cardTitle': '使用機材', 'setup.cardSub': 'MacBook Air 13インチ — M5', 'setup.badge': '最適化済み',
+                'spec.model': 'モデル:', 'spec.chip': 'チップ:', 'spec.mem': 'メモリ:', 'spec.memV': '16GB ユニファイドメモリ', 'spec.os': 'OS:', 'spec.media': 'メディアエンジン:', 'spec.flow': 'ワークフロー:', 'spec.flowV': '4K編集 & 高速書き出し',
+                'ae.level': '上級', 'ae.desc': '高度なモーショングラフィックス、VFXコンポジット、映画的なタイポグラフィアニメーション、3Dトラッキング、ロトスコープなど、CMや大型案件向けのハイエンドな映像表現。',
+                'cc.level': 'スピード重視', 'cc.desc': 'Reels・TikTok・Shortsなど縦型動画の編集を熟知。大量のコンテンツにも対応できる高速ワークフロー、テンポの良い編集、自動字幕、トレンド対応。',
+                'process.kicker': '素材から成果まで', 'process.title': `編集の${G('プロセス')}`, 'process.sub': 'スクロールを止め、最後まで見てもらうための5つのステップ。',
+                'step.1.t': 'ブリーフ & フック', 'step.1.d': 'ブランド・視聴者・媒体を分析し、最初の3秒で惹きつけるフックを設計。',
+                'step.2.t': '素材選定 & カット', 'step.2.d': '何時間もの素材から最高の瞬間を選び、構成とリズムを組み立てます。',
+                'step.3.t': 'リズム & サウンド', 'step.3.d': 'ビートに合わせたカット、効果音、音楽、ナレーションで集中を持続。',
+                'step.4.t': 'モーション・字幕・カラー', 'step.4.d': 'アニメーション文字、VFX、ダイナミック字幕、独自の世界観のカラー。',
+                'step.5.t': '最適化して納品', 'step.5.d': 'Reels・TikTok・Shorts・YouTube向けにすぐ公開できる形で書き出し。',
+                'work.kicker': '作品カタログ', 'work.title': `編集${G('カテゴリー')}`, 'work.sub': 'カテゴリーを選んでください。カーソルを合わせるとプレビュー、クリックすると再生します。',
+                'cat.podcast.tab': 'ポッドキャスト', 'cat.podcast.title': 'ポッドキャスト', 'cat.podcast.desc': '会話を活かす編集、マルチカム、視覚的な強調、視聴維持のフック。',
+                'cat.gaming.tab': 'ゲーム', 'cat.gaming.title': 'ゲーム実況', 'cat.gaming.desc': 'スピード感ある展開、臨場感のある効果音、ミーム演出、決定的瞬間。',
+                'cat.comerciales.tab': 'CM', 'cat.comerciales.title': 'CM・ブランド', 'cat.comerciales.desc': '広告スポット、プレミアムな世界観、行動を促すCTA、成果につながる編集。',
+                'cat.enmasa.tab': '大量編集', 'cat.enmasa.title': '大量編集(カット & 選定)', 'cat.enmasa.desc': '丸一日分の撮影素材から、最高のシーンだけを選び抜く編集。',
+                'cat.vozoff.tab': 'ナレーション', 'cat.vozoff.title': 'ナレーション + 台本 & Bロール', 'cat.vozoff.desc': '台本制作、ナレーション収録、旅や体験を伝える的確なクリップ選定。',
+                'cat.agencia.tab': '代理店', 'cat.agencia.title': 'マーケティング代理店', 'cat.agencia.desc': '数値・ブランディング・ポジショニングを重視したオーガニック/広告用コンテンツ。',
+                'cat.creador.tab': 'クリエイター', 'cat.creador.title': 'クリエイター / パーソナルブランド', 'cat.creador.desc': 'クリエイターそれぞれのスタイル、言葉、個性に合わせたオーダーメイド編集。',
+                'cat.educacion.tab': '教育', 'cat.educacion.title': '教育・デジタル商品', 'cat.educacion.desc': 'わかりやすい説明、補助グラフィック、講座や教材向けの視聴維持設計。',
+                'cat.motion.tab': 'モーション & VFX', 'cat.motion.title': 'モーショングラフィックス & VFX', 'cat.motion.desc': 'デジタルアニメーション、2D/3D VFX、After Effectsによる複雑な映像表現。',
+                'ui.videos': '本', 'ui.more': 'もっと見る',
+                'faq.kicker': 'よくある質問', 'faq.title': `よくある${G('質問')}`, 'faq.sub': 'ご依頼前によくいただく質問をまとめました。', 'faq.cta': 'その他のご質問はこちら',
+                'faq.1.q': '編集にはどのくらい時間がかかりますか?', 'faq.1.a': '動画の長さや内容の複雑さによって異なります。SNS向けの短尺動画は比較的早く仕上がります。開始前に正確な納期をお伝えします。',
+                'faq.2.q': '修正は何回までできますか?', 'faq.2.a': '修正回数は最初に取り決めます。イメージどおりの仕上がりになるまで丁寧に調整します。',
+                'faq.3.q': '素材はどうやって送ればいいですか?', 'faq.3.a': 'Google Drive、WeTransfer、Dropboxなど、ご都合の良い方法で大丈夫です。素材が整理されているほどスムーズに進みます。',
+                'faq.4.q': 'どの形式で納品されますか?', 'faq.4.a': 'Reels・TikTok・Shorts用の縦型9:16、YouTube用の横型16:9、正方形1:1に対応。MP4(H.264/HEVC)のほか、ご希望に応じてProResでも書き出します。',
+                'faq.5.q': 'コロンビア国外のクライアントにも対応していますか?', 'faq.5.a': 'はい。世界中のブランドやクリエイターとリモートでお仕事しています(スペイン語・英語対応)。',
+                'faq.6.q': '依頼はどうやって始めればいいですか?', 'faq.6.a': 'お問い合わせフォームから、アイデア・掲載媒体・希望納期をお送りください。ご提案をお返しします。',
+                'contact.kicker': '一緒に最高の作品を作りませんか?', 'contact.title': `あなたのコンテンツを<br>${GG('忘れられない')}ものに`,
+                'contact.sub': 'プロジェクトについてお聞かせください。できるだけ早くご返信します。',
+                'form.title': 'プロジェクトについて教えてください', 'form.name': 'お名前', 'form.email': 'メールアドレス', 'form.type': 'プロジェクトの種類', 'form.msg': 'メッセージ', 'form.send': '送信する',
+                'form.ph.name': 'お名前', 'form.ph.email': 'you@email.com', 'form.ph.msg': 'アイデア、掲載媒体、希望納期などをご記入ください…',
+                'form.note': 'メッセージは直接私のメールに届きます。',
+                'form.choose': '選択してください', 'form.other': 'その他', 'form.sending': '送信中...',
+                'form.ok': '送信が完了しました!近日中にご返信します。', 'form.err': `送信できませんでした。${EMAIL} まで直接ご連絡ください。`,
+                'quick.title': '直接のご連絡はこちら', 'quick.copy': 'メールをコピー', 'quick.gmail': 'Gmailで開く', 'quick.app': 'メールアプリ', 'quick.copied': 'メールアドレスをコピーしました!',
+                'cv.kicker': '履歴書', 'cv.title': `私の${G('CV')}`, 'cv.desc': '経歴・学歴・スキルをまとめた履歴書をご覧いただけます。', 'cv.es': 'スペイン語版', 'cv.en': '英語版', 'cv.view': '表示', 'cv.download': 'ダウンロード',
+                'footer.rights': 'All rights reserved.', 'footer.school': 'マルチメディア工学 • サン・ブエナベントゥラ大学カリ校', 'footer.top': 'トップへ戻る'
+            }
+        };
+
+        // Read the Spanish text that's already in the HTML
+        $$('[data-i18n]').forEach(el => { const k = el.dataset.i18n; if (!(k in I18N.es)) I18N.es[k] = el.innerHTML.trim(); });
+        $$('[data-i18n-ph]').forEach(el => { const k = el.dataset.i18nPh; if (!(k in I18N.es)) I18N.es[k] = el.getAttribute('placeholder'); });
+
+        let lang = 'es';
+        try { const saved = localStorage.getItem('nikol-lang'); if (saved && I18N[saved]) lang = saved; } catch (e) {}
+        const t = k => I18N[lang][k] ?? I18N.en[k] ?? I18N.es[k] ?? k;
+
+        /* ============ RENDER ============ */
+        $('#totalVideos').dataset.count = TOTAL;
+        $('#totalVideos').textContent = TOTAL;
+
+        function renderMarquee() {
+            const row = (stroke) => MARQUEE[lang].map((w, i) => `<span class="flex items-center gap-10 pr-10"><span class="${stroke && i % 2 ? 'text-stroke' : ''}">${w}</span><span class="${stroke ? 'text-brand-green' : ''}">✦</span></span>`).join('');
+            const a = row(false), b = row(true);
+            $('#marquee1').innerHTML = a + a;
+            $('#marquee2').innerHTML = b + b;
+        }
+
+        $('#featuredGrid').innerHTML = FEATURED.map((src, i) => `
+            <div class="feat-wrap shrink-0 w-[78vw] sm:w-[46vw] md:w-auto snap-center">
                 <article class="feat-card video-tile tilt-card group relative rounded-2xl bg-brand-card border border-brand-border hover:border-brand-green/60 transition-colors duration-500 glow-green focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green"
-                         role="button" tabindex="0" data-type="local" data-src="${f.src}" data-cursor="play" aria-label="Play ${f.title}">
+                         role="button" tabindex="0" data-list="featured" data-index="${i}" data-cursor="play">
                     <div class="aspect-[9/16] relative bg-black rounded-t-2xl overflow-hidden">
-                        <video class="tile-video feat-video w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
-                               muted loop playsinline preload="metadata" src="${f.src}#t=0.1"></video>
+                        <video class="tile-video feat-video w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" muted loop playsinline preload="metadata" src="${src}#t=0.1"></video>
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-black/30"></div>
                         <span class="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur text-[10px] font-mono tracking-widest uppercase">
-                            <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>Preview
+                            <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span><span data-i18n="feat.preview"></span>
                         </span>
                     </div>
                     <div class="play-badge"><i data-lucide="play" class="w-7 h-7 ml-1"></i></div>
                     <div class="p-6 depth">
-                        <span class="text-xs font-mono text-brand-green uppercase tracking-wider">${f.tag}</span>
-                        <h3 class="text-xl font-bold font-display mt-1 group-hover:text-brand-green transition-colors">${f.title}</h3>
-                        <p class="text-sm text-brand-muted mt-2">${f.desc}</p>
+                        <span class="text-xs font-mono text-brand-green uppercase tracking-wider" data-i18n="feat.${i + 1}.tag"></span>
+                        <h3 class="text-xl font-bold font-display mt-1 group-hover:text-brand-green transition-colors" data-i18n="feat.${i + 1}.title"></h3>
+                        <p class="text-sm text-brand-muted mt-2" data-i18n="feat.${i + 1}.desc"></p>
                     </div>
                 </article>
             </div>`).join('');
 
-        /* ============ RENDER: WORKFLOW STEPS ============ */
-        document.getElementById('workflowTrack').insertAdjacentHTML('beforeend', STEPS.map((s, i) => `
-            <div class="step-wrap shrink-0 lg:w-[380px]">
-                <div class="step-card tilt-static tilt-card relative h-full rounded-3xl bg-brand-card border border-brand-border p-8 hover:border-brand-green/60 transition-colors duration-500">
-                    <span class="depth block font-display font-black text-7xl text-stroke opacity-60">${pad(i + 1)}</span>
-                    <div class="depth-lg w-12 h-12 rounded-xl bg-brand-greenMuted text-brand-green flex items-center justify-center mt-6">
-                        <i data-lucide="${s.icon}" class="w-6 h-6"></i>
-                    </div>
-                    <h3 class="depth text-2xl font-bold font-display mt-6">${s.title}</h3>
-                    <p class="depth text-brand-muted mt-3 leading-relaxed">${s.text}</p>
-                </div>
-            </div>`).join(''));
+        $('.stack-inner').innerHTML = FEATURED.map((src, i) => `
+            <div class="stack-card" role="button" tabindex="0" data-list="featured" data-index="${i}" data-cursor="play">
+                <video muted loop playsinline preload="none" data-src="${src}"></video>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                <div class="stack-shine"></div>
+                <span class="absolute bottom-3 left-3 font-mono text-[10px] tracking-widest text-brand-green">${pad(i + 1)} / ${pad(FEATURED.length)}</span>
+            </div>`).join('');
+        $$('.stack-card').forEach((c, i) => gsap.set(c, STACK_BASE[i]));
+        if (isDesktop) $$('.stack-card video').forEach(v => { v.preload = 'metadata'; v.src = v.dataset.src + '#t=0.1'; });
 
-        /* ============ RENDER: CATEGORIES ============ */
-        const catContainer = document.getElementById('categoriesContainer');
-        catContainer.innerHTML = CATEGORIES.map((c, i) => {
-            const n = itemsOf(c).length;
-            return `
-            <div class="cat-wrap">
-                <div class="cat-card spotlight rounded-3xl bg-brand-card border border-brand-border hover:border-brand-green/40 transition-colors duration-300" data-cat="${c.id}">
-                    <button type="button" class="cat-head relative z-10 w-full p-6 md:p-8 flex items-center justify-between text-left gap-4" aria-expanded="false">
-                        <div class="flex items-center gap-4 md:gap-6 min-w-0">
-                            <div class="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-brand-greenMuted text-brand-green flex items-center justify-center font-bold font-display text-lg md:text-xl">${pad(i + 1)}</div>
-                            <div class="min-w-0">
-                                <h3 class="text-xl md:text-3xl font-bold font-display">${c.title}</h3>
-                                <p class="text-sm text-brand-muted mt-1">${c.desc}</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4 shrink-0">
-                            <span class="hidden sm:inline-block text-xs font-mono px-3 py-1 rounded-full bg-brand-border text-brand-text">${c.badge || n + ' Videos'}</span>
-                            <span class="cat-icon inline-flex"><i data-lucide="chevron-down" class="w-6 h-6 text-brand-green"></i></span>
-                        </div>
-                    </button>
-                    <div class="cat-panel relative z-10" style="height:0;overflow:hidden">
-                        <div class="p-4 md:p-8 border-t border-brand-border/60 bg-black/30 rounded-b-3xl">
-                            <div class="cat-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" style="perspective:1200px"></div>
-                        </div>
+        $('#processGrid').innerHTML = STEP_ICONS.map((ic, i) => `
+            <div class="step-wrap ${i === 4 ? 'col-span-2 lg:col-span-1' : ''}">
+                <div class="step-card tilt-static tilt-card relative h-full mt-[38px] rounded-2xl bg-brand-card border border-brand-border px-5 pb-6 pt-[52px] text-center hover:border-brand-green/50 transition-colors">
+                    <div class="step-dot depth-lg absolute -top-[38px] left-1/2 -ml-[38px] w-[76px] h-[76px] rounded-full bg-brand-bg border border-brand-border flex items-center justify-center text-brand-green">
+                        <i data-lucide="${ic}" class="w-7 h-7"></i>
+                        <span class="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-brand-green text-brand-bg text-[10px] font-bold font-mono flex items-center justify-center">${pad(i + 1)}</span>
                     </div>
+                    <h3 class="depth font-display font-bold text-base md:text-lg" data-i18n="step.${i + 1}.t"></h3>
+                    <p class="depth mt-2 text-xs md:text-sm text-brand-muted leading-relaxed" data-i18n="step.${i + 1}.d"></p>
                 </div>
-            </div>`;
-        }).join('');
+            </div>`).join('');
 
-        const tileHTML = it => `
-            <div class="tile-wrap">
-                <div class="video-tile tilt-card group relative rounded-xl bg-brand-bg border border-brand-border hover:border-brand-green/60 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green"
-                     role="button" tabindex="0" data-type="${it.type}" data-src="${it.src || ''}" data-yt="${it.id || ''}" data-cursor="play" aria-label="Play ${it.label}">
-                    <div class="aspect-[9/16] relative bg-black rounded-t-xl overflow-hidden">
-                        ${it.type === 'youtube'
-                            ? `<img src="https://i.ytimg.com/vi/${it.id}/hqdefault.jpg" loading="lazy" alt="" class="w-full h-full object-cover">`
-                            : `<video class="tile-video w-full h-full object-cover" muted loop playsinline preload="metadata" src="${it.src}#t=0.1"></video>`}
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                        ${it.type === 'youtube' ? '<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-red-600 text-[10px] font-mono font-bold">YOUTUBE</span>' : ''}
-                    </div>
-                    <div class="play-badge tile-badge"><i data-lucide="play" class="w-5 h-5 ml-0.5"></i></div>
-                    <div class="depth p-3 text-xs font-mono text-brand-muted text-center border-t border-brand-border/40 group-hover:text-brand-green transition-colors">${it.label}</div>
+        $('#catTabs').insertAdjacentHTML('beforeend', CATEGORIES.map(c => `
+            <button type="button" class="cat-tab shrink-0 px-4 py-2 rounded-full text-sm whitespace-nowrap" data-cat="${c.id}" role="tab">
+                <span data-i18n="cat.${c.id}.tab"></span><span class="tab-count">${itemsOf(c).length}</span>
+            </button>`).join(''));
+
+        $('#faqList').innerHTML = Array.from({ length: FAQ_COUNT }, (_, i) => `
+            <div class="faq-item spotlight rounded-2xl bg-brand-card border border-brand-border">
+                <button type="button" class="faq-q relative z-10 w-full flex items-center justify-between gap-6 p-5 md:p-6 text-left" aria-expanded="false">
+                    <span class="flex items-center gap-4"><span class="font-mono text-xs text-brand-green">${pad(i + 1)}</span><span class="text-base md:text-lg font-semibold" data-i18n="faq.${i + 1}.q"></span></span>
+                    <span class="faq-icon w-9 h-9 shrink-0 rounded-full border border-brand-border flex items-center justify-center text-brand-green"><i data-lucide="plus" class="w-4 h-4"></i></span>
+                </button>
+                <div class="faq-a relative z-10" style="height:0;overflow:hidden">
+                    <p class="px-5 md:px-6 pb-6 md:pl-[3.75rem] text-brand-muted leading-relaxed" data-i18n="faq.${i + 1}.a"></p>
                 </div>
-            </div>`;
+            </div>`).join('');
 
+        $('#projectType').innerHTML = `<option value="" disabled selected data-i18n="form.choose"></option>` +
+            CATEGORIES.map(c => `<option value="${c.id}" data-i18n="cat.${c.id}.title"></option>`).join('') +
+            `<option value="other" data-i18n="form.other"></option>`;
+
+        $('#dotNav').innerHTML = SECTIONS.map(([id, k]) => `
+            <a href="#${id}" class="dot flex items-center justify-end" data-sec="${id}"><span class="dot-label" data-i18n="${k}"></span><span class="dot-pip"></span></a>`).join('');
+
+        /* ============ PORTFOLIO STATE ============ */
+        let currentCat = CATEGORIES[0];
+        let shown = 0;
+
+        function updateCatInfo() {
+            const i = CATEGORIES.indexOf(currentCat);
+            $('#catNum').textContent = pad(i + 1);
+            $('#catTitle').innerHTML = t(`cat.${currentCat.id}.title`);
+            $('#catDesc').innerHTML = t(`cat.${currentCat.id}.desc`);
+            $('#catCount').textContent = `${itemsOf(currentCat).length} ${t('ui.videos')}`;
+            updateMore();
+        }
+        function updateMore() {
+            const rest = itemsOf(currentCat).length - shown;
+            const btn = $('#catMore');
+            btn.classList.toggle('hidden', rest <= 0);
+            btn.classList.toggle('flex', rest > 0);
+            $('#catMoreText').textContent = `${t('ui.more')} (${rest})`;
+        }
+
+        /* ============ APPLY LANGUAGE ============ */
+        function updateLangUI(animate = true) {
+            $$('.lang-switch').forEach(sw => {
+                const btn = sw.querySelector(`[data-lang="${lang}"]`);
+                sw.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('active', b === btn));
+                if (btn && btn.offsetWidth) gsap.to(sw.querySelector('.lang-pill'), { x: btn.offsetLeft, width: btn.offsetWidth, duration: animate ? .45 : 0, ease: 'expo.out' });
+            });
+        }
+        function applyLang() {
+            document.documentElement.lang = lang;
+            $$('[data-i18n]').forEach(el => { const v = t(el.dataset.i18n); if (el.innerHTML !== v) el.innerHTML = v; });
+            $$('[data-i18n-ph]').forEach(el => el.setAttribute('placeholder', t(el.dataset.i18nPh)));
+            document.title = t('meta.title');
+            const md = $('meta[name="description"]'); if (md) md.setAttribute('content', t('meta.desc'));
+            renderMarquee();
+            updateCatInfo();
+            $$('.cv-row').forEach(r => r.classList.toggle('cv-active', r.dataset.cvlang === (lang === 'es' ? 'es' : 'en')));
+            updateLangUI();
+        }
+
+        applyLang();
         lucide.createIcons();
 
-        /* ============ SMOOTH SCROLL (LENIS) ============ */
+        /* ============ SMOOTH SCROLL ============ */
         let lenis = null;
         if (!reduceMotion) {
             lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
             lenis.on('scroll', ScrollTrigger.update);
-            gsap.ticker.add(t => lenis.raf(t * 1000));
+            gsap.ticker.add(time => lenis.raf(time * 1000));
             gsap.ticker.lagSmoothing(0);
         }
+        let rT;
+        const refreshSoon = () => { clearTimeout(rT); rT = setTimeout(() => ScrollTrigger.refresh(), 250); };
 
-        /* ============ MOBILE MENU ============ */
-        const menu = document.getElementById('mobileMenu');
-        const openMenu = () => {
+        const nav = $('#mainNav');
+        const setNavH = () => document.documentElement.style.setProperty('--navH', nav.offsetHeight + 'px');
+        setNavH();
+
+        function scrollToTarget(target, offset = -70) {
+            if (lenis) lenis.scrollTo(target, { offset: target === 0 ? 0 : offset, duration: 1.4 });
+            else if (target === 0) window.scrollTo({ top: 0, behavior: 'smooth' });
+            else target.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        /* ============ MENU ============ */
+        const menu = $('#mobileMenu');
+        function openMenu() {
             menu.classList.remove('hidden'); menu.classList.add('flex');
             lenis && lenis.stop();
-            if (!reduceMotion) gsap.fromTo('.menu-link', { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.06, duration: 0.6, ease: 'power3.out' });
-        };
-        const closeMenu = () => {
+            updateLangUI(false);
+            if (!reduceMotion) gsap.fromTo('.menu-link', { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: .05, duration: .6, ease: 'power3.out' });
+        }
+        function closeMenu() {
             if (menu.classList.contains('hidden')) return;
             menu.classList.add('hidden'); menu.classList.remove('flex');
             lenis && lenis.start();
-        };
-        document.getElementById('menuBtn').addEventListener('click', openMenu);
-        document.getElementById('menuClose').addEventListener('click', closeMenu);
+        }
+        $('#menuBtn').addEventListener('click', openMenu);
+        $('#menuClose').addEventListener('click', closeMenu);
 
-        /* ============ ANCHOR LINKS ============ */
-        document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
-            const href = a.getAttribute('href');
-            const target = href === '#' ? 0 : document.querySelector(href);
-            if (target === null) return;
-            e.preventDefault();
-            closeMenu();
-            if (lenis) lenis.scrollTo(target, { offset: href === '#' ? 0 : -60, duration: 1.6 });
-            else if (target === 0) window.scrollTo({ top: 0, behavior: 'smooth' });
-            else target.scrollIntoView({ behavior: 'smooth' });
-        }));
+        /* ============ GLOBAL CLICKS ============ */
+        document.addEventListener('click', e => {
+            const langBtn = e.target.closest('[data-lang]');
+            if (langBtn) { setLang(langBtn.dataset.lang); closeMenu(); return; }
 
-        /* ============ PROGRESS BAR + NAV ============ */
-        gsap.to('#scrollProgress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } });
-        const nav = document.getElementById('mainNav');
-        ScrollTrigger.create({
-            start: 0, end: 'max',
-            onUpdate: s => nav.classList.toggle('nav-hidden', s.direction === 1 && s.scroll() > 300)
+            const a = e.target.closest('a[href^="#"]');
+            if (a) {
+                const h = a.getAttribute('href');
+                const target = h === '#' ? 0 : $(h);
+                if (target === null) return;
+                e.preventDefault(); closeMenu(); scrollToTarget(target);
+                return;
+            }
+            const tile = e.target.closest('[data-list]');
+            if (tile) openModal(tile.dataset.list, +tile.dataset.index);
         });
 
-        /* ============ CUSTOM CURSOR ============ */
-        if (finePointer && !reduceMotion) {
-            const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
-            dot.style.display = ring.style.display = 'block';
+        /* ============ PROGRESS, NAV, TO-TOP ============ */
+        gsap.to('#scrollProgress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: .3 } });
+        const toTop = $('#toTop'), ring = $('#toTopRing');
+        ScrollTrigger.create({
+            start: 0, end: 'max',
+            onUpdate: s => {
+                const hide = s.direction === 1 && s.scroll() > 300;
+                nav.classList.toggle('nav-hidden', hide);
+                document.body.classList.toggle('nav-up', hide);
+                ring.style.strokeDashoffset = 138.2 * (1 - s.progress);
+                const show = s.scroll() > 600;
+                toTop.style.opacity = show ? 1 : 0;
+                toTop.style.pointerEvents = show ? 'auto' : 'none';
+            }
+        });
+
+        function setActive(id) {
+            $$('[data-sec]').forEach(d => d.classList.toggle('active', d.dataset.sec === id));
+            $$('.nav-link').forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+        }
+        SECTIONS.forEach(([id]) => {
+            ScrollTrigger.create({ trigger: '#' + id, start: 'top 50%', end: 'bottom 50%', onToggle: s => s.isActive && setActive(id) });
+        });
+
+        /* ============ CURSOR / SPOTLIGHT / MAGNETIC ============ */
+        if (tiltOn) {
+            const dot = $('#cursorDot'), cr = $('#cursorRing');
+            dot.style.display = cr.style.display = 'block';
             document.body.classList.add('custom-cursor');
-            gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
-            const xD = gsap.quickTo(dot, 'x', { duration: 0.1 }), yD = gsap.quickTo(dot, 'y', { duration: 0.1 });
-            const xR = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' }), yR = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+            gsap.set([dot, cr], { xPercent: -50, yPercent: -50 });
+            const xD = gsap.quickTo(dot, 'x', { duration: .1 }), yD = gsap.quickTo(dot, 'y', { duration: .1 });
+            const xR = gsap.quickTo(cr, 'x', { duration: .45, ease: 'power3' }), yR = gsap.quickTo(cr, 'y', { duration: .45, ease: 'power3' });
             window.addEventListener('mousemove', e => { xD(e.clientX); yD(e.clientY); xR(e.clientX); yR(e.clientY); });
             document.addEventListener('mouseover', e => {
-                const t = e.target.closest('[data-cursor], a, button, [role="button"]');
-                const isPlay = !!t && t.dataset.cursor === 'play';
-                ring.classList.toggle('is-play', isPlay);
-                ring.classList.toggle('is-hover', !!t && !isPlay);
+                const el = e.target.closest('[data-cursor], a, button, [role="button"], select, input, textarea');
+                const isPlay = !!el && el.dataset.cursor === 'play';
+                cr.classList.toggle('is-play', isPlay);
+                cr.classList.toggle('is-hover', !!el && !isPlay);
             });
+            $$('.magnetic').forEach(b => {
+                const xT = gsap.quickTo(b, 'x', { duration: .6, ease: 'elastic.out(1, 0.4)' });
+                const yT = gsap.quickTo(b, 'y', { duration: .6, ease: 'elastic.out(1, 0.4)' });
+                b.addEventListener('mousemove', e => { const r = b.getBoundingClientRect(); xT((e.clientX - r.left - r.width / 2) * .3); yT((e.clientY - r.top - r.height / 2) * .3); });
+                b.addEventListener('mouseleave', () => { xT(0); yT(0); });
+            });
+            VanillaTilt.init($$('.tilt-static'), { max: 8, speed: 800, perspective: 1200, glare: true, 'max-glare': .12, gyroscope: false });
         }
-
-        /* ============ SPOTLIGHT + MAGNETIC ============ */
         document.addEventListener('mousemove', e => {
             const c = e.target.closest && e.target.closest('.spotlight');
             if (!c) return;
@@ -837,56 +1173,51 @@
             c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
             c.style.setProperty('--my', (e.clientY - r.top) + 'px');
         });
-        if (finePointer && !reduceMotion) {
-            document.querySelectorAll('.magnetic').forEach(b => {
-                const xT = gsap.quickTo(b, 'x', { duration: 0.6, ease: 'elastic.out(1, 0.4)' });
-                const yT = gsap.quickTo(b, 'y', { duration: 0.6, ease: 'elastic.out(1, 0.4)' });
-                b.addEventListener('mousemove', e => {
-                    const r = b.getBoundingClientRect();
-                    xT((e.clientX - r.left - r.width / 2) * 0.35);
-                    yT((e.clientY - r.top - r.height / 2) * 0.35);
-                });
-                b.addEventListener('mouseleave', () => { xT(0); yT(0); });
-            });
+
+        /* ============ MODAL WITH PLAYLIST ============ */
+        const modal = $('#videoModal'), stage = $('#modalStage');
+        let player = null, mList = [], mIndex = 0;
+
+        function listFor(name) {
+            if (name === 'featured') return FEATURED.map((src, i) => ({ type: 'local', src, label: () => t(`feat.${i + 1}.title`) }));
+            return itemsOf(currentCat).map(it => ({ ...it, label: () => `${t('cat.' + it.cat + '.tab')} · ${pad(it.n)}` }));
         }
-
-        /* ============ 3D TILT ============ */
-        const tiltOn = finePointer && !reduceMotion;
-        if (tiltOn) {
-            VanillaTilt.init(document.querySelectorAll('.tilt-static'), {
-                max: 8, speed: 800, perspective: 1200, glare: true, 'max-glare': 0.12, gyroscope: false
-            });
-        }
-
-        /* ============ VIDEO MODAL (PLYR) ============ */
-        const modal = document.getElementById('videoModal');
-        const stage = document.getElementById('modalStage');
-        let player = null;
-
-        function openModal({ type, src, yt }) {
-            document.querySelectorAll('.tile-video').forEach(v => v.pause());
-            stage.innerHTML = type === 'youtube'
-                ? `<div data-plyr-provider="youtube" data-plyr-embed-id="${yt}"></div>`
-                : `<video playsinline><source src="${src}" type="video/mp4"></video>`;
+        function loadModal(dir) {
+            if (player) { player.destroy(); player = null; }
+            const it = mList[mIndex];
+            stage.innerHTML = it.type === 'youtube'
+                ? `<div data-plyr-provider="youtube" data-plyr-embed-id="${it.id}"></div>`
+                : `<video playsinline><source src="${it.src}" type="video/mp4"></video>`;
             player = new Plyr(stage.firstElementChild, {
-                ratio: '9:16',
-                autoplay: true,
+                ratio: '9:16', autoplay: true,
                 controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen'],
                 youtube: { noCookie: true, rel: 0, showinfo: 0, modestbranding: 1 }
             });
+            $('#modalCaption').textContent = `${it.label()}  ·  ${mIndex + 1} / ${mList.length}`;
+            const many = mList.length > 1;
+            $('#modalPrev').style.display = $('#modalNext').style.display = many ? '' : 'none';
+            if (dir && !reduceMotion) gsap.fromTo(stage, { x: dir * 70, opacity: 0 }, { x: 0, opacity: 1, duration: .45, ease: 'power3.out' });
+        }
+        function openModal(name, index) {
+            mList = listFor(name); mIndex = index;
+            $$('video').forEach(v => { if (!stage.contains(v)) v.pause(); });
             modal.classList.remove('hidden'); modal.classList.add('flex');
             lenis && lenis.stop();
             document.body.style.overflow = 'hidden';
-            gsap.fromTo('#modalBg', { opacity: 0 }, { opacity: 1, duration: 0.4 });
-            gsap.fromTo('#modalBox', { opacity: 0, scale: 0.85, rotateX: 18, y: 40 },
-                { opacity: 1, scale: 1, rotateX: 0, y: 0, duration: reduceMotion ? 0 : 0.7, ease: 'expo.out' });
+            loadModal(0);
+            gsap.fromTo('#modalBg', { opacity: 0 }, { opacity: 1, duration: .4 });
+            gsap.fromTo('#modalBox', { opacity: 0, scale: .85, rotateX: 18, y: 40 }, { opacity: 1, scale: 1, rotateX: 0, y: 0, duration: reduceMotion ? 0 : .7, ease: 'expo.out' });
         }
-
+        function stepModal(d) {
+            if (mList.length < 2) return;
+            mIndex = (mIndex + d + mList.length) % mList.length;
+            loadModal(d);
+        }
         function closeModal() {
             if (modal.classList.contains('hidden')) return;
-            gsap.to('#modalBox', { opacity: 0, scale: 0.9, y: 30, duration: 0.3 });
+            gsap.to('#modalBox', { opacity: 0, scale: .9, y: 30, duration: .3 });
             gsap.to('#modalBg', {
-                opacity: 0, duration: 0.35, onComplete: () => {
+                opacity: 0, duration: .35, onComplete: () => {
                     if (player) { player.destroy(); player = null; }
                     stage.innerHTML = '';
                     modal.classList.add('hidden'); modal.classList.remove('flex');
@@ -896,80 +1227,195 @@
                 }
             });
         }
-        document.getElementById('modalClose').addEventListener('click', closeModal);
-        document.getElementById('modalBg').addEventListener('click', closeModal);
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeMenu(); } });
-
-        /* ============ VIDEO TILES ============ */
-        function initTiles(scope) {
-            const tiles = [...scope.querySelectorAll('.video-tile')];
-            tiles.forEach(t => {
-                const v = t.querySelector('.tile-video');
-                if (v && finePointer && !t.classList.contains('feat-card')) {
-                    t.addEventListener('mouseenter', () => v.play().catch(() => {}));
-                    t.addEventListener('mouseleave', () => v.pause());
-                }
-                t.addEventListener('click', () => openModal(t.dataset));
-                t.addEventListener('keydown', e => {
-                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(t.dataset); }
-                });
-            });
-            if (tiltOn) {
-                VanillaTilt.init(tiles, { max: 12, speed: 600, perspective: 900, glare: true, 'max-glare': 0.2, scale: 1.03, gyroscope: false });
+        $('#modalClose').addEventListener('click', closeModal);
+        $('#modalBg').addEventListener('click', closeModal);
+        $('#modalPrev').addEventListener('click', () => stepModal(-1));
+        $('#modalNext').addEventListener('click', () => stepModal(1));
+        let touchX = 0, touchY = 0;
+        $('#modalBox').addEventListener('touchstart', e => { touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; }, { passive: true });
+        $('#modalBox').addEventListener('touchend', e => {
+            const dx = e.changedTouches[0].clientX - touchX, dy = e.changedTouches[0].clientY - touchY;
+            if (Math.abs(dx) > 60 && Math.abs(dy) < 50) stepModal(dx < 0 ? 1 : -1);
+        });
+        document.addEventListener('keydown', e => {
+            const open = !modal.classList.contains('hidden');
+            if (e.key === 'Escape') { closeModal(); closeMenu(); }
+            if (open && e.key === 'ArrowRight') stepModal(1);
+            if (open && e.key === 'ArrowLeft') stepModal(-1);
+            if (!open && (e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('[data-list]')) {
+                e.preventDefault(); openModal(e.target.dataset.list, +e.target.dataset.index);
             }
-        }
-        initTiles(document.getElementById('featuredGrid'));
+        });
 
-        // Featured: auto-preview (muted) while on screen
-        document.querySelectorAll('.feat-video').forEach(v => {
+        /* ============ TILES ============ */
+        function initTiles(wraps) {
+            const tiles = wraps.map(w => w.querySelector('.video-tile') || w).filter(Boolean);
+            tiles.forEach(tile => {
+                const v = tile.querySelector('.tile-video');
+                if (v && finePointer && !tile.classList.contains('feat-card')) {
+                    tile.addEventListener('mouseenter', () => v.play().catch(() => {}));
+                    tile.addEventListener('mouseleave', () => v.pause());
+                }
+            });
+            if (tiltOn) VanillaTilt.init(tiles, { max: 12, speed: 600, perspective: 900, glare: true, 'max-glare': .2, scale: 1.03, gyroscope: false });
+        }
+        initTiles($$('.feat-wrap'));
+
+        $$('.feat-video').forEach(v => {
             ScrollTrigger.create({
                 trigger: v.closest('.feat-wrap'), start: 'top 85%', end: 'bottom 15%',
                 onToggle: s => (s.isActive && !player && !reduceMotion) ? v.play().catch(() => {}) : v.pause()
             });
         });
 
-        /* ============ CATEGORY ACCORDION ============ */
-        function buildGrid(card) {
-            if (card.dataset.built) return;
-            card.dataset.built = '1';
-            const cat = CATEGORIES.find(c => c.id === card.dataset.cat);
-            const grid = card.querySelector('.cat-grid');
-            grid.innerHTML = itemsOf(cat).map(tileHTML).join('');
+        /* ============ PORTFOLIO TABS ============ */
+        const catGrid = $('#catGrid'), catTabs = $('#catTabs');
+
+        const tileHTML = (it, k) => `
+            <div class="tile-wrap">
+                <div class="video-tile tilt-card group relative rounded-xl bg-brand-bg border border-brand-border hover:border-brand-green/60 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green"
+                     role="button" tabindex="0" data-list="cat" data-index="${k}" data-cursor="play">
+                    <div class="aspect-[9/16] relative bg-black rounded-t-xl overflow-hidden">
+                        ${it.type === 'youtube'
+                            ? `<img src="https://i.ytimg.com/vi/${it.id}/hqdefault.jpg" loading="lazy" alt="" class="w-full h-full object-cover">`
+                            : `<video class="tile-video w-full h-full object-cover" muted loop playsinline preload="metadata" src="${it.src}#t=0.1"></video>`}
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        ${it.type === 'youtube' ? '<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-red-600 text-[10px] font-mono font-bold">YOUTUBE</span>' : ''}
+                    </div>
+                    <div class="play-badge tile-badge"><i data-lucide="play" class="w-5 h-5 ml-0.5"></i></div>
+                    <div class="depth p-3 text-xs font-mono text-brand-muted text-center border-t border-brand-border/40 group-hover:text-brand-green transition-colors">
+                        <span data-i18n="cat.${it.cat}.tab">${t('cat.' + it.cat + '.tab')}</span> · ${pad(it.n)}
+                    </div>
+                </div>
+            </div>`;
+
+        function appendTiles(from, to, animate) {
+            const items = itemsOf(currentCat).slice(from, to);
+            catGrid.insertAdjacentHTML('beforeend', items.map((it, j) => tileHTML(it, from + j)).join(''));
+            const wraps = $$('.tile-wrap', catGrid).slice(from);
             lucide.createIcons();
-            initTiles(grid);
+            initTiles(wraps);
+            if (animate && !reduceMotion) {
+                gsap.fromTo(wraps, { y: 60, opacity: 0, rotateX: -25 }, { y: 0, opacity: 1, rotateX: 0, stagger: .05, duration: .8, ease: 'power3.out' });
+            }
+            shown = to;
+            updateMore();
         }
 
-        function toggleCat(card) {
-            const panel = card.querySelector('.cat-panel');
-            const icon = card.querySelector('.cat-icon');
-            const open = !card.classList.contains('is-open');
-            card.classList.toggle('is-open', open);
-            card.querySelector('.cat-head').setAttribute('aria-expanded', open);
-            gsap.to(icon, { rotate: open ? 180 : 0, duration: 0.4, ease: 'power2.out' });
+        function moveTabIndicator(animate = true) {
+            const b = catTabs.querySelector(`.cat-tab[data-cat="${currentCat.id}"]`);
+            if (!b) return;
+            gsap.to('#tabIndicator', { x: b.offsetLeft, width: b.offsetWidth, duration: animate && !reduceMotion ? .5 : 0, ease: 'expo.out' });
+            $$('.cat-tab', catTabs).forEach(x => { x.classList.toggle('active', x === b); x.setAttribute('aria-selected', x === b); });
+            catTabs.scrollTo({ left: b.offsetLeft - catTabs.clientWidth / 2 + b.offsetWidth / 2, behavior: animate ? 'smooth' : 'auto' });
+        }
 
-            if (open) {
-                buildGrid(card);
-                gsap.to(panel, {
-                    height: 'auto', duration: reduceMotion ? 0 : 0.7, ease: 'power3.inOut',
-                    onComplete: () => { panel.style.overflow = 'visible'; ScrollTrigger.refresh(); }
-                });
-                if (!reduceMotion) {
-                    gsap.fromTo(card.querySelectorAll('.tile-wrap'),
-                        { y: 60, opacity: 0, rotateX: -25 },
-                        { y: 0, opacity: 1, rotateX: 0, stagger: 0.05, duration: 0.8, ease: 'power3.out', delay: 0.15 });
-                }
-            } else {
-                card.querySelectorAll('.tile-video').forEach(v => v.pause());
-                panel.style.overflow = 'hidden';
-                gsap.to(panel, {
-                    height: 0, duration: reduceMotion ? 0 : 0.6, ease: 'power3.inOut',
-                    onComplete: () => ScrollTrigger.refresh()
-                });
+        function selectCat(id, initial = false) {
+            const next = CATEGORIES.find(c => c.id === id);
+            if (!next || (next === currentCat && !initial)) return;
+            currentCat = next;
+            moveTabIndicator(!initial);
+
+            const build = () => {
+                $$('.video-tile', catGrid).forEach(tl => tl.vanillaTilt && tl.vanillaTilt.destroy());
+                catGrid.style.minHeight = catGrid.offsetHeight + 'px';
+                catGrid.innerHTML = '';
+                shown = 0;
+                updateCatInfo();
+                appendTiles(0, Math.min(PAGE, itemsOf(currentCat).length), !initial);
+                if (!initial && !reduceMotion) gsap.fromTo('#catInfo > *', { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: .08, duration: .6, ease: 'power3.out' });
+                setTimeout(() => { catGrid.style.minHeight = ''; refreshSoon(); }, 400);
+            };
+
+            const old = $$('.tile-wrap', catGrid);
+            if (!initial && old.length && !reduceMotion) {
+                gsap.to('#catInfo > *', { opacity: 0, y: -10, duration: .2 });
+                gsap.to(old, { opacity: 0, y: 20, rotateX: 12, duration: .25, stagger: .012, onComplete: build });
+            } else build();
+
+            if (!initial) {
+                const info = $('#catInfo');
+                const limit = nav.offsetHeight + $('#catTabsWrap').offsetHeight;
+                if (info.getBoundingClientRect().top < limit) scrollToTarget(info, -(limit + 20));
             }
         }
-        catContainer.addEventListener('click', e => {
-            const head = e.target.closest('.cat-head');
-            if (head) toggleCat(head.closest('.cat-card'));
+
+        catTabs.addEventListener('click', e => { const b = e.target.closest('.cat-tab'); if (b) selectCat(b.dataset.cat); });
+        const stepCat = d => { const i = CATEGORIES.indexOf(currentCat); selectCat(CATEGORIES[(i + d + CATEGORIES.length) % CATEGORIES.length].id); };
+        $('#catPrev').addEventListener('click', () => stepCat(-1));
+        $('#catNext').addEventListener('click', () => stepCat(1));
+        $('#catMore').addEventListener('click', () => {
+            appendTiles(shown, Math.min(shown + PAGE, itemsOf(currentCat).length), true);
+            refreshSoon();
+        });
+        selectCat(currentCat.id, true);
+
+        /* ============ FAQ ============ */
+        function toggleFaq(item, open) {
+            item.classList.toggle('open', open);
+            item.querySelector('.faq-q').setAttribute('aria-expanded', open);
+            gsap.to(item.querySelector('.faq-icon'), { rotate: open ? 45 : 0, duration: .3 });
+            gsap.to(item.querySelector('.faq-a'), { height: open ? 'auto' : 0, duration: reduceMotion ? 0 : .5, ease: 'power3.inOut', onComplete: refreshSoon });
+        }
+        $('#faqList').addEventListener('click', e => {
+            const q = e.target.closest('.faq-q'); if (!q) return;
+            const item = q.parentElement;
+            const open = !item.classList.contains('open');
+            $$('.faq-item.open').forEach(o => o !== item && toggleFaq(o, false));
+            toggleFaq(item, open);
+        });
+
+        /* ============ CONTACT ============ */
+        function toast(msg) {
+            const el = $('#toast');
+            el.textContent = msg;
+            gsap.killTweensOf(el);
+            gsap.timeline().fromTo(el, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .35 }).to(el, { opacity: 0, y: 10, duration: .35, delay: 1.8 });
+        }
+        $('#copyEmail').addEventListener('click', async () => {
+            try { await navigator.clipboard.writeText(EMAIL); }
+            catch (e) {
+                const ta = document.createElement('textarea'); ta.value = EMAIL; document.body.appendChild(ta); ta.select();
+                document.execCommand('copy'); ta.remove();
+            }
+            toast(t('quick.copied'));
+        });
+
+        const form = $('#contactForm'), status = $('#formStatus');
+        form.addEventListener('submit', async e => {
+            e.preventDefault();
+            if (form.elements._honey.value) return;
+            if (!form.checkValidity()) { form.reportValidity(); return; }
+            const btn = form.querySelector('button[type="submit"]'), sendText = $('#sendText');
+            const sel = form.elements.project;
+            const data = {
+                name: form.elements.name.value.trim(),
+                email: form.elements.email.value.trim(),
+                project: sel.options[sel.selectedIndex].text,
+                message: form.elements.message.value.trim(),
+                language: lang.toUpperCase(),
+                _subject: `Nuevo proyecto desde el portafolio — ${form.elements.name.value.trim()}`,
+                _template: 'table',
+                _captcha: 'false'
+            };
+            btn.disabled = true; sendText.textContent = t('form.sending'); status.textContent = '';
+            try {
+                const r = await fetch(FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) });
+                const j = await r.json();
+                if (!r.ok || String(j.success) !== 'true') throw new Error(j.message || 'error');
+                status.className = 'text-sm min-h-[1.25rem] text-brand-green';
+                status.textContent = t('form.ok');
+                form.reset();
+                if (typeof confetti === 'function' && !reduceMotion) {
+                    const b = btn.getBoundingClientRect();
+                    confetti({ particleCount: 140, spread: 80, startVelocity: 40, origin: { x: (b.left + b.width / 2) / innerWidth, y: b.top / innerHeight }, colors: ['#8ee0a1', '#f2f2f5', '#74d68a', '#4fd1c5'] });
+                }
+            } catch (err) {
+                status.className = 'text-sm min-h-[1.25rem] text-red-400';
+                status.textContent = t('form.err');
+            } finally {
+                btn.disabled = false; sendText.textContent = t('form.send');
+            }
         });
 
         /* ============ COUNTERS ============ */
@@ -979,173 +1425,176 @@
             const o = { v: 0 };
             gsap.to(o, { v: end, duration: 2, ease: 'power2.out', onUpdate: () => el.textContent = Math.round(o.v) + suf });
         }
-        document.querySelectorAll('[data-count]:not(.hero-count)').forEach(el => {
-            ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: () => runCounter(el) });
-        });
+        $$('[data-count]:not(.hero-count)').forEach(el => ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: () => runCounter(el) }));
+
+        /* ============ SPLIT TEXT ============ */
+        const splitTypes = () => lang === 'ja' ? 'chars' : 'words,chars';
+        const killTw = el => { if (el._tw) { el._tw.scrollTrigger && el._tw.scrollTrigger.kill(); el._tw.kill(); el._tw = null; } };
+        function splitHero() { return $$('.hero-line').flatMap(el => new SplitType(el, { types: splitTypes() }).chars); }
+        function setupTitles() {
+            if (reduceMotion) return;
+            $$('.reveal-title').forEach(el => {
+                killTw(el);
+                const s = new SplitType(el, { types: splitTypes() });
+                el._tw = gsap.from(s.chars, { opacity: 0, yPercent: 80, rotateX: -90, transformOrigin: '50% 100%', stagger: .02, duration: .9, ease: 'back.out(1.6)', scrollTrigger: { trigger: el, start: 'top 88%' } });
+            });
+            $$('.scrub-text').forEach(el => {
+                killTw(el);
+                const s = new SplitType(el, { types: lang === 'ja' ? 'chars' : 'words' });
+                const parts = lang === 'ja' ? s.chars : s.words;
+                el._tw = gsap.fromTo(parts, { opacity: .15 }, { opacity: 1, stagger: .1, ease: 'none', scrollTrigger: { trigger: el, start: 'top 85%', end: 'bottom 55%', scrub: true } });
+            });
+        }
+
+        let heroChars = [];
+        let introDone = false;
 
         /* ============ SCROLL ANIMATIONS ============ */
-        let heroChars = [];
         if (!reduceMotion) {
-            // Hero split
-            heroChars = [...document.querySelectorAll('.hero-line')]
-                .flatMap(el => new SplitType(el, { types: 'words,chars' }).chars);
+            heroChars = splitHero();
             gsap.set(heroChars, { yPercent: 115 });
             gsap.set('.hero-fade', { opacity: 0, y: 30 });
 
-            // Hero scroll-out
-            gsap.to('.hero-inner', {
-                yPercent: -15, opacity: 0.15, scale: 0.95, ease: 'none',
-                scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
-            });
+            gsap.to(['.hero-text', '.hero-bottom-wrap'], { yPercent: -12, opacity: .15, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
+            gsap.to('#heroStack', { y: -120, rotationX: 25, scale: .9, opacity: 0, ease: 'none', scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true } });
 
-            // Hero blobs: mouse + scroll parallax
-            window.addEventListener('mousemove', e => {
-                const dx = (e.clientX / innerWidth - 0.5), dy = (e.clientY / innerHeight - 0.5);
-                gsap.to('.blob-1', { x: dx * 80, duration: 1.2, ease: 'power2.out' });
-                gsap.to('.blob-2', { x: -dx * 80, y: -dy * 40, duration: 1.2, ease: 'power2.out' });
-            });
-            gsap.utils.toArray('[data-speed]').forEach(el => {
-                gsap.to(el, {
-                    yPercent: +el.dataset.speed, ease: 'none',
-                    scrollTrigger: { trigger: el.closest('section'), start: 'top top', end: 'bottom top', scrub: true }
+            if (finePointer) {
+                const hero = $('#hero');
+                hero.addEventListener('mousemove', e => {
+                    const dx = e.clientX / innerWidth - .5, dy = e.clientY / innerHeight - .5;
+                    gsap.to('.aurora', { x: dx * 60, y: dy * 40, duration: 1.2, ease: 'power2.out' });
+                    gsap.to('.stack-inner', { rotationY: dx * 22, rotationX: -dy * 14, duration: 1, ease: 'power2.out' });
                 });
-            });
+                hero.addEventListener('mouseleave', () => gsap.to('.stack-inner', { rotationY: 0, rotationX: 0, duration: 1.2 }));
+                $$('.stack-card').forEach((c, i) => {
+                    c.addEventListener('mouseenter', () => gsap.to(c, { z: STACK_BASE[i].z + 90, duration: .5, ease: 'power3.out' }));
+                    c.addEventListener('mouseleave', () => gsap.to(c, { z: STACK_BASE[i].z, duration: .6, ease: 'power3.out' }));
+                });
+            }
 
-            // Marquees (accelerate with scroll velocity)
             const m1 = gsap.to('#marquee1', { xPercent: -50, repeat: -1, duration: 30, ease: 'none' });
             const m2 = gsap.fromTo('#marquee2', { xPercent: -50 }, { xPercent: 0, repeat: -1, duration: 30, ease: 'none' });
             ScrollTrigger.create({
                 start: 0, end: 'max',
                 onUpdate: s => {
                     const boost = 1 + Math.min(Math.abs(s.getVelocity()) / 250, 6);
-                    gsap.to([m1, m2], { timeScale: boost, duration: 0.15, overwrite: true,
-                        onComplete: () => gsap.to([m1, m2], { timeScale: 1, duration: 1.2 }) });
+                    gsap.to([m1, m2], { timeScale: boost, duration: .15, overwrite: true, onComplete: () => gsap.to([m1, m2], { timeScale: 1, duration: 1.2 }) });
                 }
             });
 
-            // Section titles: 3D letter flip
-            document.querySelectorAll('.reveal-title').forEach(el => {
-                const s = new SplitType(el, { types: 'words,chars' });
-                gsap.from(s.chars, {
-                    opacity: 0, yPercent: 80, rotateX: -90, transformOrigin: '50% 100%',
-                    stagger: 0.02, duration: 0.9, ease: 'back.out(1.6)',
-                    scrollTrigger: { trigger: el, start: 'top 85%' }
-                });
-            });
+            setupTitles();
 
-            // Generic reveals
-            gsap.utils.toArray('[data-reveal]').forEach(el => {
+            $$('[data-reveal]').forEach(el => {
                 const d = el.dataset.reveal;
                 const from = { opacity: 0, y: 60 };
                 if (d === 'left') { from.x = -80; from.y = 0; }
                 if (d === 'right') { from.x = 80; from.y = 0; }
-                gsap.from(el, {
-                    ...from, duration: 1, ease: 'power3.out', delay: +(el.dataset.delay || 0),
-                    scrollTrigger: { trigger: el, start: 'top 88%' }
-                });
+                gsap.from(el, { ...from, duration: 1, ease: 'power3.out', delay: +(el.dataset.delay || 0), scrollTrigger: { trigger: el, start: 'top 88%' } });
             });
 
-            // Featured: cards rise in 3D with scroll
-            gsap.utils.toArray('.feat-wrap').forEach((w, i) => {
-                gsap.fromTo(w, { rotateX: 35, y: 180, opacity: 0, transformOrigin: '50% 100%' }, {
-                    rotateX: 0, y: 0, opacity: 1, ease: 'none',
-                    scrollTrigger: { trigger: '#featuredGrid', start: `top ${95 - i * 6}%`, end: `top ${45 - i * 6}%`, scrub: 1 }
-                });
-            });
-
-            // About: image reveal + quote word highlight
-            const aboutST = { trigger: '#sobre-mi', start: 'top 85%', end: 'top 25%', scrub: 1 };
-            gsap.fromTo('#aboutMedia', { clipPath: 'inset(18% 18% 18% 18% round 24px)' },
-                { clipPath: 'inset(0% 0% 0% 0% round 16px)', ease: 'none', scrollTrigger: aboutST });
-            gsap.fromTo('#aboutImg', { scale: 1.35 }, { scale: 1, ease: 'none', scrollTrigger: { ...aboutST } });
-
-            document.querySelectorAll('.scrub-text').forEach(el => {
-                const s = new SplitType(el, { types: 'words' });
-                gsap.fromTo(s.words, { opacity: 0.15 }, {
-                    opacity: 1, stagger: 0.1, ease: 'none',
-                    scrollTrigger: { trigger: el, start: 'top 85%', end: 'bottom 55%', scrub: true }
-                });
-            });
-
-            // Setup: chip spin + spec rows
-            gsap.to('.chip-ring', { rotate: 360, duration: 6, repeat: -1, ease: 'none' });
-            gsap.fromTo('.chip-rot', { rotateY: -35, rotateX: 20 }, {
-                rotateY: 0, rotateX: 0, ease: 'none',
-                scrollTrigger: { trigger: '#setup', start: 'top 80%', end: 'center center', scrub: 1 }
-            });
-            gsap.from('.spec-row', {
-                opacity: 0, x: -30, stagger: 0.08, duration: 0.6, ease: 'power2.out',
-                scrollTrigger: { trigger: '#specList', start: 'top 88%' }
-            });
-
-            // Workflow: horizontal scroll on desktop, reveal on mobile
             const mm = gsap.matchMedia();
-            mm.add('(min-width: 1024px)', () => {
-                const track = document.getElementById('workflowTrack');
-                const dist = () => track.scrollWidth - window.innerWidth;
-                const tween = gsap.to(track, {
-                    x: () => -dist(), ease: 'none',
-                    scrollTrigger: { trigger: '#workflow', start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1 }
-                });
-                gsap.to('#workflowProgress', {
-                    scaleX: 1, ease: 'none',
-                    scrollTrigger: { trigger: '#workflow', start: 'top top', end: () => '+=' + dist(), scrub: true, invalidateOnRefresh: true }
-                });
-                gsap.utils.toArray('.step-wrap').forEach(w => {
-                    gsap.from(w, {
-                        opacity: 0.2, scale: 0.85, rotateY: -30, ease: 'none',
-                        scrollTrigger: { trigger: w, containerAnimation: tween, start: 'left 95%', end: 'left 55%', scrub: true }
+            mm.add('(min-width: 768px)', () => {
+                $$('.feat-wrap').forEach((w, i) => {
+                    gsap.fromTo(w, { rotateX: 35, y: 180, opacity: 0, transformOrigin: '50% 100%' }, {
+                        rotateX: 0, y: 0, opacity: 1, ease: 'none',
+                        scrollTrigger: { trigger: '#featuredGrid', start: `top ${95 - i * 6}%`, end: `top ${45 - i * 6}%`, scrub: 1 }
                     });
                 });
             });
-            mm.add('(max-width: 1023px)', () => {
-                gsap.utils.toArray('.step-wrap').forEach(w => {
-                    gsap.from(w, { opacity: 0, y: 60, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: w, start: 'top 88%' } });
-                });
+            mm.add('(max-width: 767px)', () => {
+                gsap.from('.feat-wrap', { opacity: 0, x: 80, stagger: .12, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: '#featuredGrid', start: 'top 85%' } });
             });
 
-            // Categories: 3D cascade
-            gsap.utils.toArray('.cat-wrap').forEach(w => {
-                gsap.from(w, {
-                    opacity: 0, y: 80, rotateX: -20, transformOrigin: '50% 0%', duration: 1, ease: 'power3.out',
-                    scrollTrigger: { trigger: w, start: 'top 92%' }
-                });
-            });
+            const aboutST = { trigger: '#sobre-mi', start: 'top 85%', end: 'top 25%', scrub: 1 };
+            gsap.fromTo('#aboutMedia', { clipPath: 'inset(18% 18% 18% 18% round 24px)' }, { clipPath: 'inset(0% 0% 0% 0% round 16px)', ease: 'none', scrollTrigger: aboutST });
+            gsap.fromTo('#aboutImg', { scale: 1.35 }, { scale: 1, ease: 'none', scrollTrigger: { ...aboutST } });
 
-            // Footer title zoom
-            gsap.fromTo('#footerTitle', { scale: 0.8, opacity: 0.3 }, {
-                scale: 1, opacity: 1, ease: 'none',
-                scrollTrigger: { trigger: 'footer', start: 'top 90%', end: 'top 30%', scrub: 1 }
-            });
+            gsap.to('.chip-ring', { rotate: 360, duration: 6, repeat: -1, ease: 'none' });
+            gsap.fromTo('.chip-rot', { rotateY: -35, rotateX: 20 }, { rotateY: 0, rotateX: 0, ease: 'none', scrollTrigger: { trigger: '#setup', start: 'top 80%', end: 'center center', scrub: 1 } });
+            gsap.from('.spec-row', { opacity: 0, x: -30, stagger: .08, duration: .6, ease: 'power2.out', scrollTrigger: { trigger: '#specList', start: 'top 90%' } });
+
+            gsap.from('.step-wrap', { opacity: 0, y: 60, rotateY: -30, stagger: .1, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: '#processGrid', start: 'top 85%' } });
+            const stepDots = $$('.step-dot');
+            const ptl = gsap.timeline({ scrollTrigger: { trigger: '#processGrid', start: 'top 75%', end: 'bottom 40%', scrub: 1 } });
+            ptl.to('#processLine', { scaleX: 1, ease: 'none', duration: stepDots.length }, 0);
+            stepDots.forEach((d, i) => ptl.to(d, { borderColor: '#8ee0a1', backgroundColor: 'rgba(142,224,161,0.14)', boxShadow: '0 0 32px rgba(142,224,161,0.45)', duration: .4 }, i * .95));
+
+            gsap.from('#catTabsWrap', { opacity: 0, y: 30, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: '#catTabsWrap', start: 'top 92%' } });
+            gsap.from($$('.tile-wrap', catGrid), { opacity: 0, y: 60, rotateX: -25, stagger: .06, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: catGrid, start: 'top 85%' } });
+
+            gsap.from('.faq-item', { opacity: 0, y: 40, stagger: .08, duration: .7, ease: 'power3.out', scrollTrigger: { trigger: '#faqList', start: 'top 85%' } });
+
+            gsap.fromTo('#contactTitle', { scale: .8, opacity: .3 }, { scale: 1, opacity: 1, ease: 'none', scrollTrigger: { trigger: '#contacto', start: 'top 90%', end: 'top 35%', scrub: 1 } });
         }
 
-        ScrollTrigger.sort();
-        if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
+        ScrollTrigger.create({
+            trigger: '#hero', start: 'top top', end: 'bottom top',
+            onToggle: s => $$('.stack-card video').forEach(v => (s.isActive && introDone && !player && v.src) ? v.play().catch(() => {}) : v.pause())
+        });
+
+        /* ============ LANGUAGE SWITCH ============ */
+        let switching = false;
+        function afterLangChange() {
+            if (!reduceMotion) {
+                heroChars = splitHero();
+                if (introDone) gsap.from(heroChars, { yPercent: 115, stagger: .015, duration: .8, ease: 'power4.out', delay: .25 });
+                setupTitles();
+            }
+            moveTabIndicator(false);
+            refreshSoon();
+        }
+        function setLang(next) {
+            if (!I18N[next] || next === lang || switching) return;
+            const done = () => {
+                lang = next;
+                try { localStorage.setItem('nikol-lang', next); } catch (e) {}
+                applyLang();
+                afterLangChange();
+            };
+            if (reduceMotion) { done(); return; }
+            switching = true;
+            const wipe = $('#langWipe'), txt = $('#langWipeText');
+            txt.textContent = I18N[next]['lang.name'];
+            gsap.timeline({ onComplete: () => { switching = false; } })
+                .set(wipe, { display: 'flex', transformOrigin: 'left center' })
+                .fromTo(wipe, { scaleX: 0 }, { scaleX: 1, duration: .45, ease: 'expo.in' })
+                .fromTo(txt, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .25 }, '-=.1')
+                .add(done)
+                .to(txt, { opacity: 0, duration: .2 }, '+=.2')
+                .set(wipe, { transformOrigin: 'right center' })
+                .to(wipe, { scaleX: 0, duration: .5, ease: 'expo.out' })
+                .set(wipe, { display: 'none' });
+        }
+
+        window.addEventListener('resize', () => { setNavH(); moveTabIndicator(false); updateLangUI(false); });
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { moveTabIndicator(false); updateLangUI(false); ScrollTrigger.refresh(); });
         window.addEventListener('load', () => ScrollTrigger.refresh());
 
-        /* ============ PRELOADER + HERO INTRO ============ */
+        /* ============ PRELOADER + INTRO ============ */
         function heroIntro() {
+            introDone = true;
             lenis && lenis.start();
-            document.querySelectorAll('.hero-count').forEach(runCounter);
+            $$('.hero-count').forEach(runCounter);
+            $$('.stack-card video').forEach(v => v.src && v.play().catch(() => {}));
             if (reduceMotion) return;
             gsap.timeline()
-                .to(heroChars, { yPercent: 0, duration: 1, stagger: 0.025, ease: 'power4.out' })
-                .to('.hero-fade', { opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: 'power3.out' }, '-=0.6');
+                .to(heroChars, { yPercent: 0, duration: 1, stagger: .025, ease: 'power4.out' })
+                .to('.hero-fade', { opacity: 1, y: 0, stagger: .12, duration: .8, ease: 'power3.out' }, '-=.6')
+                .from('.stack-card', { y: 320, opacity: 0, rotationX: -60, stagger: .12, duration: 1.1, ease: 'expo.out' }, '-=1');
         }
 
-        const loader = document.getElementById('preloader');
+        const loader = $('#preloader');
         if (reduceMotion) {
             loader.remove();
             heroIntro();
         } else {
             lenis && lenis.stop();
-            const o = { v: 0 };
-            const countEl = document.getElementById('loaderCount');
+            const o = { v: 0 }, countEl = $('#loaderCount');
             gsap.timeline()
                 .to(o, { v: 100, duration: 1.6, ease: 'power2.inOut', onUpdate: () => countEl.textContent = Math.round(o.v) })
                 .to('#loaderBar', { scaleX: 1, duration: 1.6, ease: 'power2.inOut' }, 0)
-                .to(loader, { yPercent: -100, duration: 0.9, ease: 'expo.inOut' })
-                .add(heroIntro, '-=0.4')
+                .to(loader, { yPercent: -100, duration: .9, ease: 'expo.inOut' })
+                .add(heroIntro, '-=.4')
                 .add(() => loader.remove());
         }
     })();
