@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth dark">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nikol Jaramillo | Video Editor & Multimedia Designer</title>
-    
+    <meta name="description" content="Nikol Jaramillo — Video editor & multimedia designer from Cali, Colombia. Commercials, podcasts, motion graphics and high-retention short-form content.">
+    <meta property="og:title" content="Nikol Jaramillo | Video Editor & Multimedia Designer">
+    <meta property="og:description" content="High-retention editing, motion graphics and visual storytelling for brands and creators.">
+    <meta name="theme-color" content="#0f0f11">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -38,14 +42,13 @@
         }
     </script>
 
-    <!-- AOS (Animate On Scroll) -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Lenis (smooth scroll) + Plyr (video player) styles -->
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.13/dist/lenis.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
 
     <style>
+        :root { --plyr-color-main: #8ee0a1; }
+
         body {
             background-color: #0f0f11;
             color: #f2f2f5;
@@ -53,181 +56,297 @@
             overflow-x: hidden;
         }
 
-        /* Modern Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #0f0f11;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #24242a;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #8ee0a1;
+        /* Film grain overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 85;
+            opacity: .035;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        /* Text Stroke & Glow Effects */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f0f11; }
+        ::-webkit-scrollbar-thumb { background: #24242a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #8ee0a1; }
+
         .text-stroke {
             -webkit-text-stroke: 1.5px #f2f2f5;
             color: transparent;
+            transition: color .4s ease, -webkit-text-stroke-color .4s ease;
         }
-        .text-stroke:hover {
-            color: #8ee0a1;
-            -webkit-text-stroke: 1.5px #8ee0a1;
-            transition: all 0.4s ease;
-        }
+        .text-stroke:hover { color: #8ee0a1; -webkit-text-stroke-color: #8ee0a1; }
 
-        .glow-green {
-            box-shadow: 0 0 35px -5px rgba(142, 224, 161, 0.25);
-        }
-
-        .glow-text {
-            text-shadow: 0 0 20px rgba(142, 224, 161, 0.4);
-        }
+        .glow-green { box-shadow: 0 0 35px -5px rgba(142, 224, 161, 0.25); }
+        .glow-text { text-shadow: 0 0 20px rgba(142, 224, 161, 0.4); }
 
         .bg-grid-pattern {
             background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
             background-size: 32px 32px;
         }
+
+        /* Text reveal masks */
+        .line-mask { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.08em; }
+        .reveal-title .word { perspective: 700px; }
+
+        /* 3D cards */
+        .tilt-card { transform-style: preserve-3d; will-change: transform; }
+        .depth { transform: translateZ(40px); }
+        .depth-lg { transform: translateZ(70px); }
+
+        .play-badge {
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            width: 68px;
+            height: 68px;
+            margin: -34px 0 0 -34px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(15, 15, 17, .55);
+            border: 1px solid rgba(142, 224, 161, .5);
+            backdrop-filter: blur(8px);
+            color: #8ee0a1;
+            transform: translateZ(70px);
+            transition: background .35s ease, color .35s ease, box-shadow .35s ease;
+            pointer-events: none;
+        }
+        .video-tile:hover .play-badge {
+            background: #8ee0a1;
+            color: #0f0f11;
+            box-shadow: 0 0 40px rgba(142, 224, 161, .55);
+        }
+        .tile-badge { width: 52px; height: 52px; margin: -26px 0 0 -26px; }
+
+        /* Mouse spotlight on category cards */
+        .spotlight { position: relative; }
+        .spotlight::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgba(142, 224, 161, .10), transparent 45%);
+            opacity: 0;
+            transition: opacity .3s ease;
+            pointer-events: none;
+        }
+        .spotlight:hover::before { opacity: 1; }
+
+        /* Scroll progress + nav */
+        #scrollProgress { transform-origin: left; transform: scaleX(0); }
+        #mainNav { transition: transform .45s cubic-bezier(.2, .8, .2, 1), background-color .3s ease; }
+        #mainNav.nav-hidden { transform: translateY(-100%); }
+
+        /* Custom cursor */
+        .cursor { position: fixed; top: 0; left: 0; pointer-events: none; z-index: 95; }
+        .cursor-dot { width: 6px; height: 6px; border-radius: 50%; background: #8ee0a1; }
+        .ring-inner {
+            width: 38px;
+            height: 38px;
+            border: 1px solid rgba(142, 224, 161, .6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform .35s cubic-bezier(.2, .8, .2, 1), background .3s, border-color .3s;
+        }
+        #cursorRing.is-hover .ring-inner { transform: scale(1.6); background: rgba(142, 224, 161, .08); }
+        #cursorRing.is-play .ring-inner { transform: scale(2.2); background: #8ee0a1; border-color: #8ee0a1; }
+        .ring-label { font: 700 6px 'Space Grotesk', sans-serif; letter-spacing: .15em; color: #0f0f11; opacity: 0; transition: opacity .2s; }
+        #cursorRing.is-play .ring-label { opacity: 1; }
+        body.custom-cursor, body.custom-cursor a, body.custom-cursor button, body.custom-cursor [role="button"] { cursor: none; }
+
+        /* Marquee bands */
+        .band { width: 110%; margin-left: -5%; }
+        .band-1 { transform: rotate(-2deg); }
+        .band-2 { transform: rotate(2deg); margin-top: -1.5rem; }
+
+        /* M5 chip */
+        .chip-ring {
+            position: absolute;
+            inset: -30%;
+            background: conic-gradient(from 0deg, transparent 0deg, rgba(142, 224, 161, .55) 60deg, transparent 120deg, transparent 360deg);
+            filter: blur(28px);
+            border-radius: 50%;
+        }
+        .chip-pins {
+            position: absolute;
+            inset: -14px;
+            border: 3px dashed rgba(142, 224, 161, .35);
+            border-radius: 2.4rem;
+        }
+        .chip-text {
+            background: linear-gradient(135deg, #f2f2f5 0%, #8ee0a1 60%, #4fa766 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Scroll hint */
+        @keyframes scrollLine { 0% { transform: scaleY(0); transform-origin: top; } 50% { transform: scaleY(1); transform-origin: top; } 51% { transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+        .scroll-line { animation: scrollLine 2s cubic-bezier(.6, 0, .2, 1) infinite; }
+
+        /* Plyr */
+        .plyr { border-radius: 1rem; }
+        #modalStage .plyr { max-height: 86vh; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .scroll-line { animation: none; }
+        }
     </style>
 </head>
 <body class="bg-brand-bg text-brand-text antialiased selection:bg-brand-green selection:text-brand-bg bg-grid-pattern">
 
+    <!-- PRELOADER -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-brand-bg flex flex-col items-center justify-center">
+        <div class="font-display text-7xl md:text-9xl font-black tracking-tight">
+            <span id="loaderCount">0</span><span class="text-brand-green">%</span>
+        </div>
+        <div class="w-48 h-px bg-brand-border mt-6 overflow-hidden">
+            <div id="loaderBar" class="h-full bg-brand-green origin-left" style="transform: scaleX(0)"></div>
+        </div>
+        <p class="mt-4 font-mono text-xs tracking-[0.3em] text-brand-muted">RENDERING TIMELINE</p>
+    </div>
+
+    <!-- SCROLL PROGRESS -->
+    <div id="scrollProgress" class="fixed top-0 left-0 h-[2px] w-full bg-brand-green z-[70]"></div>
+
+    <!-- CUSTOM CURSOR -->
+    <div id="cursorDot" class="cursor cursor-dot" style="display:none"></div>
+    <div id="cursorRing" class="cursor" style="display:none"><div class="ring-inner"><span class="ring-label">PLAY</span></div></div>
+
     <!-- NAV BAR -->
-    <nav class="fixed top-0 left-0 w-full z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-border/50 transition-all duration-300">
+    <nav id="mainNav" class="fixed top-0 left-0 w-full z-50 bg-brand-bg/80 backdrop-blur-md border-b border-brand-border/50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="font-display text-xl font-bold tracking-wider text-brand-text hover:text-brand-green transition-colors flex items-center gap-2">
                 <span class="w-2.5 h-2.5 rounded-full bg-brand-green inline-block animate-pulse"></span>
                 NIKOL<span class="text-brand-green">JARAMILLO</span>
             </a>
-            
+
             <div class="hidden md:flex items-center gap-8 text-sm font-medium">
                 <a href="#destacados" class="hover:text-brand-green transition-colors">FEATURED</a>
                 <a href="#sobre-mi" class="hover:text-brand-green transition-colors">ABOUT ME</a>
                 <a href="#setup" class="hover:text-brand-green transition-colors">SETUP & TOOLS</a>
+                <a href="#workflow" class="hover:text-brand-green transition-colors">PROCESS</a>
                 <a href="#portafolio" class="hover:text-brand-green transition-colors">CATEGORIES</a>
             </div>
 
-            <a href="#portafolio" class="px-5 py-2.5 rounded-full bg-brand-green text-brand-bg font-semibold text-sm hover:bg-brand-greenHover transition-all transform hover:scale-105 shadow-lg shadow-brand-green/20 flex items-center gap-2">
-                <span>Explore Work</span>
-                <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="#portafolio" class="magnetic hidden sm:flex px-5 py-2.5 rounded-full bg-brand-green text-brand-bg font-semibold text-sm hover:bg-brand-greenHover transition-colors shadow-lg shadow-brand-green/20 items-center gap-2">
+                    <span>Explore Work</span>
+                    <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+                </a>
+                <button id="menuBtn" class="md:hidden w-10 h-10 rounded-full border border-brand-border flex items-center justify-center" aria-label="Open menu">
+                    <i data-lucide="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
-    <section class="min-h-screen pt-32 pb-20 px-6 flex flex-col justify-center relative overflow-hidden">
-        <!-- Ambient BG Blurs -->
-        <div class="absolute top-1/4 -left-20 w-96 h-96 bg-brand-green/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute bottom-10 -right-20 w-96 h-96 bg-brand-green/5 rounded-full blur-3xl pointer-events-none"></div>
+    <!-- MOBILE MENU -->
+    <div id="mobileMenu" class="fixed inset-0 z-[60] bg-brand-bg/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-8 font-display text-3xl font-bold uppercase">
+        <button id="menuClose" class="absolute top-5 right-6 w-10 h-10 rounded-full border border-brand-border flex items-center justify-center" aria-label="Close menu">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <a href="#destacados" class="menu-link hover:text-brand-green">Featured</a>
+        <a href="#sobre-mi" class="menu-link hover:text-brand-green">About Me</a>
+        <a href="#setup" class="menu-link hover:text-brand-green">Setup & Tools</a>
+        <a href="#workflow" class="menu-link hover:text-brand-green">Process</a>
+        <a href="#portafolio" class="menu-link hover:text-brand-green">Categories</a>
+        <a href="mailto:nikjarqui@gmail.com" class="menu-link text-brand-green">Contact</a>
+    </div>
 
-        <div class="max-w-7xl mx-auto w-full">
-            <div data-aos="fade-up" data-aos-duration="1000" class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-brand-card border border-brand-border mb-8">
-                <span class="w-2 h-2 rounded-full bg-brand-green"></span>
-                <span class="text-xs font-mono tracking-widest text-brand-muted uppercase">MULTIMEDIA ENGINEERING & MASTER EDITING</span>
+    <main>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="min-h-screen pt-32 pb-20 px-6 flex flex-col justify-center relative overflow-hidden">
+        <div class="blob blob-1 absolute top-1/4 -left-20 w-96 h-96 bg-brand-green/10 rounded-full blur-3xl pointer-events-none" data-speed="-60"></div>
+        <div class="blob blob-2 absolute bottom-10 -right-20 w-96 h-96 bg-brand-green/5 rounded-full blur-3xl pointer-events-none" data-speed="40"></div>
+
+        <div class="hero-inner max-w-7xl mx-auto w-full">
+            <div class="hero-fade inline-flex items-center gap-3 px-4 py-2 rounded-full bg-brand-card border border-brand-border mb-8">
+                <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+                <span class="text-xs font-mono tracking-widest text-brand-muted uppercase">Multimedia Engineering & Master Editing</span>
             </div>
 
-            <h1 data-aos="fade-up" data-aos-delay="200" class="font-display text-5xl md:text-8xl lg:text-9xl font-black uppercase tracking-tight leading-none mb-6">
-                VISUAL <br>
-                <span class="text-stroke transition-all duration-500 hover:text-brand-green">STORYTELLING</span> <br>
-                <span class="text-brand-green glow-text">WITHOUT LIMITS</span>
+            <h1 class="font-display text-5xl md:text-8xl lg:text-9xl font-black uppercase tracking-tight leading-none mb-6">
+                <span class="line-mask"><span class="hero-line block">VISUAL</span></span>
+                <span class="line-mask"><span class="hero-line block text-stroke">STORYTELLING</span></span>
+                <span class="line-mask"><span class="hero-line block text-brand-green glow-text">WITHOUT LIMITS</span></span>
             </h1>
 
-            <div data-aos="fade-up" data-aos-delay="400" class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mt-12 border-t border-brand-border/60 pt-8">
+            <div class="hero-fade flex flex-col md:flex-row justify-between items-start md:items-end gap-8 mt-12 border-t border-brand-border/60 pt-8">
                 <p class="max-w-xl text-lg md:text-xl text-brand-muted font-light leading-relaxed">
-                    High-energy strategic editing focused on <span class="text-brand-text font-semibold">RETENTION</span>, <span class="text-brand-text font-semibold">IMPACT</span> and <span class="text-brand-green font-semibold">VISUAL AURA</span>. Turning footage into memorable visual pieces.
+                    High-energy strategic editing focused on <span class="text-brand-text font-semibold">RETENTION</span>, <span class="text-brand-text font-semibold">IMPACT</span> and <span class="text-brand-green font-semibold">VISUAL AURA</span>. Turning raw footage into memorable visual pieces.
                 </p>
 
-                <div class="flex items-center gap-6">
-                    <div class="text-left">
-                        <div class="text-3xl font-bold font-display text-brand-text">3+ YEARS</div>
+                <div class="flex flex-wrap items-center gap-6">
+                    <div>
+                        <div class="text-3xl font-bold font-display text-brand-text"><span class="hero-count" data-count="3" data-suffix="+">3+</span> YEARS</div>
                         <div class="text-xs text-brand-muted uppercase tracking-wider">Experience</div>
                     </div>
                     <div class="h-10 w-px bg-brand-border"></div>
-                    <div class="text-left">
-                        <div class="text-3xl font-bold font-display text-brand-green">100+</div>
+                    <div>
+                        <div class="text-3xl font-bold font-display text-brand-green"><span class="hero-count" data-count="100" data-suffix="+">100+</span></div>
                         <div class="text-xs text-brand-muted uppercase tracking-wider">Pro Projects</div>
+                    </div>
+                    <div class="h-10 w-px bg-brand-border"></div>
+                    <div>
+                        <div class="text-3xl font-bold font-display text-brand-text"><span id="totalVideos" class="hero-count" data-count="57" data-suffix="">57</span></div>
+                        <div class="text-xs text-brand-muted uppercase tracking-wider">Videos in this reel</div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="hero-fade absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
+            <span class="font-mono text-[10px] tracking-[0.4em] text-brand-muted">SCROLL</span>
+            <span class="w-px h-12 bg-brand-border overflow-hidden"><span class="scroll-line block w-full h-full bg-brand-green"></span></span>
+        </div>
     </section>
 
-    <!-- MY TOP 3 VIDEOS (SHOWCASE HERO) -->
+    <!-- MARQUEE BANDS -->
+    <section class="relative overflow-hidden py-14" aria-hidden="true">
+        <div class="band band-1 bg-brand-green text-brand-bg py-4 overflow-hidden">
+            <div id="marquee1" class="flex w-max whitespace-nowrap font-display text-3xl md:text-5xl font-black uppercase"></div>
+        </div>
+        <div class="band band-2 bg-brand-card border-y border-brand-border py-4 overflow-hidden">
+            <div id="marquee2" class="flex w-max whitespace-nowrap font-display text-3xl md:text-5xl font-black uppercase"></div>
+        </div>
+    </section>
+
+    <!-- FEATURED VIDEOS -->
     <section id="destacados" class="py-24 px-6 bg-brand-card/40 border-y border-brand-border/50">
         <div class="max-w-7xl mx-auto">
-            <div data-aos="fade-right" class="flex items-center gap-4 mb-16">
+            <div class="flex items-center gap-4 mb-6">
                 <i data-lucide="sparkles" class="w-8 h-8 text-brand-green"></i>
-                <h2 class="text-3xl md:text-5xl font-black font-display uppercase tracking-tight">
+                <h2 class="reveal-title text-3xl md:text-5xl font-black font-display uppercase tracking-tight">
                     MASTER<span class="text-brand-green">PIECES</span>
                 </h2>
                 <div class="h-px bg-brand-border flex-1 ml-4 hidden md:block"></div>
             </div>
+            <p data-reveal class="text-brand-muted max-w-2xl mb-16">Three pieces that define my style. They preview automatically as you scroll — click any of them to watch with sound in full quality.</p>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Video 1 -->
-                <div data-aos="fade-up" data-aos-delay="100" class="group relative rounded-2xl bg-brand-card border border-brand-border overflow-hidden hover:border-brand-green/60 transition-all duration-500 hover:-translate-y-2 glow-green">
-                    <div class="aspect-[9/16] relative bg-black">
-                        <video class="w-full h-full object-cover" controls preload="metadata" poster="https://placehold.co/600x1066/16161a/8ee0a1?text=Commercial+Highlight">
-                            <source src="Videos/Comerciales/Comercial_1.mp4" type="video/mp4">
-                            Your browser does not support the video format.
-                        </video>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs font-mono text-brand-green uppercase tracking-wider">01 / Featured Commercial</span>
-                        <h3 class="text-xl font-bold font-display mt-1 group-hover:text-brand-green transition-colors">High-Impact Campaign</h3>
-                        <p class="text-sm text-brand-muted mt-2">Dynamic cuts, immersive sound design and cinematic color grading.</p>
-                    </div>
-                </div>
-
-                <!-- Video 2 -->
-                <div data-aos="fade-up" data-aos-delay="200" class="group relative rounded-2xl bg-brand-card border border-brand-border overflow-hidden hover:border-brand-green/60 transition-all duration-500 hover:-translate-y-2 glow-green">
-                    <div class="aspect-[9/16] relative bg-black">
-                        <video class="w-full h-full object-cover" controls preload="metadata" poster="https://placehold.co/600x1066/16161a/8ee0a1?text=Motion+Graphics+Highlight">
-                            <source src="Videos/MotionGraphics.mp4" type="video/mp4">
-                            Your browser does not support the video format.
-                        </video>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs font-mono text-brand-green uppercase tracking-wider">02 / Motion Graphics</span>
-                        <h3 class="text-xl font-bold font-display mt-1 group-hover:text-brand-green transition-colors">VFX & Visual Storytelling</h3>
-                        <p class="text-sm text-brand-muted mt-2">Advanced digital compositing in After Effects with smooth text animations.</p>
-                    </div>
-                </div>
-
-                <!-- Video 3 -->
-                <div data-aos="fade-up" data-aos-delay="300" class="group relative rounded-2xl bg-brand-card border border-brand-border overflow-hidden hover:border-brand-green/60 transition-all duration-500 hover:-translate-y-2 glow-green">
-                    <div class="aspect-[9/16] relative bg-black">
-                        <video class="w-full h-full object-cover" controls preload="metadata" poster="https://placehold.co/600x1066/16161a/8ee0a1?text=Podcast+Highlight">
-                            <source src="Videos/Podcast/Podcast_1.mp4" type="video/mp4">
-                            Your browser does not support the video format.
-                        </video>
-                    </div>
-                    <div class="p-6">
-                        <span class="text-xs font-mono text-brand-green uppercase tracking-wider">03 / Podcast & Retention</span>
-                        <h3 class="text-xl font-bold font-display mt-1 group-hover:text-brand-green transition-colors">Conversational Storytelling</h3>
-                        <p class="text-sm text-brand-muted mt-2">Dynamic captions, strategic b-roll and fast-paced editing rhythm.</p>
-                    </div>
-                </div>
-            </div>
+            <div id="featuredGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8" style="perspective:1400px"></div>
         </div>
     </section>
 
-    <!-- ABOUT ME SECTION -->
+    <!-- ABOUT ME -->
     <section id="sobre-mi" class="py-32 px-6 relative">
         <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <!-- Main Photo Nikol -->
-                <div data-aos="zoom-in-right" data-aos-duration="1000" class="lg:col-span-5 relative group">
+
+                <div class="lg:col-span-5 relative group">
                     <div class="absolute -inset-2 rounded-3xl bg-gradient-to-r from-brand-green/30 to-transparent blur-xl opacity-75 group-hover:opacity-100 transition duration-1000"></div>
-                    <div class="relative rounded-2xl overflow-hidden border border-brand-border bg-brand-card aspect-square">
-                        <img src="Fotos/Nikol.jpg" 
-                             onerror="this.onerror=null; this.src='https://placehold.co/800x800/16161a/8ee0a1?text=Nikol+Jaramillo';" 
-                             alt="Nikol Jaramillo" 
-                             class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-all duration-700 scale-105 hover:scale-100">
+                    <div id="aboutMedia" class="relative rounded-2xl overflow-hidden border border-brand-border bg-brand-card aspect-square">
+                        <img id="aboutImg" src="Fotos/Nikol.jpg"
+                             onerror="this.onerror=null; this.src='https://placehold.co/800x800/16161a/8ee0a1?text=Nikol+Jaramillo';"
+                             alt="Nikol Jaramillo"
+                             class="w-full h-full object-cover filter grayscale hover:grayscale-0 transition-[filter] duration-700">
                         <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-brand-bg via-brand-bg/80 to-transparent">
                             <span class="text-xs font-mono text-brand-green uppercase tracking-widest">Editor & Creator</span>
                             <h3 class="text-2xl font-bold font-display">Nikol Jaramillo</h3>
@@ -236,42 +355,41 @@
                     </div>
                 </div>
 
-                <!-- Biography & Summary -->
-                <div data-aos="fade-left" data-aos-duration="1000" class="lg:col-span-7 flex flex-col justify-center">
-                    <div class="inline-flex items-center gap-2 text-brand-green font-mono text-sm uppercase mb-4">
+                <div class="lg:col-span-7 flex flex-col justify-center">
+                    <div data-reveal class="inline-flex items-center gap-2 text-brand-green font-mono text-sm uppercase mb-4">
                         <i data-lucide="user" class="w-4 h-4"></i>
                         <span>Professional Biography</span>
                     </div>
 
-                    <h2 class="text-4xl md:text-6xl font-black font-display tracking-tight leading-none mb-8">
+                    <h2 class="reveal-title text-4xl md:text-6xl font-black font-display tracking-tight leading-none mb-8">
                         CREATIVITY THAT <br>
                         <span class="text-brand-green">SPARKS PASSION</span>
                     </h2>
 
                     <div class="space-y-6 text-brand-muted text-lg font-light leading-relaxed">
-                        <p>
+                        <p data-reveal>
                             I'm <strong class="text-brand-text font-semibold">Nikol Jaramillo</strong>, a 20-year-old video editor and multimedia designer with over <strong class="text-brand-green font-semibold">3 years of professional experience</strong> bringing audiovisual projects to life with an unmistakable visual identity.
                         </p>
-                        <p>
-                            My passion lies in transforming raw ideas into high-value content that not only retains audiences but also sparks inspiration and creativity in those who watch it. I'm currently finishing my degree in <strong class="text-brand-text font-semibold">Multimedia Engineering at Universidad San Buenaventura Cali</strong>, which gives me a solid technical foundation combined with a modern, disruptive aesthetic vision.
+                        <p data-reveal>
+                            My passion lies in transforming raw ideas into high-value content that not only retains audiences but also sparks inspiration in those who watch it. I'm currently finishing my degree in <strong class="text-brand-text font-semibold">Multimedia Engineering at Universidad de San Buenaventura Cali</strong>, which gives me a solid technical foundation combined with a modern, disruptive aesthetic vision.
                         </p>
-                        <p class="border-l-2 border-brand-green pl-6 italic text-brand-text/90">
+                        <p class="scrub-text border-l-2 border-brand-green pl-6 italic text-brand-text/90">
                             "I love fully immersing myself in every project. I see each edit as an opportunity to reflect the love, discipline and purpose that God has placed in my life, making sure every cut has soul and purpose."
                         </p>
                     </div>
 
                     <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-10">
-                        <div class="p-4 rounded-xl bg-brand-card/60 border border-brand-border">
-                            <div class="text-brand-green font-bold text-xl font-display">20 Years Old</div>
-                            <div class="text-xs text-brand-muted">Youth & Innovation</div>
+                        <div data-reveal class="tilt-static tilt-card p-4 rounded-xl bg-brand-card/60 border border-brand-border">
+                            <div class="depth text-brand-green font-bold text-xl font-display"><span data-count="20" data-suffix="">20</span> Years Old</div>
+                            <div class="depth text-xs text-brand-muted">Youth & Innovation</div>
                         </div>
-                        <div class="p-4 rounded-xl bg-brand-card/60 border border-brand-border">
-                            <div class="text-brand-green font-bold text-xl font-display">USB Cali</div>
-                            <div class="text-xs text-brand-muted">Multimedia Eng.</div>
+                        <div data-reveal data-delay=".1" class="tilt-static tilt-card p-4 rounded-xl bg-brand-card/60 border border-brand-border">
+                            <div class="depth text-brand-green font-bold text-xl font-display">USB Cali</div>
+                            <div class="depth text-xs text-brand-muted">Multimedia Eng.</div>
                         </div>
-                        <div class="p-4 rounded-xl bg-brand-card/60 border border-brand-border">
-                            <div class="text-brand-green font-bold text-xl font-display">3+ Years</div>
-                            <div class="text-xs text-brand-muted">Real Experience</div>
+                        <div data-reveal data-delay=".2" class="tilt-static tilt-card p-4 rounded-xl bg-brand-card/60 border border-brand-border">
+                            <div class="depth text-brand-green font-bold text-xl font-display"><span data-count="3" data-suffix="+">3+</span> Years</div>
+                            <div class="depth text-xs text-brand-muted">Real Experience</div>
                         </div>
                     </div>
                 </div>
@@ -280,567 +398,757 @@
         </div>
     </section>
 
-    <!-- SETUP & TOOLS (HARDWARE & SOFTWARE) -->
+    <!-- SETUP & TOOLS -->
     <section id="setup" class="py-28 px-6 bg-brand-card/20 border-t border-brand-border">
         <div class="max-w-7xl mx-auto">
-            
-            <div data-aos="fade-up" class="text-center max-w-3xl mx-auto mb-20">
-                <span class="text-brand-green font-mono text-sm uppercase tracking-widest">Workstation & Software</span>
-                <h2 class="text-4xl md:text-6xl font-black font-display mt-2 uppercase tracking-tight">
+
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest">Workstation & Software</span>
+                <h2 class="reveal-title text-4xl md:text-6xl font-black font-display mt-2 uppercase tracking-tight">
                     HIGH-PERFORMANCE <span class="text-brand-green">TOOLS</span>
                 </h2>
-                <p class="text-brand-muted mt-4">
-                    The perfect combination of technological power and professional software for ultra-fast renders and complex compositions without limits.
+                <p data-reveal class="text-brand-muted mt-4">
+                    Apple's latest silicon combined with professional software: smooth 4K timelines, hardware-accelerated exports and complex compositions without limits.
                 </p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-                
-                <!-- Hardware Card / PC Specs -->
-                <div data-aos="fade-right" class="lg:col-span-6 bg-brand-card border border-brand-border rounded-3xl p-8 hover:border-brand-green/50 transition-all duration-500">
-                    <div class="flex items-center justify-between mb-6">
-                        <div class="flex items-center gap-3">
-                            <div class="p-3 rounded-xl bg-brand-greenMuted text-brand-green">
-                                <i data-lucide="laptop" class="w-6 h-6"></i>
+
+                <!-- Hardware card -->
+                <div data-reveal="left" class="lg:col-span-6">
+                    <div class="tilt-static tilt-card bg-brand-card border border-brand-border rounded-3xl p-8 hover:border-brand-green/50 transition-colors duration-500">
+                        <div class="depth flex items-center justify-between mb-10">
+                            <div class="flex items-center gap-3">
+                                <div class="p-3 rounded-xl bg-brand-greenMuted text-brand-green">
+                                    <i data-lucide="laptop" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold font-display">Equipment Specs</h3>
+                                    <p class="text-xs text-brand-muted">MacBook Air 13" — M5 Workstation</p>
+                                </div>
                             </div>
-                            <div>
-                                <h3 class="text-xl font-bold font-display">Equipment Specs</h3>
-                                <p class="text-xs text-brand-muted">MacBook Air Workstation Setup</p>
+                            <span class="px-3 py-1 rounded-full text-xs font-mono bg-brand-green/10 text-brand-green border border-brand-green/20">Optimized</span>
+                        </div>
+
+                        <!-- 3D chip -->
+                        <div class="chip-rot tilt-card relative mx-auto w-44 h-44 md:w-52 md:h-52 mb-12">
+                            <div class="chip-stage depth-lg relative w-full h-full">
+                                <div class="absolute inset-0 overflow-hidden rounded-[2rem]"><div class="chip-ring"></div></div>
+                                <div class="chip-pins"></div>
+                                <div class="relative w-full h-full rounded-[2rem] border border-brand-green/40 bg-gradient-to-br from-[#1d1d22] to-[#0b0b0d] flex flex-col items-center justify-center shadow-2xl shadow-brand-green/20">
+                                    <span class="chip-text font-display text-6xl md:text-7xl font-black">M5</span>
+                                    <span class="font-mono text-[10px] tracking-[0.4em] text-brand-muted mt-1">APPLE SILICON</span>
+                                </div>
                             </div>
                         </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-mono bg-brand-green/10 text-brand-green border border-brand-green/20">Optimized</span>
-                    </div>
 
-                    <div class="rounded-2xl overflow-hidden border border-brand-border/80 mb-6 bg-black/40">
-                        <img src="Fotos/CaracteristicasPC.png" 
-                             onerror="this.onerror=null; this.src='https://placehold.co/800x450/16161a/8ee0a1?text=MacBook+Air+Specs';" 
-                             alt="Nikol's PC Specs" 
-                             class="w-full h-auto object-cover hover:scale-105 transition-transform duration-500">
+                        <ul id="specList" class="depth space-y-3 text-sm text-brand-muted font-mono">
+                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40">
+                                <span>Model:</span><span class="text-brand-text font-semibold text-right">MacBook Air 13" (M5)</span>
+                            </li>
+                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40">
+                                <span>Chip:</span><span class="text-brand-text font-semibold text-right">Apple M5</span>
+                            </li>
+                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40">
+                                <span>Memory:</span><span class="text-brand-text font-semibold text-right">16 GB Unified</span>
+                            </li>
+                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40">
+                                <span>Operating System:</span><span class="text-brand-text font-semibold text-right">macOS Tahoe 26.6.2</span>
+                            </li>
+                            <li class="spec-row flex justify-between items-center gap-4 pb-2 border-b border-brand-border/40">
+                                <span>Media Engine:</span><span class="text-brand-text font-semibold text-right">H.264 · HEVC · ProRes</span>
+                            </li>
+                            <li class="spec-row flex justify-between items-center gap-4">
+                                <span>Workflow:</span><span class="text-brand-green font-semibold text-right">4K Editing & Fast Exports</span>
+                            </li>
+                        </ul>
                     </div>
-
-                    <ul class="space-y-3 text-sm text-brand-muted font-mono">
-                        <li class="flex justify-between items-center pb-2 border-b border-brand-border/40">
-                            <span>Processor:</span>
-                            <span class="text-brand-text font-semibold">Apple M1 High-Efficiency</span>
-                        </li>
-                        <li class="flex justify-between items-center pb-2 border-b border-brand-border/40">
-                            <span>RAM:</span>
-                            <span class="text-brand-text font-semibold">16 GB Unified</span>
-                        </li>
-                        <li class="flex justify-between items-center pb-2 border-b border-brand-border/40">
-                            <span>Operating System:</span>
-                            <span class="text-brand-text font-semibold">macOS Sequoia</span>
-                        </li>
-                        <li class="flex justify-between items-center">
-                            <span>Render Capability:</span>
-                            <span class="text-brand-green font-semibold">ProRes & 4K Real-Time</span>
-                        </li>
-                    </ul>
                 </div>
 
-                <!-- Software Ecosystem Cards -->
+                <!-- Software cards -->
                 <div class="lg:col-span-6 space-y-6">
-                    
-                    <!-- After Effects -->
-                    <div data-aos="fade-left" data-aos-delay="100" class="group bg-brand-card border border-brand-border p-8 rounded-3xl hover:border-brand-green transition-all duration-500 hover:-translate-y-1">
-                        <div class="flex items-start gap-6">
-                            <div class="w-20 h-20 rounded-2xl bg-black border border-brand-border flex items-center justify-center p-3 flex-shrink-0 group-hover:scale-110 transition-transform">
-                                <img src="Fotos/AfterEffects.png" 
-                                     onerror="this.onerror=null; this.src='https://placehold.co/100x100/16161a/8ee0a1?text=Ae';" 
-                                     alt="After Effects" 
-                                     class="w-full h-full object-contain">
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-3">
-                                    <h4 class="text-2xl font-bold font-display group-hover:text-brand-green transition-colors">Adobe After Effects</h4>
-                                    <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-brand-border text-brand-muted">Advanced</span>
+                    <div data-reveal="right" data-delay=".1">
+                        <div class="tilt-static tilt-card group bg-brand-card border border-brand-border p-8 rounded-3xl hover:border-brand-green transition-colors duration-500">
+                            <div class="flex items-start gap-6">
+                                <div class="depth-lg w-20 h-20 rounded-2xl bg-black border border-brand-border flex items-center justify-center p-3 flex-shrink-0">
+                                    <img src="Fotos/AfterEffects.png" loading="lazy"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/100x100/16161a/8ee0a1?text=Ae';"
+                                         alt="After Effects" class="w-full h-full object-contain">
                                 </div>
-                                <p class="text-sm text-brand-muted mt-2 leading-relaxed">
-                                    Specialized in complex Motion Graphics, VFX compositing, cinematic typography animation, 3D tracking, rotoscoping and high-end visual effects for commercials and high-impact projects.
-                                </p>
+                                <div class="depth">
+                                    <div class="flex flex-wrap items-center gap-3">
+                                        <h4 class="text-2xl font-bold font-display group-hover:text-brand-green transition-colors">Adobe After Effects</h4>
+                                        <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-brand-border text-brand-muted">Advanced</span>
+                                    </div>
+                                    <p class="text-sm text-brand-muted mt-2 leading-relaxed">
+                                        Complex motion graphics, VFX compositing, cinematic typography animation, 3D tracking, rotoscoping and high-end visual effects for commercials and high-impact projects.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- CapCut Pro -->
-                    <div data-aos="fade-left" data-aos-delay="200" class="group bg-brand-card border border-brand-border p-8 rounded-3xl hover:border-brand-green transition-all duration-500 hover:-translate-y-1">
-                        <div class="flex items-start gap-6">
-                            <div class="w-20 h-20 rounded-2xl bg-black border border-brand-border flex items-center justify-center p-3 flex-shrink-0 group-hover:scale-110 transition-transform">
-                                <img src="Fotos/CapCut.png" 
-                                     onerror="this.onerror=null; this.src='https://placehold.co/100x100/16161a/8ee0a1?text=CapCut';" 
-                                     alt="CapCut Pro" 
-                                     class="w-full h-full object-contain">
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-3">
-                                    <h4 class="text-2xl font-bold font-display group-hover:text-brand-green transition-colors">CapCut Pro</h4>
-                                    <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-brand-border text-brand-muted">Agile Workflow</span>
+                    <div data-reveal="right" data-delay=".2">
+                        <div class="tilt-static tilt-card group bg-brand-card border border-brand-border p-8 rounded-3xl hover:border-brand-green transition-colors duration-500">
+                            <div class="flex items-start gap-6">
+                                <div class="depth-lg w-20 h-20 rounded-2xl bg-black border border-brand-border flex items-center justify-center p-3 flex-shrink-0">
+                                    <img src="Fotos/CapCut.png" loading="lazy"
+                                         onerror="this.onerror=null; this.src='https://placehold.co/100x100/16161a/8ee0a1?text=CapCut';"
+                                         alt="CapCut Pro" class="w-full h-full object-contain">
                                 </div>
-                                <p class="text-sm text-brand-muted mt-2 leading-relaxed">
-                                    Full mastery of high-energy vertical format editing (Reels, TikToks, Shorts). Ultra-fast workflow for high-volume content, fast-paced rhythms, automated captions and viral trends.
-                                </p>
+                                <div class="depth">
+                                    <div class="flex flex-wrap items-center gap-3">
+                                        <h4 class="text-2xl font-bold font-display group-hover:text-brand-green transition-colors">CapCut Pro</h4>
+                                        <span class="text-xs font-mono px-2.5 py-0.5 rounded bg-brand-border text-brand-muted">Agile Workflow</span>
+                                    </div>
+                                    <p class="text-sm text-brand-muted mt-2 leading-relaxed">
+                                        Full mastery of high-energy vertical editing (Reels, TikToks, Shorts). Ultra-fast workflow for high-volume content, fast-paced rhythm, automated captions and viral trends.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- EDITING CATEGORIES SECTION (EXPANDABLE CARDS) -->
+    <!-- WORKFLOW (horizontal scroll on desktop) -->
+    <section id="workflow" class="relative overflow-hidden border-y border-brand-border/50 bg-brand-bg">
+        <div id="workflowTrack" class="flex flex-col lg:flex-row lg:w-max lg:h-screen lg:items-center gap-8 px-6 py-24 lg:py-0 lg:pl-[8vw] lg:pr-[8vw]">
+            <div class="shrink-0 lg:w-[34vw] lg:pr-8">
+                <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest">From raw footage to results</span>
+                <h2 class="reveal-title text-4xl md:text-7xl font-black font-display uppercase tracking-tight mt-2">
+                    HOW I <span class="text-brand-green">EDIT</span>
+                </h2>
+                <p data-reveal class="text-brand-muted mt-4 text-lg max-w-md">Every project goes through the same five-step process, built to make people stop scrolling and keep watching.</p>
+                <div class="hidden lg:flex items-center gap-3 mt-8 font-mono text-xs text-brand-muted">
+                    <i data-lucide="mouse" class="w-4 h-4 text-brand-green"></i> Keep scrolling
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-brand-green"></i>
+                </div>
+            </div>
+            <!-- steps injected by JS -->
+        </div>
+        <div class="hidden lg:block absolute bottom-10 left-[8vw] right-[8vw] h-px bg-brand-border">
+            <div id="workflowProgress" class="h-full bg-brand-green origin-left" style="transform:scaleX(0)"></div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
     <section id="portafolio" class="py-32 px-6">
         <div class="max-w-7xl mx-auto">
-            
-            <div data-aos="fade-up" class="mb-16">
-                <span class="text-brand-green font-mono text-sm uppercase tracking-widest">Content Catalog</span>
-                <h2 class="text-4xl md:text-7xl font-black font-display uppercase tracking-tight mt-2">
+            <div class="mb-16">
+                <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest">Content Catalog</span>
+                <h2 class="reveal-title text-4xl md:text-7xl font-black font-display uppercase tracking-tight mt-2">
                     EDITING <span class="text-brand-green">CATEGORIES</span>
                 </h2>
-                <p class="text-brand-muted max-w-2xl mt-4 text-lg">
-                    Explore the different storytelling styles. Each category is designed with a specific purpose in terms of retention, audiovisual tone and target audience.
+                <p data-reveal class="text-brand-muted max-w-2xl mt-4 text-lg">
+                    Explore the different storytelling styles. Each category is designed with a specific purpose in terms of retention, audiovisual tone and target audience. Hover to preview, click to watch.
                 </p>
             </div>
 
-            <!-- CARDS CONTAINER -->
-            <div class="space-y-6" id="categoriesContainer">
-
-                <!-- CATEGORY 1: PODCAST -->
-                <div data-aos="fade-up" class="category-card rounded-3xl bg-brand-card border border-brand-border overflow-hidden transition-all duration-300">
-                    <button onclick="toggleCategory('podcast')" class="w-full p-8 flex items-center justify-between text-left hover:bg-brand-border/30 transition-colors">
-                        <div class="flex items-center gap-6">
-                            <div class="w-14 h-14 rounded-2xl bg-brand-greenMuted text-brand-green flex items-center justify-center font-bold font-display text-xl">
-                                01
-                            </div>
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-bold font-display">Podcast</h3>
-                                <p class="text-sm text-brand-muted mt-1">Conversational editing, multicam cuts, visual emphasis and retention hooks.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <span class="hidden sm:inline-block text-xs font-mono px-3 py-1 rounded-full bg-brand-border text-brand-text">4 Videos</span>
-                            <i data-lucide="chevron-down" id="icon-podcast" class="w-6 h-6 text-brand-green transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div id="content-podcast" class="hidden p-8 border-t border-brand-border/60 bg-black/30">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <!-- Video Items -->
-                            <script>
-                                for(let i=1; i<=4; i++) {
-                                    document.write(`
-                                        <div class="rounded-xl overflow-hidden bg-brand-bg border border-brand-border">
-                                            <div class="aspect-[9/16] relative bg-black">
-                                                <video class="w-full h-full object-cover" controls preload="none">
-                                                    <source src="Videos/Podcast/Podcast_${i}.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
-                                            <div class="p-3 text-xs font-mono text-brand-muted text-center border-t border-brand-border/40">
-                                                Podcast_${i}.mp4
-                                            </div>
-                                        </div>
-                                    `);
-                                }
-                            </script>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CATEGORY 2: GAMING -->
-                <div data-aos="fade-up" class="category-card rounded-3xl bg-brand-card border border-brand-border overflow-hidden transition-all duration-300">
-                    <button onclick="toggleCategory('gaming')" class="w-full p-8 flex items-center justify-between text-left hover:bg-brand-border/30 transition-colors">
-                        <div class="flex items-center gap-6">
-                            <div class="w-14 h-14 rounded-2xl bg-brand-greenMuted text-brand-green flex items-center justify-center font-bold font-display text-xl">
-                                02
-                            </div>
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-bold font-display">Gaming</h3>
-                                <p class="text-sm text-brand-muted mt-1">Frantic pacing, immersive sound effects, contextual memes and key moments.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <span class="hidden sm:inline-block text-xs font-mono px-3 py-1 rounded-full bg-brand-border text-brand-text">2 Videos</span>
-                            <i data-lucide="chevron-down" id="icon-gaming" class="w-6 h-6 text-brand-green transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div id="content-gaming" class="hidden p-8 border-t border-brand-border/60 bg-black/30">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <script>
-                                for(let i=1; i<=2; i++) {
-                                    document.write(`
-                                        <div class="rounded-xl overflow-hidden bg-brand-bg border border-brand-border">
-                                            <div class="aspect-[9/16] relative bg-black">
-                                                <video class="w-full h-full object-cover" controls preload="none">
-                                                    <source src="Videos/Gaming/Gaming_${i}.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
-                                            <div class="p-3 text-xs font-mono text-brand-muted text-center border-t border-brand-border/40">
-                                                Gaming_${i}.mp4
-                                            </div>
-                                        </div>
-                                    `);
-                                }
-                            </script>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CATEGORY 3: COMMERCIALS -->
-                <div data-aos="fade-up" class="category-card rounded-3xl bg-brand-card border border-brand-border overflow-hidden transition-all duration-300">
-                    <button onclick="toggleCategory('comerciales')" class="w-full p-8 flex items-center justify-between text-left hover:bg-brand-border/30 transition-colors">
-                        <div class="flex items-center gap-6">
-                            <div class="w-14 h-14 rounded-2xl bg-brand-greenMuted text-brand-green flex items-center justify-center font-bold font-display text-xl">
-                                03
-                            </div>
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-bold font-display">Commercials & Brands</h3>
-                                <p class="text-sm text-brand-muted mt-1">Advertising spots, premium aesthetics, calls to action and sales conversion.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <span class="hidden sm:inline-block text-xs font-mono px-3 py-1 rounded-full bg-brand-border text-brand-text">12 Videos</span>
-                            <i data-lucide="chevron-down" id="icon-comerciales" class="w-6 h-6 text-brand-green transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div id="content-comerciales" class="hidden p-8 border-t border-brand-border/60 bg-black/30">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            <script>
-                                for(let i=1; i<=12; i++) {
-                                    document.write(`
-                                        <div class="rounded-xl overflow-hidden bg-brand-bg border border-brand-border">
-                                            <div class="aspect-[9/16] relative bg-black">
-                                                <video class="w-full h-full object-cover" controls preload="none">
-                                                    <source src="Videos/Comerciales/Comercial_${i}.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
-                                            <div class="p-3 text-xs font-mono text-brand-muted text-center border-t border-brand-border/40">
-                                                Comercial_${i}.mp4
-                                            </div>
-                                        </div>
-                                    `);
-                                }
-                            </script>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CATEGORY 4: BULK VIDEOS -->
-                <div data-aos="fade-up" class="category-card rounded-3xl bg-brand-card border border-brand-border overflow-hidden transition-all duration-300">
-                    <button onclick="toggleCategory('enmasa')" class="w-full p-8 flex items-center justify-between text-left hover:bg-brand-border/30 transition-colors">
-                        <div class="flex items-center gap-6">
-                            <div class="w-14 h-14 rounded-2xl bg-brand-greenMuted text-brand-green flex items-center justify-center font-bold font-display text-xl">
-                                04
-                            </div>
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-bold font-display">Bulk Videos (Cutting & Curation)</h3>
-                                <p class="text-sm text-brand-muted mt-1">Expert filtering and curation of full-day shoots to extract only the visual gold.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <span class="hidden sm:inline-block text-xs font-mono px-3 py-1 rounded-full bg-brand-border text-brand-text">22 Videos</span>
-                            <i data-lucide="chevron-down" id="icon-enmasa" class="w-6 h-6 text-brand-green transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div id="content-enmasa" class="hidden p-8 border-t border-brand-border/60 bg-black/30">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            <script>
-                                for(let i=1; i<=22; i++) {
-                                    document.write(`
-                                        <div class="rounded-xl overflow-hidden bg-brand-bg border border-brand-border">
-                                            <div class="aspect-[9/16] relative bg-black">
-                                                <video class="w-full h-full object-cover" controls preload="none">
-                                                    <source src="Videos/VideosEnMasa/VideosEnMasa-${i}.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
-                                            <div class="p-3 text-xs font-mono text-brand-muted text-center border-t border-brand-border/40">
-                                                VideosEnMasa-${i}.mp4
-                                            </div>
-                                        </div>
-                                    `);
-                                }
-                            </script>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CATEGORY 5: VOICE-OVER & SCRIPTWRITING -->
-                <div data-aos="fade-up" class="category-card rounded-3xl bg-brand-card border border-brand-border overflow-hidden transition-all duration-300">
-                    <button onclick="toggleCategory('vozoff')" class="w-full p-8 flex items-center justify-between text-left hover:bg-brand-border/30 transition-colors">
-                        <div class="flex items-center gap-6">
-                            <div class="w-14 h-14 rounded-2xl bg-brand-greenMuted text-brand-green flex items-center justify-center font-bold font-display text-xl">
-                                05
-                            </div>
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-bold font-display">Voice-Over + Scriptwriting & B-Roll</h3>
-                                <p class="text-sm text-brand-muted mt-1">Narrative scriptwriting, recorded voice-over and precise clip selection for travel and experiences.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <span class="hidden sm:inline-block text-xs font-mono px-3 py-1 rounded-full bg-brand-border text-brand-text">2 Videos</span>
-                            <i data-lucide="chevron-down" id="icon-vozoff" class="w-6 h-6 text-brand-green transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div id="content-vozoff" class="hidden p-8 border-t border-brand-border/60 bg-black/30">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <script>
-                                for(let i=1; i<=2; i++) {
-                                    document.write(`
-                                        <div class="rounded-xl overflow-hidden bg-brand-bg border border-brand-border">
-                                            <div class="aspect-[9/16] relative bg-black">
-                                                <video class="w-full h-full object-cover" controls preload="none">
-                                                    <source src="Videos/VozEnOFF/VozEnOFF_${i}.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
-                                            <div class="p-3 text-xs font-mono text-brand-muted text-center border-t border-brand-border/40">
-                                                VozEnOFF_${i}.mp4
-                                            </div>
-                                        </div>
-                                    `);
-                                }
-                            </script>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CATEGORY 6: MARKETING AGENCY -->
-                <div data-aos="fade-up" class="category-card rounded-3xl bg-brand-card border border-brand-border overflow-hidden transition-all duration-300">
-                    <button onclick="toggleCategory('agencia')" class="w-full p-8 flex items-center justify-between text-left hover:bg-brand-border/30 transition-colors">
-                        <div class="flex items-center gap-6">
-                            <div class="w-14 h-14 rounded-2xl bg-brand-greenMuted text-brand-green flex items-center justify-center font-bold font-display text-xl">
-                                06
-                            </div>
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-bold font-display">Marketing Agency</h3>
-                                <p class="text-sm text-brand-muted mt-1">Organic and paid content strategies focused on metrics, branding and positioning.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <span class="hidden sm:inline-block text-xs font-mono px-3 py-1 rounded-full bg-brand-border text-brand-text">3 Videos</span>
-                            <i data-lucide="chevron-down" id="icon-agencia" class="w-6 h-6 text-brand-green transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div id="content-agencia" class="hidden p-8 border-t border-brand-border/60 bg-black/30">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                            <script>
-                                for(let i=1; i<=3; i++) {
-                                    document.write(`
-                                        <div class="rounded-xl overflow-hidden bg-brand-bg border border-brand-border">
-                                            <div class="aspect-[9/16] relative bg-black">
-                                                <video class="w-full h-full object-cover" controls preload="none">
-                                                    <source src="Videos/AgenciaMarketing/AgenciaMarketing_${i}.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
-                                            <div class="p-3 text-xs font-mono text-brand-muted text-center border-t border-brand-border/40">
-                                                AgenciaMarketing_${i}.mp4
-                                            </div>
-                                        </div>
-                                    `);
-                                }
-                            </script>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CATEGORY 7: CONTENT CREATOR -->
-                <div data-aos="fade-up" class="category-card rounded-3xl bg-brand-card border border-brand-border overflow-hidden transition-all duration-300">
-                    <button onclick="toggleCategory('creador')" class="w-full p-8 flex items-center justify-between text-left hover:bg-brand-border/30 transition-colors">
-                        <div class="flex items-center gap-6">
-                            <div class="w-14 h-14 rounded-2xl bg-brand-greenMuted text-brand-green flex items-center justify-center font-bold font-display text-xl">
-                                07
-                            </div>
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-bold font-display">Content Creator / Personal Brand</h3>
-                                <p class="text-sm text-brand-muted mt-1">Custom editing tailored to each visual creator's style, language and charisma.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <span class="hidden sm:inline-block text-xs font-mono px-3 py-1 rounded-full bg-brand-border text-brand-text">7 Videos</span>
-                            <i data-lucide="chevron-down" id="icon-creador" class="w-6 h-6 text-brand-green transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div id="content-creador" class="hidden p-8 border-t border-brand-border/60 bg-black/30">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                            <script>
-                                for(let i=1; i<=7; i++) {
-                                    document.write(`
-                                        <div class="rounded-xl overflow-hidden bg-brand-bg border border-brand-border">
-                                            <div class="aspect-[9/16] relative bg-black">
-                                                <video class="w-full h-full object-cover" controls preload="none">
-                                                    <source src="Videos/CreadorDeContenido/CreadorDeContenido_${i}.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
-                                            <div class="p-3 text-xs font-mono text-brand-muted text-center border-t border-brand-border/40">
-                                                CreadorDeContenido_${i}.mp4
-                                            </div>
-                                        </div>
-                                    `);
-                                }
-                            </script>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CATEGORY 8: EDUCATION -->
-                <div data-aos="fade-up" class="category-card rounded-3xl bg-brand-card border border-brand-border overflow-hidden transition-all duration-300">
-                    <button onclick="toggleCategory('educacion')" class="w-full p-8 flex items-center justify-between text-left hover:bg-brand-border/30 transition-colors">
-                        <div class="flex items-center gap-6">
-                            <div class="w-14 h-14 rounded-2xl bg-brand-greenMuted text-brand-green flex items-center justify-center font-bold font-display text-xl">
-                                08
-                            </div>
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-bold font-display">Education & Digital Products</h3>
-                                <p class="text-sm text-brand-muted mt-1">Clear explanations, supporting graphics and technical retention for courses and educational pieces.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <span class="hidden sm:inline-block text-xs font-mono px-3 py-1 rounded-full bg-brand-border text-brand-text">2 Videos</span>
-                            <i data-lucide="chevron-down" id="icon-educacion" class="w-6 h-6 text-brand-green transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div id="content-educacion" class="hidden p-8 border-t border-brand-border/60 bg-black/30">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                            <script>
-                                for(let i=1; i<=2; i++) {
-                                    document.write(`
-                                        <div class="rounded-xl overflow-hidden bg-brand-bg border border-brand-border">
-                                            <div class="aspect-[9/16] relative bg-black">
-                                                <video class="w-full h-full object-cover" controls preload="none">
-                                                    <source src="Videos/Educacion/Educacion_${i}.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
-                                            <div class="p-3 text-xs font-mono text-brand-muted text-center border-t border-brand-border/40">
-                                                Educacion_${i}.mp4
-                                            </div>
-                                        </div>
-                                    `);
-                                }
-                            </script>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- CATEGORY 9: MOTION GRAPHICS -->
-                <div data-aos="fade-up" class="category-card rounded-3xl bg-brand-card border border-brand-border overflow-hidden transition-all duration-300">
-                    <button onclick="toggleCategory('motion')" class="w-full p-8 flex items-center justify-between text-left hover:bg-brand-border/30 transition-colors">
-                        <div class="flex items-center gap-6">
-                            <div class="w-14 h-14 rounded-2xl bg-brand-greenMuted text-brand-green flex items-center justify-center font-bold font-display text-xl">
-                                09
-                            </div>
-                            <div>
-                                <h3 class="text-2xl md:text-3xl font-bold font-display">Motion Graphics & VFX Showcase</h3>
-                                <p class="text-sm text-brand-muted mt-1">Digital animation, 2D/3D visual effects and complex pieces in After Effects.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <span class="hidden sm:inline-block text-xs font-mono px-3 py-1 rounded-full bg-brand-border text-brand-text">3 Demos (Local + YouTube)</span>
-                            <i data-lucide="chevron-down" id="icon-motion" class="w-6 h-6 text-brand-green transition-transform duration-300"></i>
-                        </div>
-                    </button>
-                    <div id="content-motion" class="hidden p-8 border-t border-brand-border/60 bg-black/30">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            
-                            <!-- Local MP4 -->
-                            <div class="rounded-xl overflow-hidden bg-brand-bg border border-brand-border">
-                                <div class="aspect-[9/16] relative bg-black">
-                                    <video class="w-full h-full object-cover" controls preload="none">
-                                        <source src="Videos/MotionGraphics.mp4" type="video/mp4">
-                                    </video>
-                                </div>
-                                <div class="p-3 text-xs font-mono text-brand-muted text-center border-t border-brand-border/40">
-                                    MotionGraphics.mp4 (Local)
-                                </div>
-                            </div>
-
-                            <!-- YouTube Video 1 -->
-                            <div class="rounded-xl overflow-hidden bg-brand-bg border border-brand-border md:col-span-1">
-                                <div class="aspect-[9/16] relative bg-black">
-                                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/d55NAOGUis8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
-                                <div class="p-3 text-xs font-mono text-brand-green text-center border-t border-brand-border/40">
-                                    YouTube Project #1
-                                </div>
-                            </div>
-
-                            <!-- YouTube Video 2 -->
-                            <div class="rounded-xl overflow-hidden bg-brand-bg border border-brand-border md:col-span-1">
-                                <div class="aspect-[9/16] relative bg-black">
-                                    <iframe class="w-full h-full" src="https://www.youtube.com/embed/1PUcwxhF8sQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
-                                <div class="p-3 text-xs font-mono text-brand-green text-center border-t border-brand-border/40">
-                                    YouTube Project #2
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
+            <div class="space-y-6" id="categoriesContainer" style="perspective:1600px"></div>
         </div>
     </section>
 
-    <!-- FOOTER / CALL TO ACTION -->
-    <footer class="py-20 px-6 border-t border-brand-border bg-brand-card/30 relative">
-        <div class="max-w-7xl mx-auto text-center">
-            <span class="text-brand-green font-mono text-sm uppercase tracking-widest">Ready to create something amazing?</span>
-            <h2 class="text-4xl md:text-7xl font-black font-display mt-4 mb-8 uppercase tracking-tight">
+    </main>
+
+    <!-- FOOTER / CTA -->
+    <footer class="py-24 px-6 border-t border-brand-border bg-brand-card/30 relative overflow-hidden">
+        <div class="absolute left-1/2 top-0 -translate-x-1/2 w-[600px] h-[300px] bg-brand-green/10 blur-3xl rounded-full pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto text-center relative">
+            <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest">Ready to create something amazing?</span>
+            <h2 id="footerTitle" class="text-4xl md:text-7xl font-black font-display mt-4 mb-8 uppercase tracking-tight">
                 LET'S MAKE YOUR CONTENT <br>
                 <span class="text-brand-green glow-text">UNFORGETTABLE</span>
             </h2>
-            <p class="max-w-xl mx-auto text-brand-muted mb-10">
+            <p data-reveal class="max-w-xl mx-auto text-brand-muted mb-10">
                 Bring energy, retention and top technical quality to your personal or commercial brand.
             </p>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="mailto:nikjarqui@gmail.com" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-green text-brand-bg font-bold font-display hover:bg-brand-greenHover transition-all flex items-center justify-center gap-2 shadow-lg shadow-brand-green/20">
+            <div data-reveal class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="mailto:nikjarqui@gmail.com" class="magnetic w-full sm:w-auto px-8 py-4 rounded-full bg-brand-green text-brand-bg font-bold font-display hover:bg-brand-greenHover transition-colors flex items-center justify-center gap-2 shadow-lg shadow-brand-green/20">
                     <i data-lucide="mail" class="w-5 h-5"></i>
                     <span>Start a Project</span>
                 </a>
-                <a href="#portafolio" class="w-full sm:w-auto px-8 py-4 rounded-full bg-brand-card border border-brand-border text-brand-text font-bold font-display hover:border-brand-green transition-all flex items-center justify-center gap-2">
+                <a href="#portafolio" class="magnetic w-full sm:w-auto px-8 py-4 rounded-full bg-brand-card border border-brand-border text-brand-text font-bold font-display hover:border-brand-green transition-colors flex items-center justify-center gap-2">
                     <i data-lucide="play-circle" class="w-5 h-5 text-brand-green"></i>
                     <span>View Categories</span>
                 </a>
             </div>
+            <p data-reveal class="mt-6 font-mono text-sm text-brand-muted">nikjarqui@gmail.com</p>
 
             <div class="mt-20 pt-8 border-t border-brand-border/50 flex flex-col sm:flex-row justify-between items-center text-xs text-brand-muted gap-4">
-                <div>
-                    © 2026 Nikol Jaramillo — All rights reserved.
-                </div>
-                <div class="font-mono text-brand-green/80">
-                    Multimedia Engineering • San Buenaventura Cali
-                </div>
+                <div>© 2026 Nikol Jaramillo — All rights reserved.</div>
+                <div class="font-mono text-brand-green/80">Multimedia Engineering • San Buenaventura Cali</div>
+                <a href="#" class="inline-flex items-center gap-2 hover:text-brand-green transition-colors">Back to top <i data-lucide="arrow-up" class="w-4 h-4"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- JAVASCRIPT FOR INTERACTION & ANIMATIONS -->
-    <script>
-        // Initialize AOS animations
-        AOS.init({
-            once: true,
-            duration: 800,
-            easing: 'ease-out-cubic'
-        });
+    <!-- VIDEO MODAL -->
+    <div id="videoModal" class="fixed inset-0 z-[80] hidden items-center justify-center p-4" style="perspective:1200px" role="dialog" aria-modal="true">
+        <div id="modalBg" class="absolute inset-0 bg-black/85 backdrop-blur-xl"></div>
+        <div id="modalBox" class="relative" style="width:min(92vw, calc(86vh * 9 / 16));">
+            <button id="modalClose" class="absolute -top-12 right-0 w-10 h-10 rounded-full bg-brand-card border border-brand-border flex items-center justify-center hover:border-brand-green hover:text-brand-green transition-colors" aria-label="Close video">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <div id="modalStage" class="rounded-2xl overflow-hidden border border-brand-green/30 glow-green bg-black"></div>
+        </div>
+    </div>
 
-        // Initialize Lucide Icons
+    <!-- LIBRARIES -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+    (() => {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        gsap.registerPlugin(ScrollTrigger);
+
+        /* =========================================================
+           DATA — edit here to add videos (counts update everywhere)
+           ========================================================= */
+        const FEATURED = [
+            { src: 'Videos/Comerciales/Comercial_1.mp4', tag: '01 / Featured Commercial', title: 'High-Impact Campaign', desc: 'Dynamic cuts, immersive sound design and cinematic color grading.' },
+            { src: 'Videos/MotionGraphics.mp4', tag: '02 / Motion Graphics', title: 'VFX & Visual Storytelling', desc: 'Advanced digital compositing in After Effects with smooth text animations.' },
+            { src: 'Videos/Podcast/Podcast_1.mp4', tag: '03 / Podcast & Retention', title: 'Conversational Storytelling', desc: 'Dynamic captions, strategic b-roll and fast-paced editing rhythm.' }
+        ];
+
+        const CATEGORIES = [
+            { id: 'podcast', title: 'Podcast', short: 'Podcast', count: 4,
+              desc: 'Conversational editing, multicam cuts, visual emphasis and retention hooks.',
+              path: i => `Videos/Podcast/Podcast_${i}.mp4` },
+            { id: 'gaming', title: 'Gaming', short: 'Gaming', count: 2,
+              desc: 'Frantic pacing, immersive sound effects, contextual memes and key moments.',
+              path: i => `Videos/Gaming/Gaming_${i}.mp4` },
+            { id: 'comerciales', title: 'Commercials & Brands', short: 'Commercial', count: 12,
+              desc: 'Advertising spots, premium aesthetics, calls to action and sales conversion.',
+              path: i => `Videos/Comerciales/Comercial_${i}.mp4` },
+            { id: 'enmasa', title: 'Bulk Videos (Cutting & Curation)', short: 'Bulk Edit', count: 22,
+              desc: 'Expert filtering and curation of full-day shoots to extract only the visual gold.',
+              path: i => `Videos/VideosEnMasa/VideosEnMasa-${i}.mp4` },
+            { id: 'vozoff', title: 'Voice-Over + Scriptwriting & B-Roll', short: 'Voice-Over', count: 2,
+              desc: 'Narrative scriptwriting, recorded voice-over and precise clip selection for travel and experiences.',
+              path: i => `Videos/VozEnOFF/VozEnOFF_${i}.mp4` },
+            { id: 'agencia', title: 'Marketing Agency', short: 'Agency', count: 3,
+              desc: 'Organic and paid content strategies focused on metrics, branding and positioning.',
+              path: i => `Videos/AgenciaMarketing/AgenciaMarketing_${i}.mp4` },
+            { id: 'creador', title: 'Content Creator / Personal Brand', short: 'Creator', count: 7,
+              desc: "Custom editing tailored to each creator's style, language and charisma.",
+              path: i => `Videos/CreadorDeContenido/CreadorDeContenido_${i}.mp4` },
+            { id: 'educacion', title: 'Education & Digital Products', short: 'Education', count: 2,
+              desc: 'Clear explanations, supporting graphics and technical retention for courses and educational pieces.',
+              path: i => `Videos/Educacion/Educacion_${i}.mp4` },
+            { id: 'motion', title: 'Motion Graphics & VFX Showcase', badge: '3 Demos (Local + YouTube)',
+              desc: 'Digital animation, 2D/3D visual effects and complex pieces in After Effects.',
+              items: [
+                  { type: 'local', src: 'Videos/MotionGraphics.mp4', label: 'Motion Reel' },
+                  { type: 'youtube', id: 'd55NAOGUis8', label: 'YouTube Project #1' },
+                  { type: 'youtube', id: '1PUcwxhF8sQ', label: 'YouTube Project #2' }
+              ] }
+        ];
+
+        const STEPS = [
+            { icon: 'target', title: 'Brief & Hook Strategy', text: 'I study the brand, the audience and the platform to define the hook that stops the scroll in the first 3 seconds.' },
+            { icon: 'scissors', title: 'Curation & Rough Cut', text: 'From hours of raw footage to the strongest moments: selection, structure and narrative rhythm.' },
+            { icon: 'audio-waveform', title: 'Rhythm & Sound Design', text: 'Cuts on the beat, SFX, music and voice-over that hold attention second by second.' },
+            { icon: 'wand', title: 'Motion, Captions & Color', text: 'Animated typography, After Effects VFX, dynamic captions and color grading that define the visual aura.' },
+            { icon: 'rocket', title: 'Delivery & Optimization', text: 'Exports optimized for Reels, TikTok, Shorts and YouTube — ready to publish and perform.' }
+        ];
+
+        const MARQUEE = ['Motion Graphics', 'Podcast Editing', 'Sound Design', 'Color Grading', 'Commercials', 'Reels & TikTok', 'VFX', 'Retention Hooks', 'Dynamic Captions', 'Storytelling'];
+
+        /* ============ HELPERS ============ */
+        const pad = n => String(n).padStart(2, '0');
+        const itemsOf = c => c.items || Array.from({ length: c.count }, (_, k) => ({
+            type: 'local', src: c.path(k + 1), label: `${c.short} · ${pad(k + 1)}`
+        }));
+        const TOTAL = CATEGORIES.reduce((s, c) => s + itemsOf(c).length, 0);
+        const totalEl = document.getElementById('totalVideos');
+        totalEl.dataset.count = TOTAL;
+        totalEl.textContent = TOTAL;
+
+        /* ============ RENDER: MARQUEE ============ */
+        const makeRow = (stroke) => MARQUEE.map((t, i) => `
+            <span class="flex items-center gap-10 pr-10">
+                <span class="${stroke && i % 2 ? 'text-stroke' : ''}">${t}</span>
+                <span class="${stroke ? 'text-brand-green' : ''}">✦</span>
+            </span>`).join('');
+        const m1Row = makeRow(false), m2Row = makeRow(true);
+        document.getElementById('marquee1').innerHTML = m1Row + m1Row;
+        document.getElementById('marquee2').innerHTML = m2Row + m2Row;
+
+        /* ============ RENDER: FEATURED ============ */
+        document.getElementById('featuredGrid').innerHTML = FEATURED.map(f => `
+            <div class="feat-wrap">
+                <article class="feat-card video-tile tilt-card group relative rounded-2xl bg-brand-card border border-brand-border hover:border-brand-green/60 transition-colors duration-500 glow-green focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green"
+                         role="button" tabindex="0" data-type="local" data-src="${f.src}" data-cursor="play" aria-label="Play ${f.title}">
+                    <div class="aspect-[9/16] relative bg-black rounded-t-2xl overflow-hidden">
+                        <video class="tile-video feat-video w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
+                               muted loop playsinline preload="metadata" src="${f.src}#t=0.1"></video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-card via-transparent to-black/30"></div>
+                        <span class="absolute top-4 left-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur text-[10px] font-mono tracking-widest uppercase">
+                            <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>Preview
+                        </span>
+                    </div>
+                    <div class="play-badge"><i data-lucide="play" class="w-7 h-7 ml-1"></i></div>
+                    <div class="p-6 depth">
+                        <span class="text-xs font-mono text-brand-green uppercase tracking-wider">${f.tag}</span>
+                        <h3 class="text-xl font-bold font-display mt-1 group-hover:text-brand-green transition-colors">${f.title}</h3>
+                        <p class="text-sm text-brand-muted mt-2">${f.desc}</p>
+                    </div>
+                </article>
+            </div>`).join('');
+
+        /* ============ RENDER: WORKFLOW STEPS ============ */
+        document.getElementById('workflowTrack').insertAdjacentHTML('beforeend', STEPS.map((s, i) => `
+            <div class="step-wrap shrink-0 lg:w-[380px]">
+                <div class="step-card tilt-static tilt-card relative h-full rounded-3xl bg-brand-card border border-brand-border p-8 hover:border-brand-green/60 transition-colors duration-500">
+                    <span class="depth block font-display font-black text-7xl text-stroke opacity-60">${pad(i + 1)}</span>
+                    <div class="depth-lg w-12 h-12 rounded-xl bg-brand-greenMuted text-brand-green flex items-center justify-center mt-6">
+                        <i data-lucide="${s.icon}" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="depth text-2xl font-bold font-display mt-6">${s.title}</h3>
+                    <p class="depth text-brand-muted mt-3 leading-relaxed">${s.text}</p>
+                </div>
+            </div>`).join(''));
+
+        /* ============ RENDER: CATEGORIES ============ */
+        const catContainer = document.getElementById('categoriesContainer');
+        catContainer.innerHTML = CATEGORIES.map((c, i) => {
+            const n = itemsOf(c).length;
+            return `
+            <div class="cat-wrap">
+                <div class="cat-card spotlight rounded-3xl bg-brand-card border border-brand-border hover:border-brand-green/40 transition-colors duration-300" data-cat="${c.id}">
+                    <button type="button" class="cat-head relative z-10 w-full p-6 md:p-8 flex items-center justify-between text-left gap-4" aria-expanded="false">
+                        <div class="flex items-center gap-4 md:gap-6 min-w-0">
+                            <div class="shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-brand-greenMuted text-brand-green flex items-center justify-center font-bold font-display text-lg md:text-xl">${pad(i + 1)}</div>
+                            <div class="min-w-0">
+                                <h3 class="text-xl md:text-3xl font-bold font-display">${c.title}</h3>
+                                <p class="text-sm text-brand-muted mt-1">${c.desc}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 shrink-0">
+                            <span class="hidden sm:inline-block text-xs font-mono px-3 py-1 rounded-full bg-brand-border text-brand-text">${c.badge || n + ' Videos'}</span>
+                            <span class="cat-icon inline-flex"><i data-lucide="chevron-down" class="w-6 h-6 text-brand-green"></i></span>
+                        </div>
+                    </button>
+                    <div class="cat-panel relative z-10" style="height:0;overflow:hidden">
+                        <div class="p-4 md:p-8 border-t border-brand-border/60 bg-black/30 rounded-b-3xl">
+                            <div class="cat-grid grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6" style="perspective:1200px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>`;
+        }).join('');
+
+        const tileHTML = it => `
+            <div class="tile-wrap">
+                <div class="video-tile tilt-card group relative rounded-xl bg-brand-bg border border-brand-border hover:border-brand-green/60 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green"
+                     role="button" tabindex="0" data-type="${it.type}" data-src="${it.src || ''}" data-yt="${it.id || ''}" data-cursor="play" aria-label="Play ${it.label}">
+                    <div class="aspect-[9/16] relative bg-black rounded-t-xl overflow-hidden">
+                        ${it.type === 'youtube'
+                            ? `<img src="https://i.ytimg.com/vi/${it.id}/hqdefault.jpg" loading="lazy" alt="" class="w-full h-full object-cover">`
+                            : `<video class="tile-video w-full h-full object-cover" muted loop playsinline preload="metadata" src="${it.src}#t=0.1"></video>`}
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                        ${it.type === 'youtube' ? '<span class="absolute top-3 right-3 px-2 py-0.5 rounded bg-red-600 text-[10px] font-mono font-bold">YOUTUBE</span>' : ''}
+                    </div>
+                    <div class="play-badge tile-badge"><i data-lucide="play" class="w-5 h-5 ml-0.5"></i></div>
+                    <div class="depth p-3 text-xs font-mono text-brand-muted text-center border-t border-brand-border/40 group-hover:text-brand-green transition-colors">${it.label}</div>
+                </div>
+            </div>`;
+
         lucide.createIcons();
 
-        // Toggle Accordion function for Categories
-        function toggleCategory(categoryId) {
-            const content = document.getElementById(`content-${categoryId}`);
-            const icon = document.getElementById(`icon-${categoryId}`);
+        /* ============ SMOOTH SCROLL (LENIS) ============ */
+        let lenis = null;
+        if (!reduceMotion) {
+            lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add(t => lenis.raf(t * 1000));
+            gsap.ticker.lagSmoothing(0);
+        }
 
-            if (content.classList.contains('hidden')) {
-                // Open accordion
-                content.classList.remove('hidden');
-                icon.style.transform = 'rotate(180deg)';
-            } else {
-                // Close accordion
-                content.classList.add('hidden');
-                icon.style.transform = 'rotate(0deg)';
+        /* ============ MOBILE MENU ============ */
+        const menu = document.getElementById('mobileMenu');
+        const openMenu = () => {
+            menu.classList.remove('hidden'); menu.classList.add('flex');
+            lenis && lenis.stop();
+            if (!reduceMotion) gsap.fromTo('.menu-link', { y: 40, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.06, duration: 0.6, ease: 'power3.out' });
+        };
+        const closeMenu = () => {
+            if (menu.classList.contains('hidden')) return;
+            menu.classList.add('hidden'); menu.classList.remove('flex');
+            lenis && lenis.start();
+        };
+        document.getElementById('menuBtn').addEventListener('click', openMenu);
+        document.getElementById('menuClose').addEventListener('click', closeMenu);
+
+        /* ============ ANCHOR LINKS ============ */
+        document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+            const href = a.getAttribute('href');
+            const target = href === '#' ? 0 : document.querySelector(href);
+            if (target === null) return;
+            e.preventDefault();
+            closeMenu();
+            if (lenis) lenis.scrollTo(target, { offset: href === '#' ? 0 : -60, duration: 1.6 });
+            else if (target === 0) window.scrollTo({ top: 0, behavior: 'smooth' });
+            else target.scrollIntoView({ behavior: 'smooth' });
+        }));
+
+        /* ============ PROGRESS BAR + NAV ============ */
+        gsap.to('#scrollProgress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: 0.3 } });
+        const nav = document.getElementById('mainNav');
+        ScrollTrigger.create({
+            start: 0, end: 'max',
+            onUpdate: s => nav.classList.toggle('nav-hidden', s.direction === 1 && s.scroll() > 300)
+        });
+
+        /* ============ CUSTOM CURSOR ============ */
+        if (finePointer && !reduceMotion) {
+            const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
+            dot.style.display = ring.style.display = 'block';
+            document.body.classList.add('custom-cursor');
+            gsap.set([dot, ring], { xPercent: -50, yPercent: -50 });
+            const xD = gsap.quickTo(dot, 'x', { duration: 0.1 }), yD = gsap.quickTo(dot, 'y', { duration: 0.1 });
+            const xR = gsap.quickTo(ring, 'x', { duration: 0.45, ease: 'power3' }), yR = gsap.quickTo(ring, 'y', { duration: 0.45, ease: 'power3' });
+            window.addEventListener('mousemove', e => { xD(e.clientX); yD(e.clientY); xR(e.clientX); yR(e.clientY); });
+            document.addEventListener('mouseover', e => {
+                const t = e.target.closest('[data-cursor], a, button, [role="button"]');
+                const isPlay = !!t && t.dataset.cursor === 'play';
+                ring.classList.toggle('is-play', isPlay);
+                ring.classList.toggle('is-hover', !!t && !isPlay);
+            });
+        }
+
+        /* ============ SPOTLIGHT + MAGNETIC ============ */
+        document.addEventListener('mousemove', e => {
+            const c = e.target.closest && e.target.closest('.spotlight');
+            if (!c) return;
+            const r = c.getBoundingClientRect();
+            c.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+            c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        });
+        if (finePointer && !reduceMotion) {
+            document.querySelectorAll('.magnetic').forEach(b => {
+                const xT = gsap.quickTo(b, 'x', { duration: 0.6, ease: 'elastic.out(1, 0.4)' });
+                const yT = gsap.quickTo(b, 'y', { duration: 0.6, ease: 'elastic.out(1, 0.4)' });
+                b.addEventListener('mousemove', e => {
+                    const r = b.getBoundingClientRect();
+                    xT((e.clientX - r.left - r.width / 2) * 0.35);
+                    yT((e.clientY - r.top - r.height / 2) * 0.35);
+                });
+                b.addEventListener('mouseleave', () => { xT(0); yT(0); });
+            });
+        }
+
+        /* ============ 3D TILT ============ */
+        const tiltOn = finePointer && !reduceMotion;
+        if (tiltOn) {
+            VanillaTilt.init(document.querySelectorAll('.tilt-static'), {
+                max: 8, speed: 800, perspective: 1200, glare: true, 'max-glare': 0.12, gyroscope: false
+            });
+        }
+
+        /* ============ VIDEO MODAL (PLYR) ============ */
+        const modal = document.getElementById('videoModal');
+        const stage = document.getElementById('modalStage');
+        let player = null;
+
+        function openModal({ type, src, yt }) {
+            document.querySelectorAll('.tile-video').forEach(v => v.pause());
+            stage.innerHTML = type === 'youtube'
+                ? `<div data-plyr-provider="youtube" data-plyr-embed-id="${yt}"></div>`
+                : `<video playsinline><source src="${src}" type="video/mp4"></video>`;
+            player = new Plyr(stage.firstElementChild, {
+                ratio: '9:16',
+                autoplay: true,
+                controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen'],
+                youtube: { noCookie: true, rel: 0, showinfo: 0, modestbranding: 1 }
+            });
+            modal.classList.remove('hidden'); modal.classList.add('flex');
+            lenis && lenis.stop();
+            document.body.style.overflow = 'hidden';
+            gsap.fromTo('#modalBg', { opacity: 0 }, { opacity: 1, duration: 0.4 });
+            gsap.fromTo('#modalBox', { opacity: 0, scale: 0.85, rotateX: 18, y: 40 },
+                { opacity: 1, scale: 1, rotateX: 0, y: 0, duration: reduceMotion ? 0 : 0.7, ease: 'expo.out' });
+        }
+
+        function closeModal() {
+            if (modal.classList.contains('hidden')) return;
+            gsap.to('#modalBox', { opacity: 0, scale: 0.9, y: 30, duration: 0.3 });
+            gsap.to('#modalBg', {
+                opacity: 0, duration: 0.35, onComplete: () => {
+                    if (player) { player.destroy(); player = null; }
+                    stage.innerHTML = '';
+                    modal.classList.add('hidden'); modal.classList.remove('flex');
+                    document.body.style.overflow = '';
+                    lenis && lenis.start();
+                    ScrollTrigger.refresh();
+                }
+            });
+        }
+        document.getElementById('modalClose').addEventListener('click', closeModal);
+        document.getElementById('modalBg').addEventListener('click', closeModal);
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeModal(); closeMenu(); } });
+
+        /* ============ VIDEO TILES ============ */
+        function initTiles(scope) {
+            const tiles = [...scope.querySelectorAll('.video-tile')];
+            tiles.forEach(t => {
+                const v = t.querySelector('.tile-video');
+                if (v && finePointer && !t.classList.contains('feat-card')) {
+                    t.addEventListener('mouseenter', () => v.play().catch(() => {}));
+                    t.addEventListener('mouseleave', () => v.pause());
+                }
+                t.addEventListener('click', () => openModal(t.dataset));
+                t.addEventListener('keydown', e => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(t.dataset); }
+                });
+            });
+            if (tiltOn) {
+                VanillaTilt.init(tiles, { max: 12, speed: 600, perspective: 900, glare: true, 'max-glare': 0.2, scale: 1.03, gyroscope: false });
             }
         }
+        initTiles(document.getElementById('featuredGrid'));
+
+        // Featured: auto-preview (muted) while on screen
+        document.querySelectorAll('.feat-video').forEach(v => {
+            ScrollTrigger.create({
+                trigger: v.closest('.feat-wrap'), start: 'top 85%', end: 'bottom 15%',
+                onToggle: s => (s.isActive && !player && !reduceMotion) ? v.play().catch(() => {}) : v.pause()
+            });
+        });
+
+        /* ============ CATEGORY ACCORDION ============ */
+        function buildGrid(card) {
+            if (card.dataset.built) return;
+            card.dataset.built = '1';
+            const cat = CATEGORIES.find(c => c.id === card.dataset.cat);
+            const grid = card.querySelector('.cat-grid');
+            grid.innerHTML = itemsOf(cat).map(tileHTML).join('');
+            lucide.createIcons();
+            initTiles(grid);
+        }
+
+        function toggleCat(card) {
+            const panel = card.querySelector('.cat-panel');
+            const icon = card.querySelector('.cat-icon');
+            const open = !card.classList.contains('is-open');
+            card.classList.toggle('is-open', open);
+            card.querySelector('.cat-head').setAttribute('aria-expanded', open);
+            gsap.to(icon, { rotate: open ? 180 : 0, duration: 0.4, ease: 'power2.out' });
+
+            if (open) {
+                buildGrid(card);
+                gsap.to(panel, {
+                    height: 'auto', duration: reduceMotion ? 0 : 0.7, ease: 'power3.inOut',
+                    onComplete: () => { panel.style.overflow = 'visible'; ScrollTrigger.refresh(); }
+                });
+                if (!reduceMotion) {
+                    gsap.fromTo(card.querySelectorAll('.tile-wrap'),
+                        { y: 60, opacity: 0, rotateX: -25 },
+                        { y: 0, opacity: 1, rotateX: 0, stagger: 0.05, duration: 0.8, ease: 'power3.out', delay: 0.15 });
+                }
+            } else {
+                card.querySelectorAll('.tile-video').forEach(v => v.pause());
+                panel.style.overflow = 'hidden';
+                gsap.to(panel, {
+                    height: 0, duration: reduceMotion ? 0 : 0.6, ease: 'power3.inOut',
+                    onComplete: () => ScrollTrigger.refresh()
+                });
+            }
+        }
+        catContainer.addEventListener('click', e => {
+            const head = e.target.closest('.cat-head');
+            if (head) toggleCat(head.closest('.cat-card'));
+        });
+
+        /* ============ COUNTERS ============ */
+        function runCounter(el) {
+            const end = +el.dataset.count, suf = el.dataset.suffix || '';
+            if (reduceMotion) { el.textContent = end + suf; return; }
+            const o = { v: 0 };
+            gsap.to(o, { v: end, duration: 2, ease: 'power2.out', onUpdate: () => el.textContent = Math.round(o.v) + suf });
+        }
+        document.querySelectorAll('[data-count]:not(.hero-count)').forEach(el => {
+            ScrollTrigger.create({ trigger: el, start: 'top 90%', once: true, onEnter: () => runCounter(el) });
+        });
+
+        /* ============ SCROLL ANIMATIONS ============ */
+        let heroChars = [];
+        if (!reduceMotion) {
+            // Hero split
+            heroChars = [...document.querySelectorAll('.hero-line')]
+                .flatMap(el => new SplitType(el, { types: 'words,chars' }).chars);
+            gsap.set(heroChars, { yPercent: 115 });
+            gsap.set('.hero-fade', { opacity: 0, y: 30 });
+
+            // Hero scroll-out
+            gsap.to('.hero-inner', {
+                yPercent: -15, opacity: 0.15, scale: 0.95, ease: 'none',
+                scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+            });
+
+            // Hero blobs: mouse + scroll parallax
+            window.addEventListener('mousemove', e => {
+                const dx = (e.clientX / innerWidth - 0.5), dy = (e.clientY / innerHeight - 0.5);
+                gsap.to('.blob-1', { x: dx * 80, duration: 1.2, ease: 'power2.out' });
+                gsap.to('.blob-2', { x: -dx * 80, y: -dy * 40, duration: 1.2, ease: 'power2.out' });
+            });
+            gsap.utils.toArray('[data-speed]').forEach(el => {
+                gsap.to(el, {
+                    yPercent: +el.dataset.speed, ease: 'none',
+                    scrollTrigger: { trigger: el.closest('section'), start: 'top top', end: 'bottom top', scrub: true }
+                });
+            });
+
+            // Marquees (accelerate with scroll velocity)
+            const m1 = gsap.to('#marquee1', { xPercent: -50, repeat: -1, duration: 30, ease: 'none' });
+            const m2 = gsap.fromTo('#marquee2', { xPercent: -50 }, { xPercent: 0, repeat: -1, duration: 30, ease: 'none' });
+            ScrollTrigger.create({
+                start: 0, end: 'max',
+                onUpdate: s => {
+                    const boost = 1 + Math.min(Math.abs(s.getVelocity()) / 250, 6);
+                    gsap.to([m1, m2], { timeScale: boost, duration: 0.15, overwrite: true,
+                        onComplete: () => gsap.to([m1, m2], { timeScale: 1, duration: 1.2 }) });
+                }
+            });
+
+            // Section titles: 3D letter flip
+            document.querySelectorAll('.reveal-title').forEach(el => {
+                const s = new SplitType(el, { types: 'words,chars' });
+                gsap.from(s.chars, {
+                    opacity: 0, yPercent: 80, rotateX: -90, transformOrigin: '50% 100%',
+                    stagger: 0.02, duration: 0.9, ease: 'back.out(1.6)',
+                    scrollTrigger: { trigger: el, start: 'top 85%' }
+                });
+            });
+
+            // Generic reveals
+            gsap.utils.toArray('[data-reveal]').forEach(el => {
+                const d = el.dataset.reveal;
+                const from = { opacity: 0, y: 60 };
+                if (d === 'left') { from.x = -80; from.y = 0; }
+                if (d === 'right') { from.x = 80; from.y = 0; }
+                gsap.from(el, {
+                    ...from, duration: 1, ease: 'power3.out', delay: +(el.dataset.delay || 0),
+                    scrollTrigger: { trigger: el, start: 'top 88%' }
+                });
+            });
+
+            // Featured: cards rise in 3D with scroll
+            gsap.utils.toArray('.feat-wrap').forEach((w, i) => {
+                gsap.fromTo(w, { rotateX: 35, y: 180, opacity: 0, transformOrigin: '50% 100%' }, {
+                    rotateX: 0, y: 0, opacity: 1, ease: 'none',
+                    scrollTrigger: { trigger: '#featuredGrid', start: `top ${95 - i * 6}%`, end: `top ${45 - i * 6}%`, scrub: 1 }
+                });
+            });
+
+            // About: image reveal + quote word highlight
+            const aboutST = { trigger: '#sobre-mi', start: 'top 85%', end: 'top 25%', scrub: 1 };
+            gsap.fromTo('#aboutMedia', { clipPath: 'inset(18% 18% 18% 18% round 24px)' },
+                { clipPath: 'inset(0% 0% 0% 0% round 16px)', ease: 'none', scrollTrigger: aboutST });
+            gsap.fromTo('#aboutImg', { scale: 1.35 }, { scale: 1, ease: 'none', scrollTrigger: { ...aboutST } });
+
+            document.querySelectorAll('.scrub-text').forEach(el => {
+                const s = new SplitType(el, { types: 'words' });
+                gsap.fromTo(s.words, { opacity: 0.15 }, {
+                    opacity: 1, stagger: 0.1, ease: 'none',
+                    scrollTrigger: { trigger: el, start: 'top 85%', end: 'bottom 55%', scrub: true }
+                });
+            });
+
+            // Setup: chip spin + spec rows
+            gsap.to('.chip-ring', { rotate: 360, duration: 6, repeat: -1, ease: 'none' });
+            gsap.fromTo('.chip-rot', { rotateY: -35, rotateX: 20 }, {
+                rotateY: 0, rotateX: 0, ease: 'none',
+                scrollTrigger: { trigger: '#setup', start: 'top 80%', end: 'center center', scrub: 1 }
+            });
+            gsap.from('.spec-row', {
+                opacity: 0, x: -30, stagger: 0.08, duration: 0.6, ease: 'power2.out',
+                scrollTrigger: { trigger: '#specList', start: 'top 88%' }
+            });
+
+            // Workflow: horizontal scroll on desktop, reveal on mobile
+            const mm = gsap.matchMedia();
+            mm.add('(min-width: 1024px)', () => {
+                const track = document.getElementById('workflowTrack');
+                const dist = () => track.scrollWidth - window.innerWidth;
+                const tween = gsap.to(track, {
+                    x: () => -dist(), ease: 'none',
+                    scrollTrigger: { trigger: '#workflow', start: 'top top', end: () => '+=' + dist(), pin: true, scrub: 1, invalidateOnRefresh: true, anticipatePin: 1 }
+                });
+                gsap.to('#workflowProgress', {
+                    scaleX: 1, ease: 'none',
+                    scrollTrigger: { trigger: '#workflow', start: 'top top', end: () => '+=' + dist(), scrub: true, invalidateOnRefresh: true }
+                });
+                gsap.utils.toArray('.step-wrap').forEach(w => {
+                    gsap.from(w, {
+                        opacity: 0.2, scale: 0.85, rotateY: -30, ease: 'none',
+                        scrollTrigger: { trigger: w, containerAnimation: tween, start: 'left 95%', end: 'left 55%', scrub: true }
+                    });
+                });
+            });
+            mm.add('(max-width: 1023px)', () => {
+                gsap.utils.toArray('.step-wrap').forEach(w => {
+                    gsap.from(w, { opacity: 0, y: 60, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: w, start: 'top 88%' } });
+                });
+            });
+
+            // Categories: 3D cascade
+            gsap.utils.toArray('.cat-wrap').forEach(w => {
+                gsap.from(w, {
+                    opacity: 0, y: 80, rotateX: -20, transformOrigin: '50% 0%', duration: 1, ease: 'power3.out',
+                    scrollTrigger: { trigger: w, start: 'top 92%' }
+                });
+            });
+
+            // Footer title zoom
+            gsap.fromTo('#footerTitle', { scale: 0.8, opacity: 0.3 }, {
+                scale: 1, opacity: 1, ease: 'none',
+                scrollTrigger: { trigger: 'footer', start: 'top 90%', end: 'top 30%', scrub: 1 }
+            });
+        }
+
+        ScrollTrigger.sort();
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => ScrollTrigger.refresh());
+        window.addEventListener('load', () => ScrollTrigger.refresh());
+
+        /* ============ PRELOADER + HERO INTRO ============ */
+        function heroIntro() {
+            lenis && lenis.start();
+            document.querySelectorAll('.hero-count').forEach(runCounter);
+            if (reduceMotion) return;
+            gsap.timeline()
+                .to(heroChars, { yPercent: 0, duration: 1, stagger: 0.025, ease: 'power4.out' })
+                .to('.hero-fade', { opacity: 1, y: 0, stagger: 0.15, duration: 0.8, ease: 'power3.out' }, '-=0.6');
+        }
+
+        const loader = document.getElementById('preloader');
+        if (reduceMotion) {
+            loader.remove();
+            heroIntro();
+        } else {
+            lenis && lenis.stop();
+            const o = { v: 0 };
+            const countEl = document.getElementById('loaderCount');
+            gsap.timeline()
+                .to(o, { v: 100, duration: 1.6, ease: 'power2.inOut', onUpdate: () => countEl.textContent = Math.round(o.v) })
+                .to('#loaderBar', { scaleX: 1, duration: 1.6, ease: 'power2.inOut' }, 0)
+                .to(loader, { yPercent: -100, duration: 0.9, ease: 'expo.inOut' })
+                .add(heroIntro, '-=0.4')
+                .add(() => loader.remove());
+        }
+    })();
     </script>
 </body>
 </html>
