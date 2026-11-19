@@ -121,7 +121,7 @@
 
         /* Hero video stack */
         .stack-card {
-            position: absolute; left: 50%; top: 50%; width: 210px; height: 373px; margin: -186px 0 0 -105px;
+            position: absolute; left: 50%; top: 50%; width: 160px; height: 284px; margin: -152px 0 0 -80px;
             border-radius: 1.25rem; overflow: hidden; background: #000; cursor: pointer;
             border: 1px solid rgba(142, 224, 161, .3);
             box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .85), 0 0 45px -12px rgba(142, 224, 161, .35);
@@ -129,6 +129,8 @@
         .stack-card video { width: 100%; height: 100%; object-fit: cover; }
         .stack-shine { position: absolute; inset: 0; background: linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, .14) 50%, transparent 70%); transform: translateX(-100%); animation: shine 6s ease-in-out infinite; pointer-events: none; }
         @keyframes shine { 0%, 65% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        @media (min-width: 640px) { .stack-card { width: 200px; height: 356px; margin: -188px 0 0 -100px; } }
+        @media (min-width: 1024px) { .stack-card { width: 210px; height: 373px; margin: -186px 0 0 -105px; } }
         @media (min-width: 1280px) { .stack-card { width: 236px; height: 420px; margin: -210px 0 0 -118px; } }
 
         /* Spotlight */
@@ -256,8 +258,8 @@
 
             <div class="hidden xl:flex items-center gap-7 text-sm font-medium uppercase tracking-wide">
                 <a href="#destacados" class="nav-link" data-i18n="nav.featured">Destacados</a>
-                <a href="#portafolio" class="nav-link" data-i18n="nav.work">Portafolio</a>
                 <a href="#servicios" class="nav-link" data-i18n="nav.services">Servicios</a>
+                <a href="#portafolio" class="nav-link" data-i18n="nav.work">Portafolio</a>
                 <a href="#sobre-mi" class="nav-link" data-i18n="nav.about">Sobre mí</a>
                 <a href="#setup" class="nav-link" data-i18n="nav.setup">Herramientas</a>
                 <a href="#faq" class="nav-link" data-i18n="nav.faq">FAQ</a>
@@ -287,8 +289,8 @@
             <i data-lucide="x" class="w-5 h-5"></i>
         </button>
         <a href="#destacados" class="menu-link hover:text-brand-green" data-i18n="nav.featured">Destacados</a>
-        <a href="#portafolio" class="menu-link hover:text-brand-green" data-i18n="nav.work">Portafolio</a>
         <a href="#servicios" class="menu-link hover:text-brand-green" data-i18n="nav.services">Servicios</a>
+        <a href="#portafolio" class="menu-link hover:text-brand-green" data-i18n="nav.work">Portafolio</a>
         <a href="#sobre-mi" class="menu-link hover:text-brand-green" data-i18n="nav.about">Sobre mí</a>
         <a href="#setup" class="menu-link hover:text-brand-green" data-i18n="nav.setup">Herramientas</a>
         <a href="#faq" class="menu-link hover:text-brand-green" data-i18n="nav.faq">FAQ</a>
@@ -341,7 +343,7 @@
                     </div>
                 </div>
 
-                <div id="heroStack" class="hidden lg:block lg:col-span-5 relative h-[540px]" style="perspective:1400px">
+                <div id="heroStack" class="lg:col-span-5 relative h-[360px] sm:h-[440px] lg:h-[540px] mt-4 lg:mt-0" style="perspective:1400px">
                     <div class="stack-inner absolute inset-0" style="transform-style:preserve-3d"></div>
                     <p class="hero-fade absolute -bottom-2 left-0 right-0 text-center font-mono text-xs text-brand-muted tracking-widest uppercase" data-i18n="hero.stackHint">Haz clic para reproducir</p>
                 </div>
@@ -363,7 +365,7 @@
                         <div class="h-10 w-px bg-brand-border"></div>
                         <div>
                             <div class="text-3xl font-bold font-display"><span id="totalVideos" class="hero-count" data-count="57" data-suffix="">57</span></div>
-                            <div class="text-xs text-brand-muted uppercase tracking-wider" data-i18n="hero.videos">Videos en este reel</div>
+                            <div class="text-xs text-brand-muted uppercase tracking-wider" data-i18n="hero.videos">Videos en el portafolio</div>
                         </div>
                     </div>
                 </div>
@@ -408,6 +410,20 @@
         </div>
     </section>
 
+    <!-- SERVICES -->
+    <section id="servicios" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
+                <div class="max-w-2xl">
+                    <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest" data-i18n="services.kicker">Qué puedo hacer por ti</span>
+                    <h2 class="reveal-title text-4xl md:text-6xl font-black font-display uppercase tracking-tight mt-2" data-i18n="services.title">SERVICIOS DE <span class="text-brand-green">EDICIÓN</span></h2>
+                </div>
+                <p data-reveal class="text-brand-muted max-w-md" data-i18n="services.sub">Elige el formato y mira ejemplos reales de cada uno. Trabajo en español e inglés, con entregas listas para cada red.</p>
+            </div>
+            <div id="servicesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
+        </div>
+    </section>
+
     <!-- PORTFOLIO -->
     <section id="portafolio" class="py-24">
         <div class="max-w-7xl mx-auto px-6">
@@ -438,7 +454,7 @@
                 <span id="catCount" class="self-start md:self-auto font-mono text-sm px-4 py-2 rounded-full border border-brand-green/30 text-brand-green bg-brand-green/10 whitespace-nowrap"></span>
             </div>
             <div id="catGrid" style="perspective:1200px">
-                <div id="catGridH" class="grid sm:grid-cols-2 gap-4 md:gap-6"></div>
+                <div id="catGridH" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6"></div>
                 <div id="catGridV" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
             </div>
             <div class="mt-10 flex justify-center">
@@ -459,20 +475,6 @@
             <a href="#contacto" class="magnetic relative shrink-0 px-7 py-4 rounded-full bg-brand-green text-brand-bg font-bold font-display hover:bg-brand-greenHover transition-colors inline-flex items-center gap-2 shadow-lg shadow-brand-green/25 self-start md:self-auto">
                 <i data-lucide="send" class="w-5 h-5"></i><span data-i18n="cta.btn">Cotizar mi video</span>
             </a>
-        </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="servicios" class="py-24 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14">
-                <div class="max-w-2xl">
-                    <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest" data-i18n="services.kicker">Qué puedo hacer por ti</span>
-                    <h2 class="reveal-title text-4xl md:text-6xl font-black font-display uppercase tracking-tight mt-2" data-i18n="services.title">SERVICIOS DE <span class="text-brand-green">EDICIÓN</span></h2>
-                </div>
-                <p data-reveal class="text-brand-muted max-w-md" data-i18n="services.sub">Elige el formato y mira ejemplos reales de cada uno. Trabajo en español e inglés, con entregas listas para cada red.</p>
-            </div>
-            <div id="servicesGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
         </div>
     </section>
 
@@ -510,7 +512,7 @@
                 <div data-reveal class="inline-flex items-center gap-2 text-brand-green font-mono text-sm uppercase mb-4">
                     <i data-lucide="user" class="w-4 h-4"></i><span data-i18n="about.kicker">Biografía profesional</span>
                 </div>
-                <h2 class="reveal-title text-4xl md:text-6xl font-black font-display tracking-tight leading-none mb-8" data-i18n="about.title">CREATIVIDAD QUE <br><span class="text-brand-green">ENCIENDE PASIÓN</span></h2>
+                <h2 class="reveal-title text-4xl md:text-6xl font-black font-display tracking-tight leading-none mb-8" data-i18n="about.title">EL EDITOR DETRÁS <br><span class="text-brand-green">DE CADA CORTE</span></h2>
                 <div class="space-y-6 text-brand-muted text-lg font-light leading-relaxed">
                     <p data-reveal data-i18n="about.p1">Soy <strong class="text-brand-text font-semibold">Nikol Jaramillo</strong>, editor de video y diseñador multimedia de 20 años, con más de <strong class="text-brand-green font-semibold">3 años de experiencia profesional</strong>. Edito para streamers, creadores, marcas personales, agencias y negocios: desde gameplays de 16 minutos hasta anuncios de 15 segundos.</p>
                     <p data-reveal data-i18n="about.p2">Mi trabajo es que tu audiencia no se vaya: gancho en los primeros segundos, ritmo, sonido y gráficos que explican. Estoy terminando <strong class="text-brand-text font-semibold">Ingeniería Multimedia en la Universidad de San Buenaventura Cali</strong>, lo que me da una base técnica sólida para el motion graphics y la animación.</p>
@@ -543,12 +545,12 @@
                 <p data-reveal class="text-brand-muted mt-4" data-i18n="setup.sub">El chip más reciente de Apple combinado con software profesional: líneas de tiempo 4K fluidas, exportaciones aceleradas por hardware y composiciones complejas sin límites.</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
                 <div data-reveal="left" class="lg:col-span-6">
-                    <div class="tilt-static tilt-card bg-brand-card border border-brand-border rounded-3xl p-8 hover:border-brand-green/50 transition-colors duration-500">
-                        <div class="depth flex items-center justify-between gap-4 mb-10">
-                            <div class="flex items-center gap-3">
-                                <div class="p-3 rounded-xl bg-brand-greenMuted text-brand-green"><i data-lucide="laptop" class="w-6 h-6"></i></div>
+                    <div class="tilt-static tilt-card h-full bg-brand-card border border-brand-border rounded-3xl p-8 hover:border-brand-green/50 transition-colors duration-500">
+                        <div class="depth flex items-center justify-between gap-4 mb-6">
+                            <div class="flex items-center gap-4">
+                                <img src="Fotos/Apple-M5-chip.jpg" loading="lazy" alt="Chip Apple M5" class="w-14 h-14 rounded-xl object-cover border border-brand-green/30 shadow-lg shadow-brand-green/20">
                                 <div>
                                     <h3 class="text-xl font-bold font-display" data-i18n="setup.cardTitle">Especificaciones del equipo</h3>
                                     <p class="text-xs text-brand-muted" data-i18n="setup.cardSub">MacBook Air 13" — Estación M5</p>
@@ -557,14 +559,9 @@
                             <span class="px-3 py-1 rounded-full text-xs font-mono bg-brand-green/10 text-brand-green border border-brand-green/20" data-i18n="setup.badge">Optimizado</span>
                         </div>
 
-                        <div class="depth relative mb-8">
-                            <img src="Fotos/MacBook-Air-M5.png" loading="lazy" alt="MacBook Air con chip M5" class="mac-img w-full max-w-md mx-auto drop-shadow-[0_30px_40px_rgba(0,0,0,.6)]">
-                        </div>
-                        <div class="chip-rot tilt-card relative mx-auto w-40 h-40 md:w-48 md:h-48 mb-10">
-                            <div class="depth-lg relative w-full h-full">
-                                <div class="absolute -inset-6 overflow-hidden rounded-full"><div class="chip-ring"></div></div>
-                                <img src="Fotos/Apple-M5-chip.jpg" loading="lazy" alt="Chip Apple M5" class="relative w-full h-full object-cover rounded-[1.6rem] border border-brand-green/30 shadow-2xl shadow-brand-green/20">
-                            </div>
+                        <div class="depth-lg relative mb-8 py-4">
+                            <div class="absolute inset-x-10 bottom-0 h-10 rounded-full bg-brand-green/20 blur-2xl"></div>
+                            <img src="Fotos/MacBook-Air-M5.png" loading="lazy" alt="MacBook Air con chip M5" class="mac-img relative w-full max-w-md mx-auto drop-shadow-[0_30px_40px_rgba(0,0,0,.6)]">
                         </div>
 
                         <ul id="specList" class="depth space-y-3 text-sm text-brand-muted font-mono">
@@ -578,7 +575,7 @@
                     </div>
                 </div>
 
-                <div class="lg:col-span-6 space-y-6">
+                <div class="lg:col-span-6 flex flex-col gap-6">
                     <div data-reveal="right" data-delay=".1">
                         <div class="tilt-static tilt-card group bg-brand-card border border-brand-border p-8 rounded-3xl hover:border-brand-green transition-colors duration-500">
                             <div class="flex items-start gap-6">
@@ -609,6 +606,17 @@
                                     <p class="text-sm text-brand-muted mt-2 leading-relaxed" data-i18n="cc.desc">Dominio total de la edición vertical de alta energía (Reels, TikTok, Shorts). Flujo ultrarrápido para alto volumen de contenido, ritmo ágil, subtítulos automáticos y tendencias virales.</p>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                    <div data-reveal="right" data-delay=".3" class="flex-1">
+                        <div class="h-full bg-brand-card border border-brand-border p-8 rounded-3xl">
+                            <h4 class="text-xl font-bold font-display flex items-center gap-3"><i data-lucide="package-check" class="w-6 h-6 text-brand-green"></i><span data-i18n="deliv.title">Entregas listas para publicar</span></h4>
+                            <div class="grid grid-cols-3 gap-3 mt-6 text-center">
+                                <div class="rounded-2xl border border-brand-border p-4"><div class="mx-auto w-5 h-9 rounded border-2 border-brand-green"></div><p class="mt-3 font-mono text-xs">9:16</p><p class="text-[11px] text-brand-muted">Reels · TikTok</p></div>
+                                <div class="rounded-2xl border border-brand-border p-4"><div class="mx-auto mt-2 w-12 h-7 rounded border-2 border-brand-green"></div><p class="mt-3 font-mono text-xs">16:9</p><p class="text-[11px] text-brand-muted">YouTube</p></div>
+                                <div class="rounded-2xl border border-brand-border p-4"><div class="mx-auto mt-1 w-8 h-8 rounded border-2 border-brand-green"></div><p class="mt-3 font-mono text-xs">1:1</p><p class="text-[11px] text-brand-muted">Feed</p></div>
+                            </div>
+                            <p class="text-sm text-brand-muted mt-5" data-i18n="deliv.desc">MP4 (H.264/HEVC) o ProRes, en español o inglés, con subtítulos quemados o en archivo aparte.</p>
                         </div>
                     </div>
                 </div>
@@ -793,45 +801,42 @@
         const poster = it => it.type === 'youtube' ? `https://i.ytimg.com/vi/${it.id}/hqdefault.jpg` : 'Videos/Posters/' + it.src.split('/').pop().replace(/\.mp4$/, '.jpg');
 
         const CATEGORIES = [
-            { id: 'marca', icon: 'user-round', items: [
-                V('MarcaPersonal/Coyt_Media.mp4', 'h', 'Coyt Media · Talking head'),
-                V('MarcaPersonal/Virola_Prop_1.mp4', 'v', 'Virola · Persistencia'),
-                V('MarcaPersonal/Virola_Prop_3.mp4', 'v', 'Virola · Objetos brillantes'),
-                V('MarcaPersonal/Virola_Prop_2.mp4', 'v', 'Virola · Tu deseo es pequeño'),
-                V('MarcaPersonal/Virola_Prop_4.mp4', 'v', 'Virola · Te mueves lento'),
-                V('MarcaPersonal/Virola_Prop_5.mp4', 'v', 'Virola · Lo único que controlas'),
-                V('MarcaPersonal/Virola_Prop_6.mp4', 'v', 'Virola · No quieres 10.000 €'),
-                V('MarcaPersonal/Virola_Intro_YouTube.mp4', 'h', 'Virola · Intro de YouTube')
-            ] },
             { id: 'gaming', icon: 'gamepad-2', items: [
-                V('Gaming/Fortnite_KVB.mp4', 'h', 'Fortnite · Motion storytime'),
-                V('Gaming/Roblox_SquidGame_Intro.mp4', 'h', 'Roblox · Gameplay 16 min (intro)'),
-                V('Gaming/Roblox_SquidGame_Gameplay.mp4', 'h', 'Roblox · Gameplay 16 min (fragmento)'),
-                V('Gaming/Fortnite_Meme.mp4', 'h', 'Fortnite · Edit meme'),
+                V('Gaming/Fortnite_KVB.mp4', 'h', 'Fortnite · Historia animada'),
+                V('Gaming/Roblox_SquidGame_Intro.mp4', 'h', 'Roblox · Video de 16 min (intro)'),
+                V('Gaming/Fortnite_Meme.mp4', 'h', 'Fortnite · Edición meme'),
+                V('Gaming/Roblox_SquidGame_Gameplay.mp4', 'h', 'Roblox · Video de 16 min (fragmento)'),
                 V('Gaming/Martin_Kick.mp4', 'h', 'Streamer · Clip de Kick'),
                 V('Gaming/FIFA_Danjuma.mp4', 'v', 'EA FC · Danjuma (EN)'),
                 V('Gaming/FIFA_15-0.mp4', 'v', 'EA FC · 15-0 (EN)'),
-                V('Gaming/Gaming_1.mp4', 'v', 'F1 · Sim racing'),
-                V('Gaming/Gaming_2.mp4', 'v', 'Minecraft')
+                V('Gaming/Gaming_2.mp4', 'v', 'Minecraft'),
+                V('Gaming/Gaming_1.mp4', 'v', 'F1 · Sim racing')
+            ] },
+            { id: 'comerciales', icon: 'megaphone', items: [
+                V('Comerciales/Comercial_1.mp4', 'v', 'Living Water'),
+                V('Comerciales/Comercial_9.mp4', 'v', 'Concesionario'),
+                V('Comerciales/Comercial_4.mp4', 'v', 'Speaker'),
+                V('Comerciales/Comercial_12.mp4', 'v', 'Living Water'),
+                V('Comerciales/Comercial_6.mp4', 'v', 'Bienes raíces'),
+                V('Comerciales/Comercial_10.mp4', 'v', 'Bienestar (EN)'),
+                V('Comerciales/Comercial_11.mp4', 'v', 'Concesionario (EN)'),
+                V('Comerciales/Comercial_2.mp4', 'v', 'Relojes de lujo'),
+                V('Comerciales/Comercial_3.mp4', 'v', 'Oficinas')
+            ] },
+            { id: 'marca', icon: 'user-round', items: [
+                V('MarcaPersonal/Coyt_Media.mp4', 'h', 'Coyt Media · Entrevista'),
+                V('MarcaPersonal/Virola_Intro_YouTube.mp4', 'h', 'Virola · Intro de YouTube'),
+                V('MarcaPersonal/Virola_Prop_3.mp4', 'v', 'Virola · Objetos brillantes'),
+                V('MarcaPersonal/Virola_Prop_1.mp4', 'v', 'Virola · Persistencia'),
+                V('MarcaPersonal/Virola_Prop_6.mp4', 'v', 'Virola · No quieres 10.000 €')
             ] },
             { id: 'motion', icon: 'sparkles', items: [
-                V('MotionGraphics.mp4', 'h', 'Kinetic typography'),
+                V('MotionGraphics.mp4', 'h', 'Tipografía cinética'),
                 V('Motion/Meta_Ads_Animacion.mp4', 'h', 'Meta Ads · Animación desde cero'),
                 V('Motion/Explicacion_100k.mp4', 'h', 'Explicación con datos'),
                 YT('d55NAOGUis8', 'YouTube'),
                 YT('1PUcwxhF8sQ', 'YouTube'),
                 V('Educacion/Educacion_2.mp4', 'h', 'Curso · Porcentajes')
-            ] },
-            { id: 'comerciales', icon: 'megaphone', items: [
-                V('Comerciales/Comercial_1.mp4', 'v', 'Living Water'),
-                V('Comerciales/Comercial_12.mp4', 'v', 'Living Water'),
-                V('Comerciales/Comercial_9.mp4', 'v', 'Concesionario'),
-                V('Comerciales/Comercial_6.mp4', 'v', 'Bienes raíces'),
-                V('Comerciales/Comercial_10.mp4', 'v', 'Bienestar (EN)'),
-                V('Comerciales/Comercial_11.mp4', 'v', 'Concesionario (EN)'),
-                V('Comerciales/Comercial_3.mp4', 'v', 'Oficinas'),
-                V('Comerciales/Comercial_4.mp4', 'v', 'Speaker'),
-                V('Comerciales/Comercial_2.mp4', 'v', 'Relojes de lujo')
             ] },
             { id: 'podcast', icon: 'mic', items: [1, 2, 3, 4].map(i => V(`Podcast/Podcast_${i}.mp4`)) },
             { id: 'creador', icon: 'smartphone', items: [
@@ -857,23 +862,24 @@
             { ...V('Gaming/Fortnite_KVB.mp4', 'h'), k: 1 },
             { ...V('MarcaPersonal/Coyt_Media.mp4', 'h'), k: 2 },
             { ...V('Gaming/FIFA_Danjuma.mp4', 'v'), k: 3 },
-            { ...V('MarcaPersonal/Virola_Prop_1.mp4', 'v'), k: 4 },
-            { ...V('Comerciales/Comercial_1.mp4', 'v'), k: 5 },
+            { ...V('AgenciaMarketing/AgenciaMarketing_1.mp4', 'v'), k: 4 },
+            { ...V('Comerciales/Comercial_9.mp4', 'v'), k: 5 },
             { ...V('CreadorDeContenido/CreadorDeContenido_4.mp4', 'v'), k: 6 }
         ];
-        const HERO_STACK = [V('MarcaPersonal/Virola_Prop_3.mp4'), V('Gaming/FIFA_Danjuma.mp4'), V('Comerciales/Comercial_12.mp4')];
-        const BRANDS = ['Coyt Media', 'Living Water', 'Rapibox', '365 Media', 'BetPlay', 'Addi', '@yosoyvirola', '@soyMartinPerez', 'Svenld', 'UADEN Global', 'Derene', 'Progresso'];
-        const SERVICES = [['gaming', 'gamepad-2'], ['marca', 'user-round'], ['motion', 'sparkles'], ['comerciales', 'megaphone'], ['podcast', 'mic'], ['enmasa', 'layers']];
+        // Los tres videos del inicio (los de siempre + gaming en el centro)
+        const HERO_STACK = [V('Comerciales/Comercial_1.mp4', 'v', 'Living Water'), V('Gaming/FIFA_15-0.mp4', 'v', 'EA FC · 15-0'), V('Podcast/Podcast_1.mp4', 'v', 'Podcast')];
+        const BRANDS = ['Living Water', 'Rapibox', '365 Media', 'BetPlay', 'Addi', 'Coyt Media', '@soyMartinPerez', 'Svenld', '@yosoyvirola', 'UADEN Global', 'Derene', 'Progresso'];
+        const SERVICES = [['gaming', 'gamepad-2'], ['comerciales', 'megaphone'], ['marca', 'user-round'], ['motion', 'sparkles'], ['podcast', 'mic'], ['enmasa', 'layers']];
 
         const STEP_ICONS = ['target', 'scissors', 'audio-waveform', 'wand', 'rocket'];
         const FAQ_COUNT = 7;
-        const PAGE = 8;
+        const PAGE = 12;
         const STACK_BASE = [
             { x: -150, rotationY: 24, rotationZ: -7, z: -80 },
             { x: 0, rotationY: 0, rotationZ: 0, z: 40 },
             { x: 150, rotationY: -24, rotationZ: 7, z: -80 }
         ];
-        const SECTIONS = [['hero', 'nav.home'], ['destacados', 'nav.featured'], ['portafolio', 'nav.work'], ['servicios', 'nav.services'], ['proceso', 'nav.process'], ['sobre-mi', 'nav.about'], ['setup', 'nav.setup'], ['faq', 'nav.faq'], ['contacto', 'nav.contact']];
+        const SECTIONS = [['hero', 'nav.home'], ['destacados', 'nav.featured'], ['servicios', 'nav.services'], ['portafolio', 'nav.work'], ['proceso', 'nav.process'], ['sobre-mi', 'nav.about'], ['setup', 'nav.setup'], ['faq', 'nav.faq'], ['contacto', 'nav.contact']];
 
         // horizontales primero (van en su propia fila 16:9), luego verticales
         const itemsOf = c => [...c.items].sort((a, b) => (a.o === 'h' ? 0 : 1) - (b.o === 'h' ? 0 : 1)).map((it, k) => ({ ...it, cat: c.id, n: k + 1 }));
@@ -928,11 +934,11 @@
                 'hero.l1': 'VISUAL', 'hero.l2': 'STORYTELLING', 'hero.l3': 'WITHOUT LIMITS',
                 'hero.desc': `High-energy strategic editing focused on ${W('RETENTION')}, ${W('IMPACT')} and ${GS('VISUAL AURA')}. Turning raw footage into memorable visual pieces.`,
                 'hero.cta1': 'See my work', 'hero.cta2': "Let's talk",
-                'hero.years': 'YEARS', 'hero.exp': 'Experience', 'hero.projects': 'Projects', 'hero.videos': 'Videos in this reel', 'hero.scroll': 'SCROLL', 'hero.stackHint': 'Click to play',
+                'hero.years': 'YEARS', 'hero.exp': 'Experience', 'hero.projects': 'Projects', 'hero.videos': 'Videos in the portfolio', 'hero.scroll': 'SCROLL', 'hero.stackHint': 'Click to play',
                 'feat.title': `MASTER${G('PIECES')}`,
                 'feat.sub': 'Three pieces that define my style. They preview automatically as you scroll — click any of them to watch with sound in full quality.',
                 'feat.swipe': 'Swipe to see more', 'feat.preview': 'Preview',
-                'about.kicker': 'Professional Biography', 'about.title': `CREATIVITY THAT <br>${G('SPARKS PASSION')}`,
+                'about.kicker': 'Professional Biography', 'about.title': `THE EDITOR BEHIND <br>${G('EVERY CUT')}`,
                 'about.p1': `I'm ${B('Nikol Jaramillo')}, a 20-year-old video editor and multimedia designer with over ${BG('3 years of professional experience')} bringing audiovisual projects to life with an unmistakable visual identity.`,
                 'about.p2': `My passion is transforming raw ideas into high-value content that not only retains audiences but also inspires those who watch it. I'm currently finishing my degree in ${B('Multimedia Engineering at Universidad de San Buenaventura Cali')}, which gives me a solid technical foundation combined with a modern, disruptive aesthetic vision.`,
                 'about.quote': '“I love fully immersing myself in every project. I see each edit as an opportunity to reflect the love, discipline and purpose that God has placed in my life, making sure every cut has soul and purpose.”',
@@ -983,7 +989,7 @@
                 'feat.title': `代表${G('作品')}`,
                 'feat.sub': '私のスタイルを象徴する3作品。スクロールすると自動でプレビュー再生され、クリックすると音声付き・高画質で視聴できます。',
                 'feat.swipe': 'スワイプして他の作品を見る', 'feat.preview': 'プレビュー',
-                'about.kicker': 'プロフィール', 'about.title': `情熱に火をつける<br>${G('クリエイティブ')}`,
+                'about.kicker': 'プロフィール', 'about.title': `すべてのカットの<br>${G('裏側にいる編集者')}`,
                 'about.p1': `${B('Nikol Jaramillo')}です。20歳の映像編集者・マルチメディアデザイナーとして、${BG('3年以上のプロ経験')}を活かし、ひと目で伝わるビジュアルアイデンティティで映像プロジェクトを形にしています。`,
                 'about.p2': `荒削りなアイデアを、視聴者を惹きつけ、見る人の心を動かす価値あるコンテンツへ変えることが私の情熱です。現在${B('サン・ブエナベントゥラ大学カリ校でマルチメディア工学')}の学位取得を目前に控え、確かな技術基盤とモダンで斬新な美的感覚を兼ね備えています。`,
                 'about.quote': '「すべてのプロジェクトに全身全霊で向き合うのが大好きです。一つひとつの編集は、神様が私の人生に与えてくださった愛と規律と目的を映し出す機会。すべてのカットに魂と意味を込めています。」',
@@ -1028,13 +1034,13 @@
             'meta.title': 'Nikol Jaramillo | Editor de Video y Motion Designer',
             'meta.desc': 'Nikol Jaramillo — editor de video y motion designer en Cali, Colombia. Gameplays y reels gaming, marca personal, anuncios, podcasts y motion graphics de alta retención.',
             'nav.services': 'Servicios', 'feat.watch': 'Ver con sonido', 'svc.cta': 'Ver ejemplos',
-            'feat.1.tag': '01 / Gaming · Motion graphics', 'feat.1.title': 'Fortnite: storytime animado', 'feat.1.desc': 'Gameplay convertido en historia: iconos, tarjetas y efectos al ritmo de la voz.',
-            'feat.2.tag': '02 / Marca personal · Talking head', 'feat.2.title': 'Entrevista con gráficos premium', 'feat.2.desc': 'Selección de tomas, b-roll y gráficos con la identidad de la marca.',
+            'feat.1.tag': '01 / Gaming · Motion graphics', 'feat.1.title': 'Fortnite: historia animada', 'feat.1.desc': 'Gameplay convertido en historia: iconos, tarjetas y efectos al ritmo de la voz.',
+            'feat.2.tag': '02 / Marca personal · Entrevista', 'feat.2.title': 'Entrevista con gráficos premium', 'feat.2.desc': 'Selección de tomas, b-roll y gráficos con la identidad de la marca.',
             'feat.3.tag': '03 / Gaming · EA FC (inglés)', 'feat.3.title': 'Reel de FIFA para creador', 'feat.3.desc': 'Revelado de carta, subtítulos con pop y ritmo de TikTok.',
-            'feat.4.tag': '04 / Marca personal', 'feat.4.title': 'Reel de autoridad', 'feat.4.desc': 'Titular fijo, subtítulos limpios y animaciones que explican la idea.',
-            'feat.5.tag': '05 / Comercial', 'feat.5.title': 'Living Water', 'feat.5.desc': 'Anuncio con gráficos de producto, beneficios claros y llamado a la acción.',
+            'feat.4.tag': '04 / Agencia · Autoridad', 'feat.4.title': '365 Media: mensaje que pega', 'feat.4.desc': 'Textos con impacto, gráficos 3D y ritmo para que la idea se quede.',
+            'feat.5.tag': '05 / Comercial', 'feat.5.title': 'Concesionario con actitud', 'feat.5.desc': 'Anuncio para redes con tipografía animada, ritmo y llamado a la acción.',
             'feat.6.tag': '06 / Creador · Marca', 'feat.6.title': 'BetPlay con creador', 'feat.6.desc': 'Contenido patrocinado que no parece anuncio: ritmo, gráficos y marca integrada.',
-            'cat.marca.tab': 'Marca personal', 'cat.marca.title': 'Marca personal y talking head', 'cat.marca.desc': 'Reels de autoridad, entrevistas e intros de YouTube con titulares, subtítulos y animaciones que explican.',
+            'cat.marca.tab': 'Marca personal', 'cat.marca.title': 'Marca personal y entrevistas', 'cat.marca.desc': 'Reels de autoridad, entrevistas e intros de YouTube con titulares, subtítulos y animaciones que explican.',
             'cat.gaming.tab': 'Gaming', 'cat.gaming.title': 'Gaming y streamers', 'cat.gaming.desc': 'Gameplays largos para YouTube, clips de Kick y Twitch, reels de EA FC y edits con memes, zooms y efectos al ritmo.',
             'cat.motion.tab': 'Motion graphics', 'cat.motion.title': 'Motion graphics y explicaciones', 'cat.motion.desc': 'Animación desde cero, datos que se entienden, tipografía cinética y piezas educativas.',
             'cat.comerciales.tab': 'Comerciales', 'cat.comerciales.title': 'Comerciales y marcas', 'cat.comerciales.desc': 'Anuncios para Meta Ads, TikTok y marcas: gancho, beneficio claro y llamado a la acción.',
@@ -1056,10 +1062,10 @@
             'feat.title': `FEATURED ${G('WORK')}`,
             'feat.sub': 'Best first: gaming, personal brand, ads and creators. They play muted as you scroll; click any of them to watch with sound.',
             'feat.1.tag': '01 / Gaming · Motion graphics', 'feat.1.title': 'Fortnite: animated storytime', 'feat.1.desc': 'Gameplay turned into a story: icons, cards and effects synced to the voice.',
-            'feat.2.tag': '02 / Personal brand · Talking head', 'feat.2.title': 'Interview with premium graphics', 'feat.2.desc': 'Shot selection, b-roll and graphics built on the brand identity.',
+            'feat.2.tag': '02 / Personal brand · Interview', 'feat.2.title': 'Interview with premium graphics', 'feat.2.desc': 'Shot selection, b-roll and graphics built on the brand identity.',
             'feat.3.tag': '03 / Gaming · EA FC (English)', 'feat.3.title': 'FIFA reel for a creator', 'feat.3.desc': 'Card reveal, pop captions and TikTok pacing.',
-            'feat.4.tag': '04 / Personal brand', 'feat.4.title': 'Authority reel', 'feat.4.desc': 'Fixed headline, clean captions and animations that explain the idea.',
-            'feat.5.tag': '05 / Commercial', 'feat.5.title': 'Living Water', 'feat.5.desc': 'Ad with product graphics, clear benefits and a call to action.',
+            'feat.4.tag': '04 / Agency · Authority', 'feat.4.title': '365 Media: a message that sticks', 'feat.4.desc': 'Punchy text, 3D graphics and rhythm so the idea stays.',
+            'feat.5.tag': '05 / Commercial', 'feat.5.title': 'Car dealer with attitude', 'feat.5.desc': 'Social ad with animated type, rhythm and a call to action.',
             'feat.6.tag': '06 / Creator · Brand', 'feat.6.title': 'BetPlay with a creator', 'feat.6.desc': "Sponsored content that doesn't feel like an ad: rhythm, graphics and a natural brand fit.",
             'brands.title': 'Brands and creators in my edits',
             'work.sub': 'Pick a category. Hover over a video to preview it and click to watch it in full, with sound.',
@@ -1069,7 +1075,7 @@
             'about.role': 'Editor & Motion Designer',
             'about.p1': `I'm ${B('Nikol Jaramillo')}, a 20-year-old video editor and multimedia designer with over ${BG('3 years of professional experience')}. I edit for streamers, creators, personal brands, agencies and businesses: from 16-minute gameplays to 15-second ads.`,
             'about.p2': `My job is to keep your audience from leaving: a hook in the first seconds, rhythm, sound and graphics that explain. I'm finishing ${B('Multimedia Engineering at Universidad de San Buenaventura Cali')}, which gives me a solid technical base for motion graphics and animation.`,
-            'cat.marca.tab': 'Personal Brand', 'cat.marca.title': 'Personal Brand & Talking Head', 'cat.marca.desc': 'Authority reels, interviews and YouTube intros with headlines, captions and explainer animations.',
+            'cat.marca.tab': 'Personal Brand', 'cat.marca.title': 'Personal Brand & Interviews', 'cat.marca.desc': 'Authority reels, interviews and YouTube intros with headlines, captions and explainer animations.',
             'cat.gaming.tab': 'Gaming', 'cat.gaming.title': 'Gaming & Streamers', 'cat.gaming.desc': 'Long YouTube gameplays, Kick and Twitch clips, EA FC reels and edits with memes, zooms and beat-synced effects.',
             'cat.motion.tab': 'Motion Graphics', 'cat.motion.title': 'Motion Graphics & Explainers', 'cat.motion.desc': 'Animation from scratch, data that makes sense, kinetic typography and educational pieces.',
             'cat.comerciales.tab': 'Commercials', 'cat.comerciales.title': 'Commercials & Brands', 'cat.comerciales.desc': 'Ads for Meta, TikTok and brands: hook, clear benefit and call to action.',
@@ -1078,7 +1084,7 @@
             'cat.agencia.tab': 'Agency', 'cat.agencia.title': 'Marketing Agency', 'cat.agencia.desc': 'Content for agencies: brand pieces, behind the scenes and authority videos.',
             'cat.vozoff.tab': 'Voice-Over', 'cat.vozoff.title': 'Voice-Over & Storytelling', 'cat.vozoff.desc': 'Narrated stories with precise b-roll, fitting music and graphics that follow the voice.',
             'cat.enmasa.tab': 'Bulk', 'cat.enmasa.title': 'Content at Scale', 'cat.enmasa.desc': 'Batches of videos for brands with a consistent style, captions and steady delivery.',
-            'faq.7.q': 'Do you edit long gameplays for YouTube?', 'faq.7.a': 'Yes. I edit 10–20 minute gameplays with an intro, gaming captions, memes, zooms, music and sound effects, and I can also cut vertical clips from the same footage.'
+            'faq.7.q': 'Do you edit long gameplays for YouTube?', 'faq.7.a': 'Yes. I edit 10–20 minute gameplays with an intro, gaming captions, memes, zooms, music and sound effects, and I can also cut vertical clips from the same footage.', 'deliv.title': 'Ready-to-publish deliveries', 'deliv.desc': 'MP4 (H.264/HEVC) or ProRes, in Spanish or English, with burned-in or separate captions.'
         });
         Object.assign(I18N.ja, {
             'meta.title': 'Nikol Jaramillo | 映像編集者・モーションデザイナー',
@@ -1091,10 +1097,10 @@
             'feat.title': `注目の${G('作品')}`,
             'feat.sub': 'まずは代表作から。ゲーム、パーソナルブランド、広告、クリエイター。スクロールすると無音で再生され、クリックすると音声付きで視聴できます。',
             'feat.1.tag': '01 / ゲーム · モーショングラフィックス', 'feat.1.title': 'Fortnite:アニメーションで語るストーリー', 'feat.1.desc': 'ゲームプレイを物語に。アイコン、カード、エフェクトを声のリズムに合わせて。',
-            'feat.2.tag': '02 / パーソナルブランド · トーキングヘッド', 'feat.2.title': 'プレミアムなグラフィックのインタビュー', 'feat.2.desc': 'テイク選び、Bロール、ブランドに合わせたグラフィック。',
+            'feat.2.tag': '02 / パーソナルブランド · インタビュー', 'feat.2.title': 'プレミアムなグラフィックのインタビュー', 'feat.2.desc': 'テイク選び、Bロール、ブランドに合わせたグラフィック。',
             'feat.3.tag': '03 / ゲーム · EA FC(英語)', 'feat.3.title': 'クリエイター向けFIFAリール', 'feat.3.desc': 'カードの演出、ポップな字幕、TikTokのテンポ。',
-            'feat.4.tag': '04 / パーソナルブランド', 'feat.4.title': '信頼を築くリール', 'feat.4.desc': '固定見出し、読みやすい字幕、要点を伝えるアニメーション。',
-            'feat.5.tag': '05 / CM', 'feat.5.title': 'Living Water', 'feat.5.desc': '商品グラフィック、明確なメリット、行動を促すCTA。',
+            'feat.4.tag': '04 / 代理店 · ブランディング', 'feat.4.title': '365 Media:心に残るメッセージ', 'feat.4.desc': 'インパクトのあるテキスト、3Dグラフィック、テンポで印象に残す。',
+            'feat.5.tag': '05 / CM', 'feat.5.title': '個性あふれる自動車販売店CM', 'feat.5.desc': 'アニメーション文字、テンポ、行動を促すCTAのSNS広告。',
             'feat.6.tag': '06 / クリエイター · ブランド', 'feat.6.title': 'BetPlay × クリエイター', 'feat.6.desc': '広告っぽくないタイアップ動画:テンポ、グラフィック、自然なブランド表現。',
             'brands.title': '編集を担当したブランドとクリエイター',
             'work.sub': 'カテゴリーを選んでください。カーソルを合わせるとプレビュー、クリックすると音声付きで再生します。',
@@ -1104,7 +1110,7 @@
             'about.role': 'エディター & モーションデザイナー',
             'about.p1': `${B('Nikol Jaramillo')}です。20歳の映像編集者・マルチメディアデザイナーで、${BG('3年以上のプロ経験')}があります。ストリーマー、クリエイター、パーソナルブランド、代理店、企業の動画を編集し、16分のゲーム実況から15秒の広告まで対応します。`,
             'about.p2': `私の仕事は、視聴者を離さないこと。冒頭のフック、リズム、サウンド、そして内容を伝えるグラフィック。${B('サン・ブエナベントゥラ大学カリ校でマルチメディア工学')}の学位取得を目前に控え、モーショングラフィックスとアニメーションの確かな技術基盤があります。`,
-            'cat.marca.tab': 'パーソナルブランド', 'cat.marca.title': 'パーソナルブランド & トーキングヘッド', 'cat.marca.desc': '見出し、字幕、説明アニメーションで魅せる信頼構築リール、インタビュー、YouTubeイントロ。',
+            'cat.marca.tab': 'パーソナルブランド', 'cat.marca.title': 'パーソナルブランド & インタビュー', 'cat.marca.desc': '見出し、字幕、説明アニメーションで魅せる信頼構築リール、インタビュー、YouTubeイントロ。',
             'cat.gaming.tab': 'ゲーム', 'cat.gaming.title': 'ゲーム & ストリーマー', 'cat.gaming.desc': 'YouTube向けの長尺ゲーム実況、Kick・Twitchの切り抜き、EA FCのリール、ミームやズーム、効果音を使った編集。',
             'cat.motion.tab': 'モーション', 'cat.motion.title': 'モーショングラフィックス & 解説', 'cat.motion.desc': 'ゼロから作るアニメーション、わかりやすいデータ表現、キネティックタイポグラフィ、教育コンテンツ。',
             'cat.comerciales.tab': 'CM', 'cat.comerciales.title': 'CM・ブランド', 'cat.comerciales.desc': 'Meta広告、TikTok、ブランド向けの広告:フック、明確なメリット、CTA。',
@@ -1113,7 +1119,7 @@
             'cat.agencia.tab': '代理店', 'cat.agencia.title': 'マーケティング代理店', 'cat.agencia.desc': '代理店向けのブランド動画、舞台裏、信頼構築動画。',
             'cat.vozoff.tab': 'ナレーション', 'cat.vozoff.title': 'ナレーション & ストーリーテリング', 'cat.vozoff.desc': '的確なBロール、雰囲気に合う音楽、声に寄り添うグラフィックで語るストーリー。',
             'cat.enmasa.tab': '大量制作', 'cat.enmasa.title': '大量制作', 'cat.enmasa.desc': '同じスタイルと字幕で、ブランド向けの動画をまとめて継続的に納品。',
-            'faq.7.q': 'YouTube向けの長尺ゲーム実況も編集できますか?', 'faq.7.a': 'はい。10〜20分のゲーム実況を、イントロ、ゲーム風字幕、ミーム、ズーム、音楽、効果音付きで編集します。同じ素材から縦型クリップも作成できます。'
+            'faq.7.q': 'YouTube向けの長尺ゲーム実況も編集できますか?', 'faq.7.a': 'はい。10〜20分のゲーム実況を、イントロ、ゲーム風字幕、ミーム、ズーム、音楽、効果音付きで編集します。同じ素材から縦型クリップも作成できます。', 'deliv.title': 'すぐに公開できる納品', 'deliv.desc': 'MP4(H.264/HEVC)またはProRes。スペイン語・英語対応、字幕は焼き込みでも別ファイルでも可能。'
         });
 
         // Read the Spanish text that's already in the HTML
@@ -1147,7 +1153,7 @@
                         <span class="absolute top-3 left-3 md:top-4 md:left-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur text-[10px] font-mono tracking-widest uppercase">
                             <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span><span data-i18n="feat.preview"></span>
                         </span>
-                        <span class="fmt-chip absolute top-3 right-3 md:top-4 md:right-4">${h ? '16:9' : '9:16'}</span>
+
                     </div>
                     <div class="play-badge"><i data-lucide="play" class="w-7 h-7 ml-1"></i></div>
                     <div class="${h ? 'p-6' : 'p-4 md:p-5'} depth">
@@ -1164,10 +1170,16 @@
                 <video muted loop playsinline preload="none" poster="${poster(it)}" data-src="${it.src}"></video>
                 <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
                 <div class="stack-shine"></div>
-                <span class="absolute bottom-3 left-3 font-mono text-[10px] tracking-widest text-brand-green">${pad(i + 1)} / ${pad(HERO_STACK.length)}</span>
+                <span class="absolute bottom-3 left-3 right-3 font-mono text-[10px] tracking-widest text-brand-green uppercase truncate">${it.name || pad(i + 1)}</span>
             </div>`).join('');
-        $$('.stack-card').forEach((c, i) => gsap.set(c, STACK_BASE[i]));
-        if (isDesktop) $$('.stack-card video').forEach(v => { v.preload = 'metadata'; v.src = v.dataset.src; });
+        // En pantallas estrechas las tarjetas se abren menos para que quepan
+        const placeStack = () => {
+            const k = Math.min(1, ($('#heroStack').offsetWidth || 520) / 560);
+            $$('.stack-card').forEach((c, i) => gsap.set(c, { ...STACK_BASE[i], x: STACK_BASE[i].x * k }));
+        };
+        placeStack();
+        window.addEventListener('resize', placeStack);
+        $$('.stack-card video').forEach(v => { v.preload = isDesktop ? 'metadata' : 'none'; v.src = v.dataset.src; });
 
         const brandRow = BRANDS.map(b => `<span class="brand-word">${b}</span>`).join('');
         $('#brandTrack').innerHTML = brandRow + brandRow;
@@ -1762,8 +1774,6 @@
             gsap.fromTo('#aboutMedia', { clipPath: 'inset(18% 18% 18% 18% round 24px)' }, { clipPath: 'inset(0% 0% 0% 0% round 16px)', ease: 'none', scrollTrigger: aboutST });
             gsap.fromTo('#aboutImg', { scale: 1.35 }, { scale: 1, ease: 'none', scrollTrigger: { ...aboutST } });
 
-            gsap.to('.chip-ring', { rotate: 360, duration: 6, repeat: -1, ease: 'none' });
-            gsap.fromTo('.chip-rot', { rotateY: -35, rotateX: 20 }, { rotateY: 0, rotateX: 0, ease: 'none', scrollTrigger: { trigger: '#setup', start: 'top 80%', end: 'center center', scrub: 1 } });
             gsap.from('.spec-row', { opacity: 0, x: -30, stagger: .08, duration: .6, ease: 'power2.out', scrollTrigger: { trigger: '#specList', start: 'top 90%' } });
 
             gsap.from('.step-wrap', { opacity: 0, y: 60, rotateY: -30, stagger: .1, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: '#processGrid', start: 'top 85%' } });
