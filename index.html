@@ -378,6 +378,30 @@
         </div>
     </section>
 
+    <!-- SHOWREEL -->
+    <section id="showreel" class="relative">
+        <div class="md:hidden px-6 pt-14">
+            <span class="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] uppercase text-brand-green"><span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span><span data-i18n="reel.kicker">Showreel 2026</span></span>
+            <h2 class="font-display font-black uppercase tracking-tight leading-[0.95] text-4xl mt-2" data-i18n="reel.title">25 segundos <br><span class="text-stroke">de mis mejores</span> <span class="text-brand-green">cortes</span></h2>
+            <p class="text-sm text-brand-muted mt-3" data-i18n="reel.sub">Gaming, anuncios, marca personal y motion graphics. Todo editado por mí.</p>
+        </div>
+        <div id="reelPin" class="relative md:h-[220vh]">
+            <div class="md:sticky md:top-0 md:h-screen flex items-center px-6 md:px-0 pt-6 pb-4 md:py-0">
+                <div id="reelFrame" class="relative w-full aspect-video md:aspect-auto md:h-full overflow-hidden rounded-2xl md:rounded-none bg-black border border-brand-border md:border-0">
+                    <video id="reelVideo" class="absolute inset-0 w-full h-full object-cover" muted loop playsinline preload="metadata" poster="Videos/Posters/Showreel.jpg" src="Videos/Showreel.mp4"></video>
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-bg/90 via-brand-bg/10 to-brand-bg/40 pointer-events-none"></div>
+                    <div id="reelText" class="hidden md:flex absolute inset-x-0 bottom-0 p-14 flex-row items-end justify-between gap-3 pointer-events-none">
+                        <div>
+                            <span class="inline-flex items-center gap-2 font-mono text-[10px] md:text-xs tracking-[0.3em] uppercase text-brand-green"><span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span><span data-i18n="reel.kicker">Showreel 2026</span></span>
+                            <h2 class="font-display font-black uppercase tracking-tight leading-[0.9] text-3xl sm:text-6xl md:text-8xl mt-2" data-i18n="reel.title">25 segundos <br><span class="text-stroke">de mis mejores</span> <span class="text-brand-green">cortes</span></h2>
+                        </div>
+                        <p class="hidden sm:block max-w-xs text-sm md:text-base text-brand-text/80" data-i18n="reel.sub">Gaming, anuncios, marca personal y motion graphics. Todo editado por mí.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- MARQUEE -->
     <section class="relative overflow-hidden py-14" aria-hidden="true">
         <div class="band band-1 bg-brand-green text-brand-bg py-4 overflow-hidden">
@@ -399,6 +423,33 @@
             <p data-reveal class="text-brand-muted max-w-2xl mb-14" data-i18n="feat.sub">Lo mejor primero: gaming, marca personal, anuncios y creadores. Se reproducen en silencio mientras bajas; haz clic en cualquiera para verla con sonido.</p>
 
             <div id="featuredGrid" class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6" style="perspective:1400px"></div>
+        </div>
+    </section>
+
+    <!-- BEFORE / AFTER -->
+    <section id="antes" class="py-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+                <div>
+                    <span data-reveal class="block text-brand-green font-mono text-sm uppercase tracking-widest" data-i18n="ba.kicker">Antes y después</span>
+                    <h2 class="reveal-title text-4xl md:text-6xl font-black font-display uppercase tracking-tight mt-2" data-i18n="ba.title">DEL BRUTO <span class="text-brand-green">AL FINAL</span></h2>
+                </div>
+                <p data-reveal class="text-brand-muted max-w-md" data-i18n="ba.sub">El mismo minuto de Fortnite, sincronizado: a la izquierda la grabación tal cual me llegó, a la derecha mi edición. Arrastra la línea.</p>
+            </div>
+
+            <div data-reveal id="baWrap" class="relative aspect-video rounded-3xl overflow-hidden border border-brand-border bg-black select-none glow-green" style="--ba: 50%; touch-action: pan-y">
+                <video id="baRaw" class="absolute inset-0 w-full h-full object-cover" muted loop playsinline preload="none" poster="Videos/Posters/Fortnite_Bruto.jpg" src="Videos/AntesDespues/Fortnite_Bruto.mp4"></video>
+                <video id="baEdit" class="absolute inset-0 w-full h-full object-cover" muted loop playsinline preload="none" poster="Videos/Posters/Fortnite_KVB.jpg" src="Videos/Gaming/Fortnite_KVB.mp4" style="clip-path: inset(0 0 0 var(--ba))"></video>
+                <span class="absolute top-3 left-3 md:top-4 md:left-4 fmt-chip md:text-xs px-3 py-1" data-i18n="ba.raw">BRUTO</span>
+                <span class="absolute top-3 right-3 md:top-4 md:right-4 fmt-chip md:text-xs px-3 py-1" style="background:#8ee0a1;color:#0f0f11;border-color:#8ee0a1" data-i18n="ba.edit">EDITADO</span>
+                <div id="baHandle" class="absolute top-0 bottom-0 w-[2px] -ml-px bg-brand-green shadow-[0_0_20px_rgba(142,224,161,.8)] cursor-ew-resize focus:outline-none" style="left: var(--ba)" role="slider" tabindex="0" aria-label="Antes y después" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                    <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-11 h-11 md:w-12 md:h-12 rounded-full bg-brand-green text-brand-bg flex items-center justify-center shadow-xl"><i data-lucide="chevrons-left-right" class="w-6 h-6"></i></span>
+                </div>
+            </div>
+            <div class="mt-5 flex flex-wrap items-center justify-center gap-3">
+                <button id="baPlay" type="button" class="px-5 py-2.5 rounded-full bg-brand-card border border-brand-border hover:border-brand-green text-sm font-semibold inline-flex items-center gap-2"><span id="baPlayIcon" class="text-brand-green">❚❚</span><span id="baPlayText" data-i18n="ba.pause">Pausar</span></button>
+                <button id="baSound" type="button" class="px-5 py-2.5 rounded-full bg-brand-green text-brand-bg text-sm font-semibold inline-flex items-center gap-2"><i data-lucide="volume-2" class="w-4 h-4"></i><span id="baSoundText" data-i18n="ba.sound">Escuchar la edición</span></button>
+            </div>
         </div>
     </section>
 
@@ -879,7 +930,7 @@
             { x: 0, rotationY: 0, rotationZ: 0, z: 40 },
             { x: 150, rotationY: -24, rotationZ: 7, z: -80 }
         ];
-        const SECTIONS = [['hero', 'nav.home'], ['destacados', 'nav.featured'], ['servicios', 'nav.services'], ['portafolio', 'nav.work'], ['proceso', 'nav.process'], ['sobre-mi', 'nav.about'], ['setup', 'nav.setup'], ['faq', 'nav.faq'], ['contacto', 'nav.contact']];
+        const SECTIONS = [['hero', 'nav.home'], ['showreel', 'nav.reel'], ['destacados', 'nav.featured'], ['antes', 'nav.ba'], ['servicios', 'nav.services'], ['portafolio', 'nav.work'], ['proceso', 'nav.process'], ['sobre-mi', 'nav.about'], ['setup', 'nav.setup'], ['faq', 'nav.faq'], ['contacto', 'nav.contact']];
 
         // horizontales primero (van en su propia fila 16:9), luego verticales
         const itemsOf = c => [...c.items].sort((a, b) => (a.o === 'h' ? 0 : 1) - (b.o === 'h' ? 0 : 1)).map((it, k) => ({ ...it, cat: c.id, n: k + 1 }));
@@ -1049,7 +1100,7 @@
             'cat.agencia.tab': 'Agencia', 'cat.agencia.title': 'Agencia de marketing', 'cat.agencia.desc': 'Contenido para agencias: piezas de marca, tras cámaras y videos de autoridad.',
             'cat.vozoff.tab': 'Voz en off', 'cat.vozoff.title': 'Voz en off y storytelling', 'cat.vozoff.desc': 'Historias narradas con b-roll preciso, música acorde y gráficos que acompañan la voz.',
             'cat.enmasa.tab': 'En volumen', 'cat.enmasa.title': 'Contenido en volumen', 'cat.enmasa.desc': 'Lotes de videos para marcas con el mismo estilo, subtítulos y entregas constantes.',
-            'faq.7.q': '¿Editas gameplays largos para YouTube?', 'faq.7.a': 'Sí. Edito gameplays de 10 a 20 minutos con intro, subtítulos gaming, memes, zooms, música y efectos, y también saco clips verticales del mismo material.'
+            'faq.7.q': '¿Editas gameplays largos para YouTube?', 'faq.7.a': 'Sí. Edito gameplays de 10 a 20 minutos con intro, subtítulos gaming, memes, zooms, música y efectos, y también saco clips verticales del mismo material.', 'ba.play': 'Reproducir', 'ba.mute': 'Silenciar', 'nav.reel': 'Showreel', 'nav.ba': 'Antes y después'
         });
         Object.assign(I18N.en, {
             'meta.title': 'Nikol Jaramillo | Video Editor & Motion Designer',
@@ -1084,7 +1135,7 @@
             'cat.agencia.tab': 'Agency', 'cat.agencia.title': 'Marketing Agency', 'cat.agencia.desc': 'Content for agencies: brand pieces, behind the scenes and authority videos.',
             'cat.vozoff.tab': 'Voice-Over', 'cat.vozoff.title': 'Voice-Over & Storytelling', 'cat.vozoff.desc': 'Narrated stories with precise b-roll, fitting music and graphics that follow the voice.',
             'cat.enmasa.tab': 'Bulk', 'cat.enmasa.title': 'Content at Scale', 'cat.enmasa.desc': 'Batches of videos for brands with a consistent style, captions and steady delivery.',
-            'faq.7.q': 'Do you edit long gameplays for YouTube?', 'faq.7.a': 'Yes. I edit 10–20 minute gameplays with an intro, gaming captions, memes, zooms, music and sound effects, and I can also cut vertical clips from the same footage.', 'deliv.title': 'Ready-to-publish deliveries', 'deliv.desc': 'MP4 (H.264/HEVC) or ProRes, in Spanish or English, with burned-in or separate captions.'
+            'faq.7.q': 'Do you edit long gameplays for YouTube?', 'faq.7.a': 'Yes. I edit 10–20 minute gameplays with an intro, gaming captions, memes, zooms, music and sound effects, and I can also cut vertical clips from the same footage.', 'deliv.title': 'Ready-to-publish deliveries', 'deliv.desc': 'MP4 (H.264/HEVC) or ProRes, in Spanish or English, with burned-in or separate captions.', 'reel.kicker': 'Showreel 2026', 'reel.title': `25 seconds <br><span class="text-stroke">of my best</span> ${G('cuts')}`, 'reel.sub': 'Gaming, ads, personal brand and motion graphics. All edited by me.', 'ba.kicker': 'Before and after', 'ba.title': `FROM RAW <br>${G('TO FINAL')}`, 'ba.sub': 'The same Fortnite minute, in sync: on the left the footage exactly as I received it, on the right my edit. Drag the line.', 'ba.raw': 'RAW', 'ba.edit': 'EDITED', 'ba.play': 'Play', 'ba.pause': 'Pause', 'ba.sound': 'Hear the edit', 'ba.mute': 'Mute', 'nav.reel': 'Showreel', 'nav.ba': 'Before / after'
         });
         Object.assign(I18N.ja, {
             'meta.title': 'Nikol Jaramillo | 映像編集者・モーションデザイナー',
@@ -1119,7 +1170,7 @@
             'cat.agencia.tab': '代理店', 'cat.agencia.title': 'マーケティング代理店', 'cat.agencia.desc': '代理店向けのブランド動画、舞台裏、信頼構築動画。',
             'cat.vozoff.tab': 'ナレーション', 'cat.vozoff.title': 'ナレーション & ストーリーテリング', 'cat.vozoff.desc': '的確なBロール、雰囲気に合う音楽、声に寄り添うグラフィックで語るストーリー。',
             'cat.enmasa.tab': '大量制作', 'cat.enmasa.title': '大量制作', 'cat.enmasa.desc': '同じスタイルと字幕で、ブランド向けの動画をまとめて継続的に納品。',
-            'faq.7.q': 'YouTube向けの長尺ゲーム実況も編集できますか?', 'faq.7.a': 'はい。10〜20分のゲーム実況を、イントロ、ゲーム風字幕、ミーム、ズーム、音楽、効果音付きで編集します。同じ素材から縦型クリップも作成できます。', 'deliv.title': 'すぐに公開できる納品', 'deliv.desc': 'MP4(H.264/HEVC)またはProRes。スペイン語・英語対応、字幕は焼き込みでも別ファイルでも可能。'
+            'faq.7.q': 'YouTube向けの長尺ゲーム実況も編集できますか?', 'faq.7.a': 'はい。10〜20分のゲーム実況を、イントロ、ゲーム風字幕、ミーム、ズーム、音楽、効果音付きで編集します。同じ素材から縦型クリップも作成できます。', 'deliv.title': 'すぐに公開できる納品', 'deliv.desc': 'MP4(H.264/HEVC)またはProRes。スペイン語・英語対応、字幕は焼き込みでも別ファイルでも可能。', 'reel.kicker': 'ショーリール 2026', 'reel.title': `ベストカットを<br><span class="text-stroke">25秒に</span>${G('凝縮')}`, 'reel.sub': 'ゲーム、広告、パーソナルブランド、モーショングラフィックス。すべて私の編集です。', 'ba.kicker': 'ビフォー・アフター', 'ba.title': `素材から<br>${G('完成まで')}`, 'ba.sub': '同じFortniteの1分間を同期再生。左は届いたままの素材、右は私の編集です。線をドラッグしてください。', 'ba.raw': '素材', 'ba.edit': '編集後', 'ba.play': '再生', 'ba.pause': '一時停止', 'ba.sound': '編集版を聴く', 'ba.mute': 'ミュート', 'nav.reel': 'ショーリール', 'nav.ba': 'ビフォー・アフター'
         });
 
         // Read the Spanish text that's already in the HTML
@@ -1576,6 +1627,60 @@
         });
         selectCat(currentCat.id, true);
 
+        /* ============ SHOWREEL ============ */
+        const reel = $('#reelVideo');
+        ScrollTrigger.create({
+            trigger: '#showreel', start: 'top 85%', end: 'bottom 15%',
+            onToggle: s => (s.isActive && !player) ? reel.play().catch(() => {}) : reel.pause()
+        });
+
+        /* ============ BEFORE / AFTER ============ */
+        const baWrap = $('#baWrap'), baRaw = $('#baRaw'), baEdit = $('#baEdit'), baHandle = $('#baHandle');
+        let baPos = 50, baDrag = false, baPaused = false, baSoundOn = false;
+        const setBa = p => {
+            baPos = Math.max(0, Math.min(100, p));
+            baWrap.style.setProperty('--ba', baPos + '%');
+            baHandle.setAttribute('aria-valuenow', Math.round(baPos));
+        };
+        const baFromEvent = e => { const r = baWrap.getBoundingClientRect(); setBa((e.clientX - r.left) / r.width * 100); };
+        baWrap.addEventListener('pointerdown', e => { baDrag = true; baWrap.setPointerCapture(e.pointerId); baFromEvent(e); });
+        baWrap.addEventListener('pointermove', e => { if (baDrag) baFromEvent(e); });
+        ['pointerup', 'pointercancel'].forEach(ev => baWrap.addEventListener(ev, () => { baDrag = false; }));
+        baHandle.addEventListener('keydown', e => {
+            if (e.key === 'ArrowLeft') { setBa(baPos - 5); e.preventDefault(); }
+            if (e.key === 'ArrowRight') { setBa(baPos + 5); e.preventDefault(); }
+        });
+        // el bruto sigue al editado (van alineados al 0,0 s)
+        baEdit.addEventListener('timeupdate', () => {
+            const t = baEdit.currentTime;
+            if (baRaw.duration && t < baRaw.duration - .1 && Math.abs(baRaw.currentTime - t) > .15) baRaw.currentTime = t;
+        });
+        const baPlayBoth = () => { baEdit.play().catch(() => {}); baRaw.play().catch(() => {}); };
+        const baPauseBoth = () => { baEdit.pause(); baRaw.pause(); };
+        function baButtons() {
+            $('#baPlayIcon').textContent = baPaused ? '▶' : '❚❚';
+            $('#baPlayText').textContent = t(baPaused ? 'ba.play' : 'ba.pause');
+            $('#baSoundText').textContent = t(baSoundOn ? 'ba.mute' : 'ba.sound');
+        }
+        $('#baPlay').addEventListener('click', () => { baPaused = !baPaused; baPaused ? baPauseBoth() : baPlayBoth(); baButtons(); });
+        $('#baSound').addEventListener('click', () => {
+            baSoundOn = !baSoundOn; baEdit.muted = !baSoundOn;
+            if (baSoundOn && baPaused) { baPaused = false; baPlayBoth(); }
+            baButtons();
+        });
+        ScrollTrigger.create({
+            trigger: baWrap, start: 'top 85%', end: 'bottom 15%',
+            onToggle: s => { if (s.isActive && !baPaused && !player) baPlayBoth(); else baPauseBoth(); }
+        });
+        // pista: la línea se mueve sola una vez para que se entienda que se arrastra
+        if (!reduceMotion) {
+            const o = { p: 50 };
+            gsap.timeline({ scrollTrigger: { trigger: baWrap, start: 'top 70%', once: true } })
+                .to(o, { p: 25, duration: .8, ease: 'power2.inOut', onUpdate: () => !baDrag && setBa(o.p) })
+                .to(o, { p: 72, duration: 1.1, ease: 'power2.inOut', onUpdate: () => !baDrag && setBa(o.p) })
+                .to(o, { p: 50, duration: .8, ease: 'power2.inOut', onUpdate: () => !baDrag && setBa(o.p) });
+        }
+
         /* ============ FAQ ============ */
         function toggleFaq(item, open) {
             item.classList.toggle('open', open);
@@ -1768,6 +1873,15 @@
                 $$('.feat-wrap').forEach(w => gsap.from(w, { opacity: 0, y: 60, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: w, start: 'top 92%' } }));
             });
             gsap.from('.service-card', { opacity: 0, y: 50, stagger: .08, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: '#servicesGrid', start: 'top 85%' } });
+            // showreel: en escritorio empieza como tarjeta y se abre a pantalla completa al bajar
+            mm.add('(min-width: 768px)', () => {
+                gsap.fromTo('#reelFrame', { clipPath: 'inset(14% 12% 14% 12% round 28px)' }, {
+                    clipPath: 'inset(0% 0% 0% 0% round 0px)', ease: 'none',
+                    scrollTrigger: { trigger: '#reelPin', start: 'top top', end: '45% top', scrub: 1 }
+                });
+                gsap.fromTo('#reelVideo', { scale: 1.15 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '#reelPin', start: 'top top', end: '45% top', scrub: 1 } });
+                gsap.from('#reelText', { y: 60, opacity: 0, ease: 'none', scrollTrigger: { trigger: '#reelPin', start: '20% top', end: '45% top', scrub: 1 } });
+            });
             gsap.to('#brandTrack', { xPercent: -50, repeat: -1, duration: 40, ease: 'none' });
 
             const aboutST = { trigger: '#sobre-mi', start: 'top 85%', end: 'top 25%', scrub: 1 };
