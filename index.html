@@ -875,7 +875,6 @@
                 V('Comerciales/Comercial_3.mp4', 'v', 'Oficinas')
             ] },
             { id: 'marca', icon: 'user-round', items: [
-                V('MarcaPersonal/Coyt_Media.mp4', 'h', 'Coyt Media · Entrevista'),
                 V('MarcaPersonal/Virola_Intro_YouTube.mp4', 'h', 'Virola · Intro de YouTube'),
                 V('MarcaPersonal/Virola_Prop_3.mp4', 'v', 'Virola · Objetos brillantes'),
                 V('MarcaPersonal/Virola_Prop_1.mp4', 'v', 'Virola · Persistencia'),
@@ -911,7 +910,7 @@
         // Lo primero que ve el cliente
         const FEATURED = [
             { ...V('Gaming/Fortnite_KVB.mp4', 'h'), k: 1 },
-            { ...V('MarcaPersonal/Coyt_Media.mp4', 'h'), k: 2 },
+            { ...V('MotionGraphics.mp4', 'h'), k: 2 },
             { ...V('Gaming/FIFA_Danjuma.mp4', 'v'), k: 3 },
             { ...V('AgenciaMarketing/AgenciaMarketing_1.mp4', 'v'), k: 4 },
             { ...V('Comerciales/Comercial_9.mp4', 'v'), k: 5 },
@@ -919,7 +918,7 @@
         ];
         // Los tres videos del inicio (los de siempre + gaming en el centro)
         const HERO_STACK = [V('Comerciales/Comercial_1.mp4', 'v', 'Living Water'), V('Gaming/FIFA_15-0.mp4', 'v', 'EA FC · 15-0'), V('Podcast/Podcast_1.mp4', 'v', 'Podcast')];
-        const BRANDS = ['Living Water', 'Rapibox', '365 Media', 'BetPlay', 'Addi', 'Coyt Media', '@soyMartinPerez', 'Svenld', '@yosoyvirola', 'UADEN Global', 'Derene', 'Progresso'];
+        const BRANDS = ['Living Water', 'Rapibox', '365 Media', 'BetPlay', 'Addi', '@soyMartinPerez', 'Svenld', '@yosoyvirola', 'UADEN Global', 'Derene', 'Progresso'];
         const SERVICES = [['gaming', 'gamepad-2'], ['comerciales', 'megaphone'], ['marca', 'user-round'], ['motion', 'sparkles'], ['podcast', 'mic'], ['enmasa', 'layers']];
 
         const STEP_ICONS = ['target', 'scissors', 'audio-waveform', 'wand', 'rocket'];
@@ -1086,7 +1085,7 @@
             'meta.desc': 'Nikol Jaramillo — editor de video y motion designer en Cali, Colombia. Gameplays y reels gaming, marca personal, anuncios, podcasts y motion graphics de alta retención.',
             'nav.services': 'Servicios', 'feat.watch': 'Ver con sonido', 'svc.cta': 'Ver ejemplos',
             'feat.1.tag': '01 / Gaming · Motion graphics', 'feat.1.title': 'Fortnite: historia animada', 'feat.1.desc': 'Gameplay convertido en historia: iconos, tarjetas y efectos al ritmo de la voz.',
-            'feat.2.tag': '02 / Marca personal · Entrevista', 'feat.2.title': 'Entrevista con gráficos premium', 'feat.2.desc': 'Selección de tomas, b-roll y gráficos con la identidad de la marca.',
+            'feat.2.tag': '02 / Motion graphics', 'feat.2.title': 'Tipografía cinética', 'feat.2.desc': 'Textos animados al ritmo de la voz para que cada idea pegue.',
             'feat.3.tag': '03 / Gaming · EA FC (inglés)', 'feat.3.title': 'Reel de FIFA para creador', 'feat.3.desc': 'Revelado de carta, subtítulos con pop y ritmo de TikTok.',
             'feat.4.tag': '04 / Agencia · Autoridad', 'feat.4.title': '365 Media: mensaje que pega', 'feat.4.desc': 'Textos con impacto, gráficos 3D y ritmo para que la idea se quede.',
             'feat.5.tag': '05 / Comercial', 'feat.5.title': 'Concesionario con actitud', 'feat.5.desc': 'Anuncio para redes con tipografía animada, ritmo y llamado a la acción.',
@@ -1113,7 +1112,7 @@
             'feat.title': `FEATURED ${G('WORK')}`,
             'feat.sub': 'Best first: gaming, personal brand, ads and creators. They play muted as you scroll; click any of them to watch with sound.',
             'feat.1.tag': '01 / Gaming · Motion graphics', 'feat.1.title': 'Fortnite: animated storytime', 'feat.1.desc': 'Gameplay turned into a story: icons, cards and effects synced to the voice.',
-            'feat.2.tag': '02 / Personal brand · Interview', 'feat.2.title': 'Interview with premium graphics', 'feat.2.desc': 'Shot selection, b-roll and graphics built on the brand identity.',
+            'feat.2.tag': '02 / Motion graphics', 'feat.2.title': 'Kinetic typography', 'feat.2.desc': 'Text animated to the rhythm of the voice so every idea lands.',
             'feat.3.tag': '03 / Gaming · EA FC (English)', 'feat.3.title': 'FIFA reel for a creator', 'feat.3.desc': 'Card reveal, pop captions and TikTok pacing.',
             'feat.4.tag': '04 / Agency · Authority', 'feat.4.title': '365 Media: a message that sticks', 'feat.4.desc': 'Punchy text, 3D graphics and rhythm so the idea stays.',
             'feat.5.tag': '05 / Commercial', 'feat.5.title': 'Car dealer with attitude', 'feat.5.desc': 'Social ad with animated type, rhythm and a call to action.',
@@ -1148,7 +1147,7 @@
             'feat.title': `注目の${G('作品')}`,
             'feat.sub': 'まずは代表作から。ゲーム、パーソナルブランド、広告、クリエイター。スクロールすると無音で再生され、クリックすると音声付きで視聴できます。',
             'feat.1.tag': '01 / ゲーム · モーショングラフィックス', 'feat.1.title': 'Fortnite:アニメーションで語るストーリー', 'feat.1.desc': 'ゲームプレイを物語に。アイコン、カード、エフェクトを声のリズムに合わせて。',
-            'feat.2.tag': '02 / パーソナルブランド · インタビュー', 'feat.2.title': 'プレミアムなグラフィックのインタビュー', 'feat.2.desc': 'テイク選び、Bロール、ブランドに合わせたグラフィック。',
+            'feat.2.tag': '02 / モーショングラフィックス', 'feat.2.title': 'キネティックタイポグラフィ', 'feat.2.desc': '声のリズムに合わせて文字を動かし、メッセージを印象づける。',
             'feat.3.tag': '03 / ゲーム · EA FC(英語)', 'feat.3.title': 'クリエイター向けFIFAリール', 'feat.3.desc': 'カードの演出、ポップな字幕、TikTokのテンポ。',
             'feat.4.tag': '04 / 代理店 · ブランディング', 'feat.4.title': '365 Media:心に残るメッセージ', 'feat.4.desc': 'インパクトのあるテキスト、3Dグラフィック、テンポで印象に残す。',
             'feat.5.tag': '05 / CM', 'feat.5.title': '個性あふれる自動車販売店CM', 'feat.5.desc': 'アニメーション文字、テンポ、行動を促すCTAのSNS広告。',
